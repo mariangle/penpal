@@ -1,6 +1,7 @@
 import NextAuth, { AuthOptions } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 
+// https://authjs.dev/getting-started/oauth-tutorial
 
 export const authOptions: AuthOptions = {
   providers: [

@@ -1,32 +1,28 @@
 "use client"
 
 import { useSession, signIn, signOut } from "next-auth/react"
+import Button from "./Button"
 
 const Nav = () => {
     const { data: session, status } = useSession()
-    const userEmail = session?.user?.email
-    console.log(session)
-
-    if (status === "loading") {
-        return <p>Hang on there...</p>
-      }
     
-      if (status === "authenticated") {
         return (
-          <>
-            <p>Signed in as {userEmail}</p>
-            <button onClick={() => signOut()}>Sign out</button>
-            <img src={session?.user?.image || "https://cdn.pixabay.com/photo/2017/08/11/19/36/vw-2632486_1280.png"} />
-          </>
+          <div className="flex fixed w-screen justify-between bg-green-700 text-white p-2 items-center">
+            <div>Logo</div>
+            { (status === "unauthenticated" || status === "loading") && (
+              <div className="flex gap-2 items-center">
+                <Button onClick={() => signIn()} style="secondary">Sign in</Button>
+              </div>
+            )}
+            { status === "authenticated" && (
+            <div className="flex gap-2 items-center">
+              <img src={session?.user?.image || ""} alt="user-profile-image" width={20} height={20} className="rounded-full"/>
+              <p>Welcome back, {session?.user?.name}!</p>
+              <Button onClick={() => signOut()} style="primary">Sign out</Button>
+            </div>
+            )}
+          </div>
         )
-      }
-    
-      return (
-        <>
-          <p>Not signed in.</p>
-          <button onClick={() => signIn("github")}>Sign in</button>
-        </>
-      )
     }
 
 export default Nav
