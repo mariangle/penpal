@@ -3,12 +3,12 @@
 import { useSession, signIn, signOut } from "next-auth/react"
 import Button from "./Button"
 
-const Nav = () => {
+const Navbar = () => {
     const { data: session, status } = useSession()
     
         return (
-          <div className="flex fixed w-screen justify-between bg-green-700 text-white p-2 items-center">
-            <div>Logo</div>
+          <div className="flex fixed w-screen top-0 justify-between bg-green-700 text-white p-2 items-center">
+            <div>SnailMail</div>
             { (status === "unauthenticated" || status === "loading") && (
               <div className="flex gap-2 items-center">
                 <Button onClick={() => signIn()} style="secondary">Sign in</Button>
@@ -25,4 +25,4 @@ const Nav = () => {
         )
     }
 
-export default Nav
+export default Navbar
