@@ -8,12 +8,14 @@ interface ButtonProps {
     disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({style, fullWidth, onClick, children, disabled}) => {
+const Button: React.FC<ButtonProps> = ({
+  style, fullWidth, onClick, children, disabled
+}) => {
   return (
     <button
         onClick={onClick}
         disabled={disabled}
-        className={`border p-1 
+        className={`border p-1 rounded-md 
         ${style === "primary" ? "bg-red-700" : 
          style === "secondary" ? "bg-blue-500" : 
          style === "tertiary" ? "bg-yellow-300" :
