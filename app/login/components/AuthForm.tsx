@@ -3,6 +3,8 @@
 import Input from "@/app/components/Input"
 import Button from "@/app/components/Button"
 import AuthSocialButton from "./AuthSocialButton"
+import PasswordField from "./PasswordField"
+
 import { BsGithub, BsGoogle, BsFacebook, BsDiscord } from "react-icons/bs"
 
 
@@ -13,16 +15,19 @@ type Variant = "LOGIN" | "REGISTER";
 
 const AuthForm = () => {
 
-  const logIn  = async () => {
-    const isSignedIn = await signIn()
+  const socialAction = (action : string) => {
+    signIn(action, { redirect: false })
+  };
 
+  const toastTest = () => {
+    toast.success("Logged in successfully!");
   }
 
   return (
     <div>
       <Input type="text" id="email" label="Email"/>
-      <Input type="password" id="password" label="Password"/>
-      <Button fullWidth>Sign </Button>
+      <PasswordField id="password" label="Password"/>
+      <Button fullWidth>Sign In</Button>
       <div className="relative my-6">
          <div className="absolute inset-0 flex items-center">
              <div className="w-full border-t border-gray-300">
@@ -35,8 +40,8 @@ const AuthForm = () => {
          </div>
       </div>
       <div>
-        <AuthSocialButton onClick={logIn} icon={BsGithub}></AuthSocialButton>
-        <AuthSocialButton onClick={signIn} icon={BsGoogle}></AuthSocialButton>
+        <AuthSocialButton onClick={() => socialAction("github")} icon={BsGithub}></AuthSocialButton>
+        <AuthSocialButton onClick={toastTest} icon={BsGoogle}></AuthSocialButton>
         <AuthSocialButton onClick={signIn} icon={BsFacebook}></AuthSocialButton>
         <AuthSocialButton onClick={signIn} icon={BsDiscord}></AuthSocialButton>
       </div>

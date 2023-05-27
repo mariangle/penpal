@@ -20,11 +20,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} mt-14`}>
+      <body className={`${inter.className}`}>
         <AuthContext>
           <ToastContext />
           <Navbar />
-          {children}
+          <div className='pt-[5rem] px-4'>
+            {children}
+          </div>
         </AuthContext>
       </body>
     </html>

@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
         onClick={onClick}
         disabled={disabled}
-        className={`border p-1 rounded-md 
+        className={`border py-1 px-2 rounded-md bg-black text-white 
         ${style === "primary" ? "bg-red-700" : 
          style === "secondary" ? "bg-blue-500" : 
          style === "tertiary" ? "bg-yellow-300" :
