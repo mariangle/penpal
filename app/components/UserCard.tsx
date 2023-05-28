@@ -26,7 +26,7 @@ const UserCard: React.FC<UserCardProps> = ({
         </div>
       </div>
       {showDropdown && showMenu && (
-        <div className="absolute top-full mt-2 bg-white border rounded-lg shadow-md w-full p-4 flex flex-col items-start">
+        <div className="absolute top-full mt-2 bg-white border rounded-lg shadow-md w-full p-4 flex flex-col items-start text-black">
           <button>Edit Profile</button>
           <button>Settings</button>
           <button onClick={() => signOut()}>Sign Out</button>
