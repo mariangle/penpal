@@ -54,9 +54,22 @@ const AuthForm = ({ variant }: AuthFormProps) => {
       });
     }
 
-    if (variant === "login"){
-      console.log(data)
-    }
+    if (variant === "login") {
+      signIn("credentials", {
+          ...data, 
+          redirect: false
+      })
+      .then((callback) => {{
+          if (callback?.error){
+              toast.error("Invalid credentials")
+          }
+
+          if (callback?.ok && !callback?.error){
+              toast.success("Logged in");
+              router.push("/")
+          }
+      }})
+  }
   }
 
   const handleClick = () => {
