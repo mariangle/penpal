@@ -3,5 +3,12 @@
 @tailwind utilities;
 
 body {
-  overflow-x: visible;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: url("../public/assets/img/bg.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat;
+  background-attachment: fixed;
 }
