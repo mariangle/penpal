@@ -3,6 +3,13 @@ import { HiChevronDown } from "react-icons/hi"
 
 import { useSession, signOut } from "next-auth/react"
 
+interface User {
+  name: string;
+  email: string;
+  image: string;
+}
+
+
 interface UserCardProps {
   showMenu : boolean,
 }
@@ -12,6 +19,7 @@ const UserCard: React.FC<UserCardProps> = ({
 }) => {
   const { data: session } = useSession()
   const [showDropdown, toggleDropdown] = useState(false);
+  console.log(session)
 
   return (
     <div className="relative">

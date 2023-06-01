@@ -5,7 +5,6 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "@/app/libs/prismadb"
 import bcrypt from "bcrypt"
 
-
 // https://authjs.dev/getting-started/oauth-tutorial
 
 export const authOptions: AuthOptions = {
@@ -55,8 +54,21 @@ export const authOptions: AuthOptions = {
   session: {
       strategy: "jwt",
   },
-  debug: process.env.NODE_ENV === "development",
-} 
+  debug: true,
+  callbacks: {
+    session: async ({ session, user }) => {
+
+      const fullUser = await prisma.user.findUnique({
+        where: { email: user.email },
+      });
+
+      session.user = { ...session.user, ...fullUser };
+      
+
+      return session;
+    },
+  },
+}   
 
 const handler = NextAuth(authOptions);
 

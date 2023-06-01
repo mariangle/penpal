@@ -4,7 +4,6 @@ import Input from "@/app/components/Input"
 import Button from "@/app/components/Button"
 import AuthSocialButton from "./AuthSocialButton"
 import PasswordField from "./PasswordField"
-
 import { BsGithub, BsGoogle } from "react-icons/bs"
 
 
@@ -64,12 +63,13 @@ const AuthForm = ({ variant }: AuthFormProps) => {
               toast.error("Invalid credentials")
           }
 
-          if (callback?.ok && !callback?.error){
-              toast.success("Logged in");
-              router.push("/")
+          if (callback?.ok && !callback?.error) {
+            toast.success("Logged in");
+            router.push("/"); 
           }
+          
       }})
-  }
+   }
   }
 
   const handleClick = () => {
