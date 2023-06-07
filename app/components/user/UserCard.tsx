@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
 import { HiChevronDown } from "react-icons/hi";
 
-import UserImage from "./user/UserImage";
+import UserImage from "./UserImage";
 import Link from "next/link";
-import { UserContext } from "../context/UserContext";
-import { IUser } from "../types/User";
+import { UserContext } from "../../context/UserContext";
+import { IUser } from "../../types/User";
 import { signOut } from "next-auth/react";
 
 interface UserCardProps {
@@ -16,7 +16,7 @@ const UserCard: React.FC<UserCardProps> = ({ showMenu }) => {
   const { user } = useContext(UserContext) as { user: IUser };
 
   const handleSignOut = async () => {
-    await signOut(); // Call the signOut function
+    await signOut(); 
   };
 
   return (

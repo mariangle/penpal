@@ -1,6 +1,6 @@
 import LetterForm from "@/app/components/forms/LetterForm"
 
-const page = () => {
+const newLetter = () => {
   return (
     <div>
       <h1 className="text-2xl font-bold">Send a letter</h1>
@@ -9,4 +9,4 @@ const page = () => {
   )
 }
 
-export default page
+export default newLetter

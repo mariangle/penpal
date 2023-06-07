@@ -1,8 +1,8 @@
 "use client"
 
 import axios from "axios"
-import Input from "@/app/components/Input"
-import Button from "@/app/components/Button"
+import Input from "@/app/components/common/Input"
+import Button from "@/app/components/common/Button"
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { useContext } from "react";
 

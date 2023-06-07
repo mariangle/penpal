@@ -1,9 +1,9 @@
 "use client"
 
-import Button from "./Button"
+import Button from "./common/Button"
 import Link from "next/link"
-import Icon from "./Icon"
-import UserCard from "./UserCard"
+import Icon from "./common/Icon"
+import UserCard from "./user/UserCard"
 
 import { HiOutlineMail, HiOutlineInbox } from "react-icons/hi"
 

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { IUser } from "../types/User"
 import ProfileCard from "../components/user/ProfileCard"
 
-const page = () => {
+const Home = () => {
   const [data, setData] = useState<IUser[]>([])
 
   useEffect(() => {
@@ -32,4 +32,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Home

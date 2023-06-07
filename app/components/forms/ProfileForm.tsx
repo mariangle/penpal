@@ -1,6 +1,6 @@
 "use client"
 
-import Input from "@/app/components/Input"
+import Input from "@/app/components/common/Input"
 import { useContext } from "react"
 import { UserContext } from "@/app/context/UserContext"
 import { IUser } from "@/app/types/User"

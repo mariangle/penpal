@@ -1,9 +1,9 @@
 import React from 'react'
 
-const page = () => {
+const Letters = () => {
   return (
     <div>Your messages </div>
   )
 }
 
-export default page
+export default Letters

@@ -12,7 +12,7 @@ interface UserContextType {
 
 export const UserContext = createContext<UserContextType>({
   user: undefined,
-  signOut: async () => {}, // Placeholder function
+  signOut: async () => {}
 });
 
 const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
@@ -22,17 +22,19 @@ const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
-        const response = await axios.get("/api/currentUser", {
-          params: { email: session?.user?.email },
-        });
-        setUser(response.data);
+        if (session?.user?.email){
+          const response = await axios.get("/api/currentUser", {
+            params: { email: session?.user?.email },
+          });
+          setUser(response.data);
+        }
       } catch (error) {
         console.error("Error fetching user:", error);
       }
     };
   
     fetchCurrentUser();
-  }, [session?.user]);
+  }, [session?.user?.email]);
 
   return (
     <UserContext.Provider value={{ user, signOut }}>

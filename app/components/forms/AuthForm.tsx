@@ -1,7 +1,7 @@
 "use client"
 
-import Input from "@/app/components/Input"
-import Button from "@/app/components/Button"
+import Input from "@/app/components/common/Input"
+import Button from "@/app/components/common/Button"
 import AuthSocialButton from "../auth/AuthSocialButton"
 import PasswordField from "../auth/PasswordField"
 import { BsGithub, BsGoogle } from "react-icons/bs"
