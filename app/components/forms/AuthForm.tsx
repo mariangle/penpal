@@ -2,8 +2,8 @@
 
 import Input from "@/app/components/Input"
 import Button from "@/app/components/Button"
-import AuthSocialButton from "./AuthSocialButton"
-import PasswordField from "./PasswordField"
+import AuthSocialButton from "../auth/AuthSocialButton"
+import PasswordField from "../auth/PasswordField"
 import { BsGithub, BsGoogle } from "react-icons/bs"
 
 
