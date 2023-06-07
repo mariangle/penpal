@@ -3,11 +3,9 @@ import prisma from "../../libs/prismadb"
 import { NextResponse } from "next/server"
 
 export async function POST(
-    request: Request
+    req: Request
 ){
-    const body = await request.json();
-    const { name, email, password, age, country } = body;
-
+    const { name, email, password, age, country } = await req.json();
     if (!name || !email || !password || !age || !country ){
         return new NextResponse("Missing Fields", { status: 400})
     }

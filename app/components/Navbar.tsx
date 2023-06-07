@@ -27,6 +27,7 @@ const Navbar = () => {
                 {/* AUTHENTICATED */}
                 { status === "authenticated" && (
                   <>
+                    <Button><Link href={"/letter/new"}>Send Letter</Link></Button>
                     <Icon icon={HiOutlineMoon} size={20} color="grey"/>
                     <Icon icon={HiOutlineMail} size={20} color="grey"/>
                     <Icon icon={HiOutlineBell} size={20} color="grey"/>

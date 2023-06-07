@@ -12,6 +12,7 @@ interface PasswordFieldProps {
 const PasswordField : React.FC<PasswordFieldProps> = ({
     id, label, register, required
 }) => {
+
   const [showPassword, setShowPassword] = useState(false);
   
   return (
@@ -26,6 +27,7 @@ const PasswordField : React.FC<PasswordFieldProps> = ({
           className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
         />
           <button
+            type="button"
             onClick={() => setShowPassword(!showPassword)}
             className="absolute top-1/2 right-4 transform -translate-y-1/2 focus:outline-none"
           >

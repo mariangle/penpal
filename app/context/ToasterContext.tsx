@@ -6,7 +6,8 @@ const ToasterContext = () => {
     return (
         <div>
             <Toaster />
-        </div>    )
+        </div>    
+    )
 }
 
 export default ToasterContext;
