@@ -3,17 +3,17 @@
 import { createContext, useState, useEffect } from "react"
 import { useSession, signOut } from "next-auth/react"
 import axios from "axios";
-import { User } from "../types/User";
+import { IUser } from "../types/User";
 
 interface UserContextType {
-  user: User | undefined;
+  user: IUser | undefined;
 }
 
 export const UserContext = createContext<UserContextType>({ user: undefined });
 
 const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
   const { data: session } = useSession()
-  const [user, setUser] = useState<User | undefined>(undefined);
+  const [user, setUser] = useState<IUser | undefined>(undefined);
 
   useEffect(() => {
     const fetchCurrentUser = async () => {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { HiChevronDown } from "react-icons/hi"
 
 import { useSession, signOut } from "next-auth/react"
-import axios from "axios";
+import Link from "next/link";
 
 interface UserCardProps {
   showMenu : boolean,
@@ -13,18 +13,6 @@ const UserCard: React.FC<UserCardProps> = ({
 }) => {
   const { data: session } = useSession()
   const [showDropdown, toggleDropdown] = useState(false);
-
-  const getUser = async () => {
-    try {
-      const response = await axios.get("/api/currentUser", {
-        params: { email: session?.user?.email },
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.error("Error fetching user:", error);
-    }
-  };
-  
 
   return (
     <div className="relative">
@@ -40,8 +28,8 @@ const UserCard: React.FC<UserCardProps> = ({
       </div>
       {showDropdown && showMenu && (
         <div className="absolute top-full mt-2 bg-white border rounded-lg shadow-md w-full p-4 flex flex-col items-start text-black">
-          <button>Edit Profile</button>
-          <button>Settings</button>
+          <Link href="/user/profile"><button>Edit Profile</button></Link>
+          <Link href="/user/settings"><button>Settings</button></Link>
           <button onClick={() => signOut()}>Sign Out</button>
         </div>
       )}

@@ -1,4 +1,5 @@
-import LetterForm from "../components/LetterForm"
+import LetterForm from "@/app/components/forms/LetterForm"
+
 const page = () => {
   return (
     <div>
