@@ -11,7 +11,6 @@ const ProfileForm = () => {
 
   useEffect(() => {
     setProfile(user)
-    console.log(profile)
   }, [user])
 
   return (

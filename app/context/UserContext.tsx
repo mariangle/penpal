@@ -7,9 +7,13 @@ import { IUser } from "../types/User";
 
 interface UserContextType {
   user: IUser | undefined;
+  signOut: () => Promise<void>;
 }
 
-export const UserContext = createContext<UserContextType>({ user: undefined });
+export const UserContext = createContext<UserContextType>({
+  user: undefined,
+  signOut: async () => {}, // Placeholder function
+});
 
 const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
   const { data: session } = useSession()
@@ -28,10 +32,10 @@ const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
     };
   
     fetchCurrentUser();
-  }, [session]);
+  }, [session?.user]);
 
   return (
-    <UserContext.Provider value={{user}}>
+    <UserContext.Provider value={{ user, signOut }}>
       {children}
     </UserContext.Provider>
   )
