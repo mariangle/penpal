@@ -24,7 +24,7 @@ const LetterForm = () => {
     console.log("sent this data ", updatedData)
 
 
-    const response = await axios.post("/api/letter", updatedData);
+    const response = await axios.post("/api/letters", updatedData);
     console.log(response.data);
   }
 

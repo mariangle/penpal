@@ -1,6 +1,7 @@
 import { IUser } from '@/app/types/User'
 import UserImage from './UserImage';
 import { GrLocation } from "react-icons/gr"
+import Link from 'next/link';
 
 interface ProfileCardProps {
   user: IUser;
@@ -13,7 +14,9 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
         <UserImage user={user} size={60}/>
       </div>
       <div className='flex flex-col ml-4'>
-        <h3 className='font-bold mt-2'>{user.name}, {user.age}</h3>
+        <Link href={`/users/${user.id}`}>
+          <h3 className='font-bold mt-2'>{user.name}, {user.age}</h3>
+        </Link>
         <div className='flex items-center gap-1'> 
           <GrLocation />
           <div>{user.country}</div>
