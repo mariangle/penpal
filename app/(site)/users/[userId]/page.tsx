@@ -1,11 +1,14 @@
 "use client"
 
+import ProfileOverview from "@/app/components/user/ProfileOverview";
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { IUser } from "@/app/types/User"
 
 const Profile = () => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<IUser | undefined>(undefined);
   const { userId } = useParams();
 
   useEffect(() => {
@@ -24,8 +27,16 @@ const Profile = () => {
 
     getUserById();
   }, [userId]);
+  
+  if (!user){
+    return "Loading..."
+  }
 
-  return <div>{user?.name}</div>;
+  return (
+    <div className="flex flex-col max-w-screen-xl mx-auto">
+      <ProfileOverview user={user}/>
+    </div>
+  )
 };
 
 export default Profile;
