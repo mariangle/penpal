@@ -8,7 +8,7 @@ export const GET = async (req: NextApiRequest) => {
   const email = searchParams.get("email")
 
   if (!email) {
-    return new NextResponse('Email not found', { status: 404 });
+    return new NextResponse("Email is required", { status: 400 })
   }
 
   const user = await prisma.user.findUnique({
@@ -19,8 +19,9 @@ export const GET = async (req: NextApiRequest) => {
   });
 
   if (!user) {
-    return new NextResponse('User not found', { status: 404 });
+    return new NextResponse("User with provided email not found", { status: 404 });
   }
+  
 
   return new Response(JSON.stringify(user), { status: 200 })
 };

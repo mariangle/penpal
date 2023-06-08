@@ -6,8 +6,9 @@ export async function POST(
     req: Request
 ){
     const { name, email, password, age, country } = await req.json();
+    
     if (!name || !email || !password || !age || !country ){
-        return new NextResponse("Missing Fields", { status: 400})
+        return new NextResponse("Missing Fields", { status: 400 })
     }
 
     const exists = await prisma.user.findUnique({
@@ -17,7 +18,7 @@ export async function POST(
     });
 
     if (exists){
-        return new NextResponse("Email exists", { status: 400})
+        return new NextResponse("Email exists", { status: 400 })
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);

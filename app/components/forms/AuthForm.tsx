@@ -41,7 +41,6 @@ const AuthForm = ({ variant }: AuthFormProps) => {
       .then((response) => {
         const user = response.data;
         toast.success("User registered");
-        console.log(user);
       })
       .catch((error) => {
         if (error.response) {

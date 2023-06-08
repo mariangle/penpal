@@ -14,7 +14,6 @@ export const GET = async (req: NextApiRequest) => {
   const user = await prisma.user.findUnique({
     where: { id: userId },
     select: {
-      id: true,
       name: true,
       email: true,
       image: true,
@@ -24,7 +23,6 @@ export const GET = async (req: NextApiRequest) => {
       age: true,
       isVerified: true,
       createdAt: true,
-      updatedAt: true,
     },
   });
 

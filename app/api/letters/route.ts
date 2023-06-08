@@ -1,11 +1,14 @@
 import prisma from '@/app/libs/prismadb';
 import { NextResponse } from "next/server"
 
-
 export const POST = async ( 
     req: Request
 ) => {
     const { title, image, content, senderId, receiverId } = await req.json();
+
+    if (!title || !image || !content || !senderId || !receiverId){
+        return new NextResponse("Missing Fields", { status: 400 })
+    }
 
     const letter = await prisma.letter.create({
         data: {
@@ -26,9 +29,12 @@ export const GET = async (
     const { searchParams } = new URL(req.url as string);
     const userId =  searchParams.get("userId")
 
+    if (!userId) {
+        return new NextResponse("Unauthorized", { status: 401 });
+    }      
 
     const letters = await prisma.letter.findMany({
-        where: { receiverId: userId ?? undefined},
+        where: { receiverId: userId },
         include: { sender: true },
     })
 
