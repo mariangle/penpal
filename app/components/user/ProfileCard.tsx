@@ -24,13 +24,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
           <Icon icon={MdLocationOn} color="#183b7c"/>
           <div>{user.country}</div>
         </div>
-        <div className='flex gap-1 mt-2 flex-wrap'>
-          {user.interests.map((interest, index) => (
-          <div key={index} className='bg-blue-100 rounded-md py-1 px-2 text-xs'>
-            {interest}
-          </div>
-        ))}
-        </div>
       </div>
     </div>
   );

@@ -8,5 +8,7 @@ export interface  IUser {
     country: string;
     age: number;
     isVerified: boolean;
+    createdAt: Date;
+    updatedat: Date;
   }
   

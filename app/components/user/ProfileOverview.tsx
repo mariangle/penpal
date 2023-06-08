@@ -1,11 +1,12 @@
-import { IUser } from '@/app/types/User';
-import React from 'react';
 import Icon from '@/app/components/common/Icon';
-import { TbSquareRoundedCheckFilled } from 'react-icons/tb';
-import { MdLocationOn } from 'react-icons/md';
 import UserImage from '@/app/components/user/UserImage';
 
+import { TbSquareRoundedCheckFilled } from 'react-icons/tb';
+import { MdLocationOn } from 'react-icons/md';
+import { IUser } from '@/app/types/User';
+
 const ProfileOverview = ({ user }: { user: IUser }) => {
+
   return (
     <div className="border p-1">
       {/* <---- HIGHER SECTION ---->*/}
@@ -29,7 +30,6 @@ const ProfileOverview = ({ user }: { user: IUser }) => {
                   <Icon icon={TbSquareRoundedCheckFilled} color="#1174c5" size={24} />
                 )}
               </div>
-              <span className="text-gray-500">{user.email}</span>
               <div className="flex gap-2 items-center bg-blue-100 text-blue-950 px-2 py-1 rounded-md mt-2">
                 <Icon icon={MdLocationOn} size={18} />
                 {user.country}
@@ -37,7 +37,7 @@ const ProfileOverview = ({ user }: { user: IUser }) => {
             </div>
             {/* PROFILE DETAILS*/}
             <div className="flex flex-col justify-between md:flex-row md:items-center md:gap-4">
-              <button className="bg-black text-white p-2 rounded-md mt-2">Send Letter</button>
+              <button className="bg-black text-white p-2 rounded-md">Send Letter</button>
             </div>
           </div>
         </div>

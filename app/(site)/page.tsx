@@ -1,9 +1,11 @@
 "use client"
 
+import ProfileCard from "../components/user/ProfileCard"
+import Loading from "../components/common/Loading"
+
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { IUser } from "../types/User"
-import ProfileCard from "../components/user/ProfileCard"
 
 const Home = () => {
   const [data, setData] = useState<IUser[]>([])
@@ -19,6 +21,10 @@ const Home = () => {
     }
     fetchUsers()
   }, [])
+
+  if (data.length === 0) {
+    return <Loading />;
+  }
 
   return (
     <div>

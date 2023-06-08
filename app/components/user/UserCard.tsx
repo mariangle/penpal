@@ -6,6 +6,7 @@ import Link from "next/link";
 import { UserContext } from "../../context/UserContext";
 import { IUser } from "../../types/User";
 import { signOut } from "next-auth/react";
+import { toast } from "react-hot-toast";
 
 interface UserCardProps {
   showMenu: boolean;
@@ -17,6 +18,7 @@ const UserCard: React.FC<UserCardProps> = ({ showMenu }) => {
 
   const handleSignOut = async () => {
     await signOut(); 
+    toast.success("Logged out succesfully")
   };
 
   return (
@@ -36,7 +38,7 @@ const UserCard: React.FC<UserCardProps> = ({ showMenu }) => {
       </div>
       {showDropdown && showMenu && (
         <div className="absolute top-full mt-2 bg-white border rounded-lg shadow-md w-full p-4 flex flex-col items-start text-black">
-          <Link href="/user/profile"><button>Edit Profile</button></Link>
+          <Link href={`/users/${user.id}`}><button>Profile</button></Link>
           <Link href="/user/settings"><button>Settings</button></Link>
           <button onClick={handleSignOut}>Sign Out</button>
         </div>
