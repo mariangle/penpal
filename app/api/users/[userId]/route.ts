@@ -12,7 +12,20 @@ export const GET = async (req: NextApiRequest) => {
   }
 
   const user = await prisma.user.findUnique({
-    where: { id: userId }
+    where: { id: userId },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      image: true,
+      about: true,
+      interests: true,
+      country: true,
+      age: true,
+      isVerified: true,
+      createdAt: true,
+      updatedAt: true,
+    },
   });
 
   if (!user) {
