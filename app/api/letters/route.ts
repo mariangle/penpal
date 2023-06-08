@@ -19,3 +19,18 @@ export const POST = async (
 
     return NextResponse.json(letter)
 }
+
+export const GET = async (
+    req: Request
+) => {
+    const { searchParams } = new URL(req.url as string);
+    const userId =  searchParams.get("userId")
+
+
+    const letters = await prisma.letter.findMany({
+        where: { receiverId: userId ?? undefined},
+        include: { sender: true },
+    })
+
+    return new Response(JSON.stringify(letters), { status: 200})
+}   

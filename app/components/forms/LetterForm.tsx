@@ -3,7 +3,7 @@
 import Input from "@/app/components/common/Input";
 import Button from "@/app/components/common/Button";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-import { useLetter } from "@/app/util/useLetterx";
+import { useLetter } from "@/app/util/useLetter";
 
 const LetterForm = () => {
   const { sendLetter } = useLetter();

@@ -33,9 +33,7 @@ const Profile = () => {
     getUserById();
   }, [userId]);
   
-  if (!user){
-    return <Loading />
-  }
+  if (!user) return <Loading />
 
   return (
     <div className="flex flex-col gap-4 max-w-screen-xl mx-auto">

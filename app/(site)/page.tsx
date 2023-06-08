@@ -22,16 +22,14 @@ const Home = () => {
     fetchUsers()
   }, [])
 
-  if (data.length === 0) {
-    return <Loading />;
-  }
-
+  if (data.length === 0) return <Loading />;
+  
   return (
     <div>
       Find your new PenPal
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-      {data?.map((user, index) => (
-        <ProfileCard key={index} user={user} />
+      {data?.map((user) => (
+        <ProfileCard key={user.id} user={user} />
       ))}
     </div>
     </div>
