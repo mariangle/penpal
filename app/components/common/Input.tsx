@@ -22,8 +22,8 @@ const Input: React.FC<InputProps> = ({
   disabled,
 }) => {
   return (
-    <div>
-      <label htmlFor={id} className="block text-sm font-medium loading-6 text-gray-900">
+    <div className="w-full">
+      <label htmlFor={id} className="block text-sm font-mediumtext-gray-900">
         {label}
       </label>
       <div className="mt-1">

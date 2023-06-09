@@ -4,31 +4,40 @@ import { UserContext } from "@/app/context/UserContext";
 import { FieldValues } from "react-hook-form";
 import { ILetter } from "../types/Letter";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation"
 
 export const useLetter = () => {
   const { user } = useContext(UserContext);
+  const router = useRouter();
   const [letters, setLetters] = useState<ILetter[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const sendLetter = async (data: FieldValues) => {
     try {
+      setLoading(true);
+
       const foundUser = await axios.get(`/api/getUserId`, {
         params: { email: data.email },
       });
-  
+
       if (!foundUser.data) {
         throw new Error('Email not found');
       }
-  
+
       const updatedData = {
         ...data,
         senderId: user?.id,
-        receiverId: foundUser.data.id
+        receiverId: foundUser.data.id,
       };
-  
-      const response = await axios.post("/api/letters", updatedData);
+      const response = await axios.post('/api/letters', updatedData);
+
+      toast.success('Letter sent successfully!');
+      setLoading(false);
+      router.push("/")
+
       return response.data;
     } catch (error) {
+      setLoading(false);
       if (axios.isAxiosError(error)) {
         toast.error(error.response?.data || error.message);
       } else {

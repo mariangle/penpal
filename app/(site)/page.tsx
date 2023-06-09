@@ -2,6 +2,7 @@
 
 import ProfileCard from "../components/user/ProfileCard"
 import Loading from "../components/common/Loading"
+import Link from "next/link"
 
 import axios from "axios"
 import { useEffect, useState } from "react"
@@ -21,11 +22,9 @@ const Home = () => {
     }
     fetchUsers()
   }, [])
-
-  if (data.length === 0) return <Loading />;
   
   return (
-    <div className="flex-center flex-col w-full">
+    <div className="flex-center flex-col items-center w-full">
       <div className="min-h-[30vh] grid content-center">
         <h1 className="head_text text-center">
           Discover <span className="orange_gradient text-center">PenPals</span>
@@ -33,11 +32,18 @@ const Home = () => {
         <p className="desc text-center">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt, voluptate veritatis reiciendis fugiat iure nesciunt accusamus. Aliquid magnam praesentium consequatur.
         </p>
+        <Link href="/letter/new" className="flex-center my-4">
+          <button className="outline_btn">Compose Letter</button>
+        </Link>
       </div>
       <div className="feed">
-      {data?.map((user) => (
-        <ProfileCard key={user.id} user={user} />
-      ))}
+      {data.length === 0 ? (
+        <Loading />
+      ) : (
+        data?.map((user) => (
+          <ProfileCard key={user.id} user={user} />
+        ))
+      )}
     </div>
     </div>
   )
