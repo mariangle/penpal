@@ -2,7 +2,7 @@
 import { useLetter } from "@/app/util/useLetter";
 import { useFormatDate } from "@/app/util/useFormatDate";
 
-import Loading from "@/app/components/common/Loading";
+import Loading from "@/app/components/Loading";
 import Link from "next/link";
 
 const LettersList = () => {

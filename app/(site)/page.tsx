@@ -1,7 +1,7 @@
 "use client"
 
-import ProfileCard from "../components/user/ProfileCard"
-import Loading from "../components/common/Loading"
+import ProfileCard from "./users/components/ProfileCard"
+import Loading from "../components/Loading"
 import Link from "next/link"
 
 import axios from "axios"

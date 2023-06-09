@@ -1,9 +1,9 @@
 "use client"
 
-import Button from "./common/Button"
+import Button from "./Button"
 import Link from "next/link"
-import Icon from "./common/Icon"
-import UserCard from "./user/UserCard"
+import Icon from "./Icon"
+import UserCard from "./AccountCard"
 
 import { BsEnvelopeAtFill } from "react-icons/bs"
 

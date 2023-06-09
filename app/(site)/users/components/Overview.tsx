@@ -1,5 +1,5 @@
-import Icon from '@/app/components/common/Icon';
-import UserImage from '@/app/components/user/UserImage';
+import Icon from '@/app/components/Icon';
+import UserImage from '@/app/components/ProfilePicture';
 
 import { TbSquareRoundedCheckFilled } from 'react-icons/tb';
 import { MdLocationOn } from 'react-icons/md';

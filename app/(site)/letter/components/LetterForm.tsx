@@ -1,8 +1,8 @@
 "use client"
 
-import Input from "@/app/components/common/Input";
-import Textarea from "@/app/components/common/Textarea";
-import Button from "@/app/components/common/Button";
+import Input from "@/app/components/Input";
+import Textarea from "@/app/components/Textarea";
+import Button from "@/app/components/Button";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { useLetter } from "@/app/util/useLetter";
 import { useContext, useState } from "react";

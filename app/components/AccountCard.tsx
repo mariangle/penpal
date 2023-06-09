@@ -1,17 +1,17 @@
 import { useState, useContext } from "react";
 import { HiChevronDown } from "react-icons/hi";
 
-import UserImage from "./UserImage";
+import UserImage from "./ProfilePicture";
 import Link from "next/link";
-import { UserContext } from "../../context/UserContext";
-import { IUser } from "../../types/User";
+import { UserContext } from "../context/UserContext";
+import { IUser } from "../types/User";
 import { signOut } from "next-auth/react";
 
-interface UserCardProps {
+interface AccountCardProps {
   showMenu: boolean;
 }
 
-const UserCard: React.FC<UserCardProps> = ({ showMenu }) => {
+const AccountCard: React.FC<AccountCardProps> = ({ showMenu }) => {
   const [showDropdown, toggleDropdown] = useState(false);
   const { user } = useContext(UserContext) as { user: IUser };
 
@@ -37,7 +37,7 @@ const UserCard: React.FC<UserCardProps> = ({ showMenu }) => {
       </div>
       {showDropdown && showMenu && (
         <div className="dropdown z-10">
-          <Link href={`/users/${user?.id}`} className="dropdown_link"><button>Edit Profile</button></Link>
+          <Link onClick={() => toggleDropdown(!showDropdown)} href={`/account/edit-profile`} className="dropdown_link"><button>Edit Profile</button></Link>
           <button onClick={handleSignOut} className="dropdown_link">Sign Out</button>
         </div>
       )}
@@ -45,4 +45,4 @@ const UserCard: React.FC<UserCardProps> = ({ showMenu }) => {
   );
 };
 
-export default UserCard;
+export default AccountCard;

@@ -2,7 +2,7 @@ import { IUser } from '@/app/types/User'
 import React from 'react'
 import { useFormatDate } from '@/app/util/useFormatDate';
 
-import Icon from '../common/Icon';
+import Icon from '../../../components/Icon';
 import { HiUser, HiOutlineMail } from 'react-icons/hi';
 
 const ProfileInfo = ({ user } : {user: IUser}) => {

@@ -1,11 +1,11 @@
 "use client"
 
-import Overview from "@/app/components/user/ProfileOverview";
-import Info from "@/app/components/user/ProfileInfo";
-import Interests from "@/app/components/user/ProfileInterests";
-import Bio from "@/app/components/user/ProfileBio";
-import Comments from "@/app/components/user/ProfileComments";
-import Loading from "@/app/components/common/Loading";
+import Overview from "@/app/(site)/users/components/Overview";
+import Info from "@/app/(site)/users/components/Info";
+import Interests from "@/app/(site)/users/components/Interests";
+import Bio from "@/app/(site)/users/components/Bio";
+import Comments from "@/app/(site)/users/components/Comments";
+import Loading from "@/app/components/Loading";
 
 import axios from "axios";
 import { useEffect, useState } from "react";

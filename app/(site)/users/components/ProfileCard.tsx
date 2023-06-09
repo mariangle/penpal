@@ -1,6 +1,6 @@
 import { IUser } from '@/app/types/User'
-import UserImage from './UserImage';
-import Icon from '../common/Icon';
+import UserImage from '../../../components/ProfilePicture';
+import Icon from '../../../components/Icon';
 import { MdLocationOn } from "react-icons/md"
 import Link from 'next/link';
 import { TbSquareRoundedCheckFilled } from "react-icons/tb"

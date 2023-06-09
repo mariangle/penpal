@@ -4,7 +4,7 @@ import { ILetter } from '@/app/types/Letter';
 import { useEffect, useState } from 'react';
 import { useParams } from "next/navigation";
 import axios from 'axios';
-import Loading from '@/app/components/common/Loading';
+import Loading from '@/app/components/Loading';
 
 const Letter = () => {
   const [letter, setLetter] = useState<ILetter | undefined>(undefined);

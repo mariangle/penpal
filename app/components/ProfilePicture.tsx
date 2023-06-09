@@ -1,12 +1,12 @@
 import { IUser } from '@/app/types/User';
 
-interface UserImageProps {
+interface PfpProps {
   user: IUser;
   size?: number;
   border?: boolean;
 }
 
-const UserImage: React.FC<UserImageProps> = ({ user, size, border }) => {
+const ProfilePicture: React.FC<PfpProps> = ({ user, size, border }) => {
   if (user?.image) {
     return (
       <img
@@ -29,4 +29,4 @@ const UserImage: React.FC<UserImageProps> = ({ user, size, border }) => {
   );
 };
 
-export default UserImage;
+export default ProfilePicture;
