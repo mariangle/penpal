@@ -25,9 +25,16 @@ const Home = () => {
   if (data.length === 0) return <Loading />;
   
   return (
-    <div>
-      Find your new PenPal
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+    <div className="flex-center flex-col w-full">
+      <div className="min-h-[30vh] grid content-center">
+        <h1 className="head_text text-center">
+          Discover <span className="orange_gradient text-center">PenPals</span>
+        </h1>
+        <p className="desc text-center">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt, voluptate veritatis reiciendis fugiat iure nesciunt accusamus. Aliquid magnam praesentium consequatur.
+        </p>
+      </div>
+      <div className="feed">
       {data?.map((user) => (
         <ProfileCard key={user.id} user={user} />
       ))}

@@ -1,11 +1,11 @@
-import './globals.css'
+import '../globals.css'
 import { Inter } from 'next/font/google'
 
-import AuthContext from './context/AuthContext'
-import ToastContext from './context/ToasterContext'
-import UserContextProvider from './context/UserContext'
+import AuthContext from '../context/AuthContext'
+import ToastContext from '../context/ToasterContext'
+import UserContextProvider from '../context/UserContext'
 
-import Navbar from './components/Navbar'
+import Navbar from '../components/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,10 +20,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <UserContextProvider>
         <html lang="en" className="h-full">
           <body className={`${inter.className} flex flex-col min-h-screen relative`}>
-            <nav className='flex justify-between items-center px-4 py-6 border-b fixed top-0 w-full h-16'>
-              <Navbar />
-            </nav>
-            <main className="mt-16 p-4">
+            <div className="main">
+                <div className="gradient"/>
+            </div>
+            <main className='app'>
+              <nav className='flex justify-between items-center px-4 py-6 border-b w-full h-16'>
+                <Navbar />
+              </nav>
               <ToastContext />
               {children}
             </main>

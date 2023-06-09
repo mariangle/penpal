@@ -21,7 +21,7 @@ const LetterForm = () => {
         <Input type="text" label="Title" id="title" register={register}/>
         <Input type="text" label="Content" id="content" register={register}/>
         <Input type="text" label="Image" id="image" register={register}/>
-        <Button type="submit">Send</Button>
+        <Button type="submit">Send</Button >
       </form>
     </div>
   )

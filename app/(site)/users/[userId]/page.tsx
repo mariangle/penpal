@@ -36,7 +36,7 @@ const Profile = () => {
   if (!user) return <Loading />
 
   return (
-    <div className="flex flex-col gap-4 max-w-screen-xl mx-auto">
+    <div className="flex flex-col gap-4 w-full">
       <Overview user={user}/>
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex flex-col gap-4 md:max-w-sm">

@@ -23,7 +23,7 @@ const ProfileOverview = ({ user }: { user: IUser }) => {
           <div className="md:flex justify-between items-start px-4 w-full">
             <div>
               <div className='flex gap-2 items-center'>
-                <h1 className="font-bold text-xl">
+                <h1 className="font-bold text-xl blue_gradient">
                   {user.name}, {user.age}
                 </h1>
                 {user.isVerified && (

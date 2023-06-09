@@ -11,21 +11,23 @@ interface ProfileCardProps {
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
   return (
-    <div className='border flex items-center justify-start p-4'>
-      <div className='w-16 h-16'>
-        <UserImage user={user} size={60}/>
-      </div>
-      <div className='flex flex-col ml-4'>
-        <Link href={`/users/${user.id}`} className='flex gap-2 items-center'>
-          <h3 className='font-bold'>{user.name}, {user.age}</h3>
-          <div>{user.isVerified && (<Icon icon={TbSquareRoundedCheckFilled} color="#1174c5"/>)}</div>
-        </Link>
-        <div className='flex items-center gap-1'> 
-          <Icon icon={MdLocationOn} color="#183b7c"/>
-          <div>{user.country}</div>
+    <Link className='profile_card' href={`/users/${user.id}`}>
+      <div className='flex'>
+        <div className='w-16 h-16'>
+          <UserImage user={user} size={50}/>
+        </div>
+        <div className='flex flex-col'>
+          <div className='flex gap-2   items-center'>
+            <h3 className='font-bold'>{user.name}, {user.age}</h3>
+            <div>{user.isVerified && (<Icon icon={TbSquareRoundedCheckFilled} color="#1174c5"/>)}</div>
+          </div>
+          <div className='flex items-center gap-1'> 
+            <Icon icon={MdLocationOn} color="black"/>
+            <div className='text-gray-700'>{user.country}</div>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

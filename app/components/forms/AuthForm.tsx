@@ -36,8 +36,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (variant === "register"){
       data.age = parseInt(data.age);
-      axios
-      .post("/api/register", data)
+      axios.post("/api/register", data)
       .then((response) => {
         const user = response.data;
         toast.success("User registered");

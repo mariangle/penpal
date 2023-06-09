@@ -37,10 +37,9 @@ const UserCard: React.FC<UserCardProps> = ({ showMenu }) => {
         </div>
       </div>
       {showDropdown && showMenu && (
-        <div className="absolute top-full mt-2 bg-white border rounded-lg shadow-md w-full p-4 flex flex-col items-start text-black">
-          <Link href={`/users/${user.id}`}><button>Profile</button></Link>
-          <Link href="/user/settings"><button>Settings</button></Link>
-          <button onClick={handleSignOut}>Sign Out</button>
+        <div className="dropdown">
+          <Link href={`/users/${user.id}`} className="dropdown_link"><button>Edit Profile</button></Link>
+          <button onClick={handleSignOut} className="dropdown_link">Sign Out</button>
         </div>
       )}
     </div>

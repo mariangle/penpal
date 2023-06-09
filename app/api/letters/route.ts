@@ -6,7 +6,7 @@ export const POST = async (
 ) => {
     const { title, image, content, senderId, receiverId } = await req.json();
 
-    if (!title || !image || !content || !senderId || !receiverId){
+    if (!title || !content || !senderId || !receiverId){
         return new NextResponse("Missing Fields", { status: 400 })
     }
 
