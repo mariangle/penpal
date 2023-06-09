@@ -17,8 +17,8 @@ const ProfileOverview = ({ user }: { user: IUser }) => {
       <div className='flex items-center flex-col md:flex w-full'>
         {/* PROFILE PICTURE AND ABOUT*/}
         <div className='flex flex-col items-center w-full md:flex-row'>
-          <div className='-translate-y-8 px-4'>
-            <UserImage user={user} size={150} border />
+          <div className='-translate-y-8 w-44 h-44'>
+            <UserImage user={user} border />
           </div>
           <div className="md:flex justify-between items-start px-4 w-full">
             <div>

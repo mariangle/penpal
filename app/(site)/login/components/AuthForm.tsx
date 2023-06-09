@@ -6,7 +6,6 @@ import AuthSocialButton from "./AuthSocialButton"
 import PasswordField from "./PasswordField"
 import { BsGithub, BsGoogle } from "react-icons/bs"
 
-
 import { signIn } from "next-auth/react"
 import { toast } from "react-hot-toast"
 import axios from "axios"

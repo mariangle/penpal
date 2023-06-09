@@ -9,6 +9,6 @@ export interface  IUser {
     age: number;
     isVerified: boolean;
     createdAt: Date;
-    updatedat: Date;
+    updatedAt: Date;
   }
   

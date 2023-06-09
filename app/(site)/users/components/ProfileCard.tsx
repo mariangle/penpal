@@ -12,9 +12,9 @@ interface ProfileCardProps {
 const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
   return (
     <Link className='profile_card' href={`/users/${user.id}`}>
-      <div className='flex'>
-        <div className='w-16 h-16'>
-          <UserImage user={user} size={50}/>
+      <div className='flex gap-2'>
+        <div className='w-12 h-12'>
+          <UserImage user={user}/>
         </div>
         <div className='flex flex-col'>
           <div className='flex gap-2   items-center'>

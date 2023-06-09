@@ -23,9 +23,11 @@ const AccountCard: React.FC<AccountCardProps> = ({ showMenu }) => {
     <div className="relative">
       <div className="flex items-center gap-2 cursor-pointer">
         <div className="flex gap-2"> 
-          <Link href={`/users/${user?.id}`}>
-            <UserImage user={user}size={40}/>
-          </Link>
+          <div className="w-10 h-10">
+            <Link href={`/users/${user?.id}`}>
+              <UserImage user={user} />
+            </Link>
+          </div>
           <div onClick={() => toggleDropdown(!showDropdown)}>
             <p className="text-sm font-medium">{user?.name}</p>
             <p className="text-xs text-gray-500">{user?.email}</p>
@@ -38,6 +40,8 @@ const AccountCard: React.FC<AccountCardProps> = ({ showMenu }) => {
       {showDropdown && showMenu && (
         <div className="dropdown z-10">
           <Link onClick={() => toggleDropdown(!showDropdown)} href={`/account/edit-profile`} className="dropdown_link"><button>Edit Profile</button></Link>
+          <Link onClick={() => toggleDropdown(!showDropdown)} href={`/account/settings`} className="dropdown_link"><button>Settings</button></Link>
+
           <button onClick={handleSignOut} className="dropdown_link">Sign Out</button>
         </div>
       )}

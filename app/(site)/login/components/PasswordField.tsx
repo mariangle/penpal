@@ -1,4 +1,3 @@
-import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { UseFormRegister, FieldValues } from "react-hook-form"
 
@@ -18,7 +17,7 @@ const PasswordField : React.FC<PasswordFieldProps> = ({
   return (
     <div className="flex flex-col mb-4">
       <label htmlFor="password" className="block text-sm font-medium text-gray-900">
-        {id}
+        {label}
       </label>
       <div className="relative">
         <input
@@ -29,9 +28,9 @@ const PasswordField : React.FC<PasswordFieldProps> = ({
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute top-1/2 right-4 transform -translate-y-1/2 focus:outline-none"
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 focus:outline-none text-sm"
           >
-            {showPassword ? <BsEyeSlash size={20} /> : <BsEye size={20} />}
+            {showPassword ? "Hide": "Show"}
           </button>
       </div>
     </div>

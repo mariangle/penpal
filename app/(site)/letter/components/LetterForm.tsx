@@ -21,7 +21,6 @@ const LetterForm: React.FC = () => {
   };
 
   return (
-    <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex items-end gap-4">
           <div>
@@ -48,7 +47,6 @@ const LetterForm: React.FC = () => {
         <Input type="text" label="Image URL" id="image" register={register}/>
         <Button type="submit" disabled={loading}>Send</Button>
       </form>
-    </div>
   );
 };
 

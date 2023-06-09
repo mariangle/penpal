@@ -13,10 +13,10 @@ export const useFormatDate = (date: string): string => {
     const parsedDate = new Date(date);
     const hours = parsedDate.getHours().toString().padStart(2, '0');
     const minutes = parsedDate.getMinutes().toString().padStart(2, '0');
-    const month = parsedDate.toLocaleString('default', { month: 'short' });
-    const day = parsedDate.getDate();
+    const day = parsedDate.getDate().toString().padStart(2, '0');
+    const month = (parsedDate.getMonth() + 1).toString().padStart(2, '0');
     const year = parsedDate.getFullYear();
-  
-    return `${hours}:${minutes} ${month} ${day} ${year}`;
+    
+    return `${hours}:${minutes} ${day}-${month}-${year}`;
   };
   

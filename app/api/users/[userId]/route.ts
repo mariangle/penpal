@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { NextApiRequest } from 'next';
 import prisma from '@/app/libs/prismadb';
 
@@ -31,4 +31,33 @@ export const GET = async (req: NextApiRequest) => {
   }
 
   return new Response(JSON.stringify(user), { status: 200 })
+};
+
+export const PUT = async (req: NextRequest) => {
+  const { name, image, about, country, age, userId } = await req.json();
+  
+  if (!name || !about || !country || !age) {
+    return new NextResponse('Missing Fields', { status: 400 });
+  }
+
+  try {
+    const user = await prisma.user.update({
+      where: { id: userId },
+      data: {
+        name,
+        image,
+        about,
+        country,
+        age,
+      },
+    });
+
+    if (!user) {
+      return new NextResponse('User not found', { status: 404 });
+    }
+
+    return new Response(JSON.stringify(user), { status: 200 });
+  } catch (error) {
+    console.log(error);
+  }
 };
