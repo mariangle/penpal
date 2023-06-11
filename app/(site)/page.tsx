@@ -7,8 +7,6 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { IUser } from "../types/User"
 
-import { getCountry } from "../util/useFormatDate"
-
 const Home = () => {
   const [data, setData] = useState<IUser[]>([])
 
