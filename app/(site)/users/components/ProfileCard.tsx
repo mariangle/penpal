@@ -1,9 +1,10 @@
-import { IUser } from '@/app/types/User'
+import { HiLocationMarker, HiCheckCircle } from "react-icons/hi"
+
 import UserImage from '../../../components/ProfilePicture';
 import Icon from '../../../components/Icon';
-import { MdLocationOn } from "react-icons/md"
 import Link from 'next/link';
-import { TbSquareRoundedCheckFilled } from "react-icons/tb"
+
+import { IUser } from '@/app/types/User'
 
 interface ProfileCardProps {
   user: IUser;
@@ -19,10 +20,10 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
         <div className='flex flex-col'>
           <div className='flex gap-2   items-center'>
             <h3 className='font-bold'>{user.name}, {user.age}</h3>
-            <div>{user.isVerified && (<Icon icon={TbSquareRoundedCheckFilled} color="#1174c5"/>)}</div>
+            <div>{user.isVerified && (<Icon icon={HiCheckCircle} color="#1174c5"/>)}</div>
           </div>
           <div className='flex items-center gap-1'> 
-            <Icon icon={MdLocationOn} color="black"/>
+            <Icon icon={HiLocationMarker} color="black"/>
             <div className='text-gray-700'>{user.country}</div>
           </div>
         </div>

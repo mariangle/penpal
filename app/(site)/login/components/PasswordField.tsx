@@ -12,7 +12,7 @@ const PasswordField : React.FC<PasswordFieldProps> = ({
     id, label, register, required
 }) => {
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   
   return (
     <div className="flex flex-col mb-4">

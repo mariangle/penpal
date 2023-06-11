@@ -7,11 +7,13 @@ import { IUser } from "../types/User";
 
 interface UserContextType {
   user: IUser | undefined;
+  setUser: (user: IUser | undefined) => void;
   signOut: () => Promise<void>;
 }
 
 export const UserContext = createContext<UserContextType>({
   user: undefined,
+  setUser: () => {},
   signOut: async () => {}
 });
 
@@ -37,7 +39,7 @@ const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
   }, [session?.user?.email]);
 
   return (
-    <UserContext.Provider value={{ user, signOut }}>
+    <UserContext.Provider value={{ user, signOut, setUser }}>
       {children}
     </UserContext.Provider>
   )

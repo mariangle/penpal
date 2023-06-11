@@ -2,11 +2,12 @@
 
 import ProfileCard from "./users/components/ProfileCard"
 import Loading from "../components/Loading"
-import Link from "next/link"
 
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { IUser } from "../types/User"
+
+import { getCountry } from "../util/useFormatDate"
 
 const Home = () => {
   const [data, setData] = useState<IUser[]>([])
@@ -30,11 +31,7 @@ const Home = () => {
           Discover <span className="orange_gradient text-center">PenPals</span>
         </h1>
         <p className="desc text-center">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt, voluptate veritatis reiciendis fugiat iure nesciunt accusamus. Aliquid magnam praesentium consequatur.
-        </p>
-        <Link href="/letter/new" className="flex-center my-4">
-          <button className="outline_btn">Compose Letter</button>
-        </Link>
+        Embrace the nostalgia of traditional letter writing in a digital world. Connect with penpals worldwide and enjoy the anticipation of heartfelt messages that arrive at their own pace.</p>
       </div>
       <div className="feed">
       {data.length === 0 ? (

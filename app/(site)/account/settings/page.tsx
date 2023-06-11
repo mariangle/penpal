@@ -1,11 +1,16 @@
-import Button from "@/app/components/Button"
-
+import SettingsForm from "../components/SettingsForm"
 
 const Settings = () => {
   return (
     <div>
-      <h1>Settings</h1>
-      <Button>Save</Button>
+      <div className="border-b py-4">
+        <h1 className="font-bold text-lg">
+          Settings
+        </h1>
+      </div>  
+      <div className="py-4">
+        <SettingsForm />
+      </div>    
     </div>
   )
 }

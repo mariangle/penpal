@@ -18,7 +18,7 @@ const EditProfile = () => {
         </h1>
       </div>
       <div className="py-4">
-        <ProfileForm user={user}/>
+        <ProfileForm/>
       </div>
     </div>
   )

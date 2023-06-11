@@ -8,13 +8,15 @@ import Comments from "@/app/(site)/users/components/Comments";
 import Loading from "@/app/components/Loading";
 
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { IUser } from "@/app/types/User"
+import { UserContext } from "@/app/context/UserContext";
 
 const Profile = () => {
-  const [user, setUser] = useState<IUser | undefined>(undefined);
+  const [profile, setProfile] = useState<IUser | undefined>(undefined);
   const { userId } = useParams();
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     const getUserById = async () => {
@@ -23,7 +25,13 @@ const Profile = () => {
           const response = await axios.get(`/api/users/${userId}`, {
             params: { userId: userId },
           });          
-          setUser(response.data);
+          if (user?.email === response.data.email){
+            setProfile(user)
+            console.log("sat to current user")
+          } else {
+            setProfile(response.data);
+            console.log("sat to a  user")
+          }
         }
       } catch (error) {
         console.error("Error fetching user:", error);
@@ -31,20 +39,20 @@ const Profile = () => {
     };
 
     getUserById();
-  }, [userId]);
+  }, [userId, user]);
   
-  if (!user) return <Loading />
+  if (!profile) return <Loading />
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      <Overview user={user}/>
+      <Overview profile={profile}/>
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex flex-col gap-4 md:max-w-sm">
-          <Interests user={user}/>
-          <Info user={user}/>
+          <Interests user={profile}/>
+          <Info user={profile}/>
         </div>
         <div className="w-full flex flex-col gap-4">
-          <Bio user={user}/>
+          <Bio user={profile}/>
           <Comments />
       </div>
       </div>

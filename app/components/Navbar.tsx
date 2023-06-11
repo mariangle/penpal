@@ -1,11 +1,11 @@
 "use client"
 
+import { HiMail, HiGlobe } from "react-icons/hi"
+
 import Button from "./Button"
 import Link from "next/link"
 import Icon from "./Icon"
 import UserCard from "./AccountCard"
-
-import { BsEnvelopeAtFill } from "react-icons/bs"
 
 import { useSession } from "next-auth/react"
 import { usePathname } from "next/navigation"
@@ -18,8 +18,9 @@ const Navbar = () => {
     return (
       <>
         <div>
-          <Link href="/" className="font-bold">
-            {pathname.includes("inbox") ? "MailBox": "PenPal"}
+          <Link href="/" className="font-bold flex items-center gap-1">
+            <HiGlobe />
+            <h1>PenPal</h1>
           </Link>
         </div>
         <div className="flex gap-4 items-center">
@@ -37,7 +38,7 @@ const Navbar = () => {
                   <Button><Link href={"/letter/new"}>Compose</Link></Button>
                 )}
                 <Link href={"/inbox"}>
-                  <Icon icon={BsEnvelopeAtFill} size={25} color="lightgrey"/>
+                  <Icon icon={HiMail} size={25} color="lightgrey"/>
                 </Link>
                 <UserCard showMenu={true} />
               </>

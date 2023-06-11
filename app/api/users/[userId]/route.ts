@@ -36,7 +36,7 @@ export const GET = async (req: NextApiRequest) => {
 export const PUT = async (req: NextRequest) => {
   const { name, image, about, country, age, userId } = await req.json();
   
-  if (!name || !about || !country || !age) {
+  if (!name || !country || !age) {
     return new NextResponse('Missing Fields', { status: 400 });
   }
 
@@ -48,7 +48,8 @@ export const PUT = async (req: NextRequest) => {
         image,
         about,
         country,
-        age,
+        age: parseInt(age),
+        updatedAt: new Date(),
       },
     });
 

@@ -28,7 +28,7 @@ export async function POST(
             email,
             name,
             hashedPassword,
-            age,
+            age: parseInt(age),
             country,
         }
     })

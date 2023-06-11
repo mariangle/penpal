@@ -15,8 +15,8 @@ const Button: React.FC<ButtonProps> = ({
         onClick={onClick}
         type={type}
         disabled={disabled}
-        className={`outline_btn
-        ${style === "primary" ? "bg-red-700" : 
+        className={`rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center
+        ${style === "primary" ? "bg-red-600 hover:bg-red-400 border-none" : 
          style === "secondary" ? "bg-blue-500" : 
          style === "tertiary" ? "bg-yellow-300" :
          fullWidth ? "w-full" : "" }
