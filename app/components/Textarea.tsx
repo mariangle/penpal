@@ -1,4 +1,5 @@
 import { UseFormRegister, FieldValues } from "react-hook-form";
+import { ChangeEventHandler } from "react";
 
 interface TextareaProps {
     label: string;
@@ -9,7 +10,9 @@ interface TextareaProps {
     placeholder?: string;
     required?: boolean;
     disabled?: boolean;
-}
+    maxLength?: number;
+    onChange?: ChangeEventHandler<HTMLTextAreaElement>; 
+  }
 
 const Textarea :React.FC<TextareaProps>  = ({
     label,
@@ -19,7 +22,9 @@ const Textarea :React.FC<TextareaProps>  = ({
     register,
     placeholder,
     required,
-    disabled
+    disabled,
+    maxLength,
+    onChange
 }) => {
   return (
     <div>
@@ -34,7 +39,9 @@ const Textarea :React.FC<TextareaProps>  = ({
           disabled={disabled}
           {...(register && register(id, { required }))}
           placeholder={placeholder}
-          className="w-full border p-2 mb-4 rounded-md"
+          className="w-full border p-2 rounded-md"
+          maxLength={maxLength}
+          onChange={onChange}
         />
       </div>
     </div>  )

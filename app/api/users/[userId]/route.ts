@@ -23,6 +23,7 @@ export const GET = async (req: NextRequest) => {
       dob: true,
       isVerified: true,
       createdAt: true,
+      lastLoggedIn: true,
     },
   });
 

@@ -1,11 +1,7 @@
 "use client"
 
-import Overview from "@/app/(site)/users/components/Overview";
-import Info from "@/app/(site)/users/components/Info";
-import Interests from "@/app/(site)/users/components/Interests";
-import Bio from "@/app/(site)/users/components/Bio";
-import Comments from "@/app/(site)/users/components/Comments";
 import Loading from "@/app/components/Loading";
+import Overview from "../components/Overview";
 
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
@@ -42,18 +38,15 @@ const Profile = () => {
   if (!profile) return <Loading />
 
   return (
-    <div className="flex flex-col gap-4 w-full">
-      <Overview profile={profile}/>
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="flex flex-col gap-4 md:max-w-sm">
-          <Interests user={profile}/>
-          <Info user={profile}/>
+<div className="w-full my-4">
+      <div className="md:flex gap-4">
+        <div className="md:min-w-[15rem] flex-[2]">       
+          <Overview profile={profile}/>
         </div>
-        <div className="w-full flex flex-col gap-4">
-          <Bio user={profile}/>
-          <Comments />
-      </div>
-      </div>
+        <div className="bg-green-600 w-full flex-[5]">
+          comments
+        </div>
+      </div>  
     </div>
   )
 };
