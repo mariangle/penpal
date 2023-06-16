@@ -1,6 +1,6 @@
 
-import { useLetter } from "@/app/util/useLetter";
-import { useFormatDate } from "@/app/util/useFormatDate";
+import { useLetter } from "@/app/hooks/useLetter";
+import { useFormatDate } from "@/app/hooks/useUtil";
 
 import Loading from "@/app/components/Loading";
 import Link from "next/link";

@@ -4,7 +4,7 @@ import Input from "@/app/components/Input";
 import Textarea from "@/app/components/Textarea";
 import Button from "@/app/components/Button";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-import { useLetter } from "@/app/util/useLetter";
+import { useLetter } from "@/app/hooks/useLetter";
 import { useContext, useState } from "react";
 import { UserContext } from "@/app/context/UserContext";
 

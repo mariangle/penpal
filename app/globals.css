@@ -10,9 +10,7 @@ body {
   box-sizing: border-box;
 }
 
-/* 
-  credit goes to this site for styles and grid: https://dub.sh
-*/
+/* almost all styling is from : https://dub.sh */
 
 .main {
   width: 100vw;

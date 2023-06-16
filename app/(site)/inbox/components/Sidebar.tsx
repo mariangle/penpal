@@ -1,6 +1,6 @@
 "use client"
 
-import { useLetter } from "@/app/util/useLetter";
+import { useLetter } from "@/app/hooks/useLetter";
 import LettersList from "./LettersList"
 
 const Sidebar = () => {

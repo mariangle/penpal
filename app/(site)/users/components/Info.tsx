@@ -1,6 +1,6 @@
 import { IUser } from '@/app/types/User'
 import React from 'react'
-import { useFormatDate } from '@/app/util/useFormatDate';
+import { useFormatDate } from '@/app/hooks/useUtil';
 
 import Icon from '../../../components/Icon';
 import { HiUser, HiOutlineMail } from 'react-icons/hi';

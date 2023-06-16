@@ -4,7 +4,7 @@ import Input from "@/app/components/Input";
 import Textarea from "@/app/components/Textarea";
 import Button from "@/app/components/Button";
 
-import { useFormatFullDate } from "@/app/util/useFormatDate";
+import { useFormatFullDate } from "@/app/hooks/useUtil";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { IUser } from "@/app/types/User";
 import { useContext, useEffect, useState } from "react";

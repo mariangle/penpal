@@ -20,14 +20,14 @@ export const useFormatDate = (date: string): string => {
     return `${hours}:${minutes} ${day}-${month}-${year}`;
   };
   
-export const getCountry = () => {
-  fetch('http://ip-api.com/json')
-  .then((response) => response.json())
-  .then((data) => {
-    const country = data.country;
-  })
-  .catch((error) => {
-    console.error('Error retrieving IP geolocation:', error);
-  });
-
-}
+  export const getCountry = () => {
+    return fetch('http://ip-api.com/json') 
+      .then((response) => response.json())
+      .then((data) => {
+        const country = data.country;
+        return country;
+      })
+      .catch((error) => {
+        console.error('Error retrieving IP geolocation:', error);
+      });
+  };

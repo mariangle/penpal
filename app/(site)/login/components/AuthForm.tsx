@@ -11,6 +11,8 @@ import { toast } from "react-hot-toast"
 import axios from "axios"
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation"
+import { getCountry } from "@/app/hooks/useUtil"
+import { useEffect } from "react"
 
 interface AuthFormProps {
   variant: 'login' | 'register'
@@ -18,15 +20,15 @@ interface AuthFormProps {
 
 const AuthForm = ({ variant }: AuthFormProps) => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm<FieldValues>({
-    defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-      age: undefined,
-      country: "",
+  const { register, handleSubmit, setValue } = useForm<FieldValues>({})
+
+  useEffect(() => {
+    if (variant === 'register') {
+      getCountry().then((country) => {
+        setValue('country', country); 
+      });
     }
-  })
+  }, [setValue, variant]);
 
   const socialAction = (action : string) => {
     signIn(action, { redirect: false })
@@ -35,9 +37,9 @@ const AuthForm = ({ variant }: AuthFormProps) => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (variant === "register"){
       data.age = parseInt(data.age);
+      console.log(data.country)
       axios.post("/api/register", data)
-      .then((response) => {
-        const user = response.data;
+      .then(() => {
         toast.success("User registered");
       })
       .catch((error) => {
@@ -50,22 +52,17 @@ const AuthForm = ({ variant }: AuthFormProps) => {
       });
     }
 
-    if (variant === "login") {
-      signIn("credentials", {
-          ...data, 
-          redirect: false
-      })
-      .then((callback) => {{
-          if (callback?.error){
-              toast.error("Invalid credentials")
-          }
-
-          if (callback?.ok && !callback?.error) {
-            toast.success("Logged in");
-            router.push("/"); 
-          }
-          
-      }})
+  if (variant === "login") {
+    signIn("credentials", {...data, redirect: false })
+    .then((callback) => {{
+        if (callback?.error){
+            toast.error("Invalid credentials")
+        }
+        if (callback?.ok && !callback?.error) {
+          toast.success("Logged in");
+          router.push("/"); 
+        }
+    }})
    }
   }
 
@@ -89,7 +86,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
             { variant === "register" && (
               <div className="flex gap-2">
                 <Input type="number" id="age" label="Age" register={register} />
-                <Input type="text" id="country" label="Country" register={register}/>
+                <Input type="text" id="country" label="Country" register={register} disabled/>
               </div>
             )}
             <div>
@@ -114,7 +111,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
           </div>
           <div>
             <AuthSocialButton onClick={() => socialAction("github")} icon={BsGithub}></AuthSocialButton>
-            <AuthSocialButton onClick={() => socialAction("github")} icon={BsGoogle}></AuthSocialButton>
+            <AuthSocialButton onClick={() => socialAction("google")} icon={BsGoogle}></AuthSocialButton>
           </div>
         </>
       )}
