@@ -27,10 +27,8 @@ const Profile = () => {
           });          
           if (user?.email === response.data.email){
             setProfile(user)
-            console.log("sat to current user")
           } else {
             setProfile(response.data);
-            console.log("sat to a  user")
           }
         }
       } catch (error) {

@@ -1,38 +1,31 @@
 "use client"
 
-import { HiMail, HiGlobe } from "react-icons/hi"
+import { HiMail, HiOutlineGlobe } from "react-icons/hi"
 
 import Button from "./Button"
 import Link from "next/link"
 import Icon from "./Icon"
 import UserCard from "./AccountCard"
 
-import { useSession } from "next-auth/react"
 import { usePathname } from "next/navigation"
+import { UserContext } from "../context/UserContext"
+import { useContext } from "react"
 
 
 const Navbar = () => {
-    const { status } = useSession()
+    const { user } = useContext(UserContext)
       const pathname = usePathname();
     
     return (
       <>
         <div>
           <Link href="/" className="font-bold flex items-center gap-1">
-            <HiGlobe />
-            <h1>PenPal</h1>
+            <HiOutlineGlobe />
+            <h1>Pen<span className="orange_gradient">Pal</span></h1>
           </Link>
         </div>
         <div className="flex gap-4 items-center">
-            {/* UNAUNATHENTICATED */}
-            { (status === "unauthenticated" || status === "loading") && (
-              <div className="flex gap-2 items-center">
-                <Link href={"/login"}>Sign In</Link>
-                <Link href={"/register"}><button className="outline_btn">Join</button></Link>
-              </div>
-            )}
-            {/* AUTHENTICATED */}
-            { status === "authenticated" && (
+            { user ? (
               <>
                 { pathname.includes("inbox") && (
                   <Button><Link href={"/letter/new"}>Compose</Link></Button>
@@ -42,8 +35,12 @@ const Navbar = () => {
                 </Link>
                 <UserCard showMenu={true} />
               </>
+            ) : (
+              <div className="flex gap-2 items-center">
+                <Link href={"/login"}>Sign In</Link>
+                <Link href={"/register"}><button className="outline_btn">Join</button></Link>
+              </div>
             )}
-            {/* MOBILE NAV */}
         </div>
       </>
     )

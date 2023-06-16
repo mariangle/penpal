@@ -6,8 +6,19 @@ import Button from "@/app/components/Button"
 import { UserContext } from "@/app/context/UserContext"
 import { useContext } from "react"
 
+import axios from "axios"
+import { toast } from "react-hot-toast"
+
 const SettingsForm = () => {
     const { user } = useContext(UserContext)
+
+    const handleDelete = async () => {
+        const response = await axios.delete("/api/currentUser", {
+            params: { userId: user?.id },
+          });
+        toast.error(response.data)
+      };
+      
  
   return (
     <div className="flex flex-col gap-4">
@@ -22,7 +33,7 @@ const SettingsForm = () => {
                 <p className="text-sm text-gray-500 my-2">Please proceed with caution as this action will permanently delete your PenPal account.</p>
             </div>
             <div className="border-t border-red-600 p-4 flex justify-end">
-                <Button style="primary">Delete Acount</Button>
+                <Button style="primary" onClick={handleDelete}>Delete Acount</Button>
             </div>
         </div>
     </div>

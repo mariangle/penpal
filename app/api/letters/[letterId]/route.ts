@@ -16,7 +16,7 @@ export const GET = async (req: NextApiRequest) => {
     });
 
   if (!letter) {    
-    return new NextResponse('Letter not asdasdasd', { status: 404 });
+    return new NextResponse('Letter not found', { status: 404 });
   }
 
   return new Response(JSON.stringify(letter), { status: 200 })

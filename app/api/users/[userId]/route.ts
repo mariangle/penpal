@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { NextApiRequest } from 'next';
 import prisma from '@/app/libs/prismadb';
 
 
-export const GET = async (req: NextApiRequest) => {
+export const GET = async (req: NextRequest) => {
   const { searchParams } = new URL(req.url as string);
   const userId = searchParams.get("userId")
 

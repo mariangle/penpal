@@ -39,7 +39,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
       data.age = parseInt(data.age);
       console.log(data.country)
       axios.post("/api/register", data)
-      .then(() => {
+      .then((res) => {
         toast.success("User registered");
       })
       .catch((error) => {
@@ -85,8 +85,8 @@ const AuthForm = ({ variant }: AuthFormProps) => {
             <PasswordField id="password" label="Password" register={register}/>
             { variant === "register" && (
               <div className="flex gap-2">
-                <Input type="number" id="age" label="Age" register={register} />
-                <Input type="text" id="country" label="Country" register={register} disabled/>
+                <Input type="date" id="age" label="Age" register={register} />
+                <Input type="text" id="country" label="Country" register={register} disabled info="We retrieve your country information based on your IP address to provide a personalized experience."/>
               </div>
             )}
             <div>

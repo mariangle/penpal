@@ -41,7 +41,7 @@ export const useLetter = () => {
       if (axios.isAxiosError(error)) {
         toast.error(error.response?.data || error.message);
       } else {
-        console.log('Unexpected error', error);
+        toast.error("Unexpected error");
       }
     }
   };
@@ -57,7 +57,6 @@ export const useLetter = () => {
         });
     
         setLetters(response.data);
-        console.log(response.data);     
        }
     } catch (error) {
       console.log("Error retrieving letters:", error);
