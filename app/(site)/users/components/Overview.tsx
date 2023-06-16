@@ -7,6 +7,7 @@ import { HiLocationMarker, HiCheckCircle } from 'react-icons/hi';
 import { IUser } from '@/app/types/User';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '@/app/context/UserContext';
+import { getAge } from '@/app/hooks/useUtil';
 
 const ProfileOverview = ({ profile }: { profile: IUser }) => {
   const [isCurrentUser, setIsCurrentUser] = useState<boolean>(false);
@@ -40,7 +41,7 @@ const ProfileOverview = ({ profile }: { profile: IUser }) => {
             <div>
               <div className="flex gap-2 items-center">
                 <h1 className="font-bold text-xl blue_gradient">
-                  {profile.name}, {profile.age}
+                  {profile.name}, {getAge(profile.dob.toString())}
                 </h1>
                 {profile.isVerified && (
                   <Icon icon={HiCheckCircle} color="#1174c5" size={24} />

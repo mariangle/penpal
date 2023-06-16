@@ -46,6 +46,12 @@ export const authOptions: AuthOptions = {
           throw new Error("Incorrect password")
         }
 
+        // update lastLoggedIn
+        await prisma.user.update({
+          where: { id: user.id },
+          data: { lastLoggedIn: new Date() },
+        });
+
         return user;
       }
     })

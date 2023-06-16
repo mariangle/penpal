@@ -11,18 +11,19 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
   name           String
-  email          String   @unique
-  image          String   @default("")
+  email          String    @unique
+  image          String    @default("")
   hashedPassword String
-  about          String   @default("")
-  interests      String[] @default([])
+  about          String    @default("")
+  interests      String[]  @default([])
   country        String
-  age            Int
-  isVerified     Boolean  @default(false)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  dob            DateTime
+  isVerified     Boolean   @default(false)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime // @updatedAt 
+  lastLoggedIn   DateTime?
 
   sentLetters     Letter[] @relation("SentLetter")
   receivedLetters Letter[] @relation("ReceivedLetter")

@@ -1,4 +1,5 @@
 import { HiLocationMarker, HiCheckCircle } from "react-icons/hi"
+import { getAge } from "@/app/hooks/useUtil";
 
 import UserImage from '../../../components/ProfilePicture';
 import Icon from '../../../components/Icon';
@@ -19,7 +20,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
         </div>
         <div className='flex flex-col'>
           <div className='flex gap-2   items-center'>
-            <h3 className='font-bold'>{user.name}, {user.age}</h3>
+            <h3 className='font-bold'>{user.name}, {getAge(user.dob.toString())}</h3>
             <div>{user.isVerified && (<Icon icon={HiCheckCircle} color="#1174c5"/>)}</div>
           </div>
           <div className='flex items-center gap-1'> 

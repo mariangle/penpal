@@ -19,7 +19,7 @@ export const GET = async (req: NextRequest) => {
       about: true,
       interests: true,
       country: true,
-      age: true,
+      dob: true,
       isVerified: true,
       createdAt: true,
       updatedAt: true,
@@ -38,7 +38,7 @@ export const DELETE = async (req: NextRequest) => {
   const userId = searchParams.get("userId");
 
   if (!userId) {
-    return new NextResponse('Unauthorized', { status: 401 });
+    return new NextResponse('User not found', { status: 404 });
   }
 
   const user = await prisma.user.delete({

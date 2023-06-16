@@ -1,6 +1,6 @@
 import { IUser } from '@/app/types/User'
 import React from 'react'
-import { useFormatDate } from '@/app/hooks/useUtil';
+import { useFormatDate, getAge } from '@/app/hooks/useUtil';
 
 import Icon from '../../../components/Icon';
 import { HiUser, HiOutlineMail } from 'react-icons/hi';
@@ -14,7 +14,7 @@ const ProfileInfo = ({ user } : {user: IUser}) => {
         <div className='p-4'>
             <div className='flex gap-2 items-center'>
                 <Icon icon={HiUser} color='gray'/>
-                {user.age}
+                {getAge(user.dob.toString())}
             </div>
             <div className='flex gap-2 items-center'>
                 <Icon icon={HiOutlineMail} color='gray'/>

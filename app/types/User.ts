@@ -6,7 +6,7 @@ export interface  IUser {
     about: string;
     interests: string[];
     country: string;
-    age: number;
+    dob: Date;
     isVerified: boolean;
     createdAt: Date;
     updatedAt: Date;

@@ -1,3 +1,5 @@
+import { differenceInYears } from 'date-fns';
+
 export const useFormatDate = (date: string): string => {
     const parsedDate = new Date(date);
     const options: Intl.DateTimeFormatOptions = {
@@ -30,4 +32,12 @@ export const useFormatDate = (date: string): string => {
       .catch((error) => {
         console.error('Error retrieving IP geolocation:', error);
       });
+  };
+
+  export const getAge = (dob: string) => {
+    const now = new Date();
+    const parsedDob = new Date(dob);
+    const age = differenceInYears(now, parsedDob);
+  
+    return age;
   };

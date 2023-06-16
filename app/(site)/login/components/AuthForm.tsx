@@ -36,8 +36,6 @@ const AuthForm = ({ variant }: AuthFormProps) => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (variant === "register"){
-      data.age = parseInt(data.age);
-      console.log(data.country)
       axios.post("/api/register", data)
       .then((res) => {
         toast.success("User registered");
@@ -85,7 +83,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
             <PasswordField id="password" label="Password" register={register}/>
             { variant === "register" && (
               <div className="flex gap-2">
-                <Input type="date" id="age" label="Age" register={register} />
+                <Input type="date" id="dob" label="Date of Birth" register={register} />
                 <Input type="text" id="country" label="Country" register={register} disabled info="We retrieve your country information based on your IP address to provide a personalized experience."/>
               </div>
             )}

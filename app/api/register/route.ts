@@ -1,13 +1,14 @@
 import bcrypt from "bcrypt"
 import prisma from "../../libs/prismadb"
 import { NextResponse } from "next/server"
+import { parseISO } from 'date-fns';
 
 export async function POST(
     req: Request
 ){
-    const { name, email, password, age, country } = await req.json();
+    const { name, email, password, dob, country } = await req.json();
     
-    if (!name || !email || !password || !age || !country ){
+    if (!name || !email || !password || !dob || !country ){
         return new NextResponse("Missing Fields", { status: 400 })
     }
 
@@ -28,7 +29,7 @@ export async function POST(
             email,
             name,
             hashedPassword,
-            age: parseInt(age),
+            dob: parseISO(dob),
             country,
         }
     })

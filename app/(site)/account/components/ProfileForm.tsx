@@ -24,7 +24,7 @@ const ProfileForm = () => {
       setValue("image", user.image);
       setValue("about", user.about);
       setValue("country", user.country);
-      setValue("age", user.age);
+      setValue("dob", user.dob);
     }
   }, [user, setValue]);
 
@@ -48,7 +48,7 @@ const ProfileForm = () => {
       <Input label="Profile Image URL" id="image" type="text" register={register} />
       <Textarea label="Bio" id="about" rows={5} register={register} />
       <Input label="Country" id="country" type="text" register={register} />
-      <Input label="Age" id="age" type="number" register={register} />
+      <Input label="Date of Birth" id="dob" type="date" register={register} />
       <div className="flex gap-2 items-center justify-between">
         <div className="text-gray-600 text-sm">
           Last Updated{" "}
