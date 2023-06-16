@@ -27,6 +27,11 @@ const SettingsForm = () => {
             <p className="text-sm text-gray-500 my-2">This email is used for logging in and allows other users to send you letters.</p>
             <Input label="" id="email" type="email" value={user?.email} disabled/>
         </div>
+        <div className="border p-4 rounded-md">
+            <h2 className="font-semibold">Your Country</h2>
+            <p className="text-sm text-gray-500 my-2">The delivery time for your letter will vary based on the distance between your country and the recipient's country.</p>
+            <Input label="" id="email" type="email" value={user?.country} disabled/>
+        </div>
         <div className="border rounded-md border-red-600">
             <div className="p-4">
                 <h2 className="font-semibold">Delete Account</h2>

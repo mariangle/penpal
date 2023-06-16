@@ -14,7 +14,7 @@ const Overview = ({ profile } : { profile: IUser }) => {
           <div
           className="cover_image"
           style={{
-            backgroundImage: `linear-gradient(rgba(41, 86, 182, 0.4), rgba(0, 0, 0, 0.8)), url(${profile.image})`,
+            backgroundImage: `linear-gradient(rgba(41, 86, 182, 0.4), rgba(0, 0, 0, 0.8)), url(${profile.coverPhoto})`,
             backdropFilter: "blur(20px)",
           }}
         >       

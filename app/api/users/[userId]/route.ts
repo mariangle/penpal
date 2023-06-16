@@ -35,9 +35,9 @@ export const GET = async (req: NextRequest) => {
 };
 
 export const PUT = async (req: NextRequest) => {
-  const { name, image, about, country, dob, userId } = await req.json();
+  const { name, image, coverPhoto, about, dob, userId } = await req.json();
   
-  if (!name || !country || !dob) {
+  if (!name || !dob) {
     return new NextResponse('Missing Fields', { status: 400 });
   }
 
@@ -47,8 +47,8 @@ export const PUT = async (req: NextRequest) => {
       data: {
         name,
         image,
+        coverPhoto,
         about,
-        country,
         dob: parseISO(dob),
         updatedAt: new Date(),
       },

@@ -3,6 +3,7 @@ export interface  IUser {
     name: string;
     email: string;
     image: string;
+    coverPhoto: string;
     about: string;
     interests: string[];
     country: string;

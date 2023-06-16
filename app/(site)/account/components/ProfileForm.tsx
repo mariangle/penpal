@@ -30,7 +30,7 @@ const ProfileForm = () => {
       setValue("name", user.name);
       setValue("image", user.image);
       setValue("about", user.about);
-      setValue("country", user.country);
+      setValue("coverPhoto", user.coverPhoto);
       setValue("dob", user.dob);
 
       if (user.about) {
@@ -68,7 +68,7 @@ const ProfileForm = () => {
       <div className="text-gray-600 text-sm mb-4">
         {MAX_BIO_LENGTH - bioLength} characters left.
       </div>
-      <Input label="Country" id="country" type="text" register={register} />
+      <Input label="Cover Image URL" id="coverPhoto" type="text" register={register} />
       <Input label="Date of Birth" id="dob" type="date" register={register} />
       <div className="flex gap-2 items-center justify-between">
         <div className="text-gray-600 text-sm">
