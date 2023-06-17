@@ -1,7 +1,8 @@
 import bcrypt from "bcrypt"
 import prisma from "../../libs/prismadb"
 import { NextResponse } from "next/server"
-import { parseISO } from 'date-fns';
+import { parseISO } from 'date-fns'
+import { getAge } from "@/app/hooks/useUtil";
 
 export async function POST(
     req: Request
@@ -11,6 +12,10 @@ export async function POST(
     if (!name || !email || !password || !dob || !country ){
         return new NextResponse("Missing Fields", { status: 400 })
     }
+
+    if (getAge(dob) < 13) {
+        return new NextResponse("You must be at least 13 years old.", { status: 403 });
+      }
 
     const exists = await prisma.user.findUnique({
         where: {

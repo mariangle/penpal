@@ -25,6 +25,9 @@ export const GET = async (req: NextRequest) => {
       isVerified: true,
       createdAt: true,
       updatedAt: true,
+      lastLoggedIn: true,
+      sentLetters: true,
+      receivedLetters: true
     },
   });
 
@@ -42,6 +45,10 @@ export const DELETE = async (req: NextRequest) => {
   if (!userId) {
     return new NextResponse('User not found', { status: 404 });
   }
+
+  await prisma.letter.deleteMany({
+    where: { senderId: userId },
+  });
 
   const user = await prisma.user.delete({
     where: { id: userId}
@@ -61,6 +68,8 @@ export const PUT = async (req: NextRequest) => {
     return new NextResponse('Missing Fields', { status: 400 });
   }
 
+  const isVerified = coverPhoto && image && about ? true : false;
+
   try {
     const user = await prisma.user.update({
       where: { id: userId },
@@ -71,6 +80,7 @@ export const PUT = async (req: NextRequest) => {
         about,
         dob: parseISO(dob),
         updatedAt: new Date(),
+        isVerified
       },
     });
 
