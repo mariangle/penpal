@@ -1,6 +1,6 @@
 import Icon from '@/app/components/Icon';
-import ProfileOptions from "@/app/(site)/users/components/ProfileOptions";
-import Interests from "@/app/(site)/users/components/Interests";
+import ProfileOptions from "@/app/(site)/users/[userId]/components/ProfileOptions";
+import Interests from "@/app/(site)/users/[userId]/components/Interests";
 import ProfilePicture from "@/app/components/ProfilePicture";
 
 import { HiLocationMarker, HiCheckCircle, HiUser, HiMail } from 'react-icons/hi';
@@ -10,7 +10,7 @@ import { IUser } from '@/app/types/User';
 
 const Overview = ({ profile } : { profile: IUser }) => {
   return (
-    <div className='rounded-md border p-2'>
+    <div className='rounded-md border'>
           <div
           className="cover_image"
           style={{
@@ -60,10 +60,7 @@ const Overview = ({ profile } : { profile: IUser }) => {
                   </div>
                 </div>
               )}
-              {profile.interests.length > 0 && (
-                <Interests user={profile}/>   
-              )}
-              <ProfileOptions profile={profile}/>
+              <ProfileOptions />
           </div>     
         </div>
     </div>

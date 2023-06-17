@@ -1,50 +1,38 @@
 "use client"
 
 import Loading from "@/app/components/Loading";
-import Overview from "../components/Overview";
+import ProfileCard from "./components/ProfileCard";
+import Interests from "./components/Interests";
 
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { IUser } from "@/app/types/User"
-import { UserContext } from "@/app/context/UserContext";
+import { getUserById } from "@/app/actions/getUserById";
+import { useEffect, useState } from "react";
+import { IUser } from "@/app/types/User";
 
 const Profile = () => {
-  const [profile, setProfile] = useState<IUser | undefined>(undefined);
   const { userId } = useParams();
-  const { user } = useContext(UserContext);
+  const [user, setUser] = useState<IUser | null>(null);
 
   useEffect(() => {
-    const getUserById = async () => {
-      try {
-        if (userId) {
-          const response = await axios.get(`/api/users/${userId}`, {
-            params: { userId: userId },
-          });          
-          if (user?.email === response.data.email){
-            setProfile(user)
-          } else {
-            setProfile(response.data);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
-    };
+    const fetchUser = async () => {
+      const fetchedUser = await getUserById(userId);
+      setUser(fetchedUser);
+    } 
+    fetchUser();
+  }, [user])
 
-    getUserById();
-  }, [userId, user]);
-  
-  if (!profile) return <Loading />
+  if (!user) return <Loading />;
 
   return (
-<div className="w-full my-4">
+    <div className="w-full">
       <div className="md:flex gap-4">
         <div className="md:min-w-[15rem] flex-[2]">       
-          <Overview profile={profile}/>
+          <ProfileCard profile={user}/>
         </div>
-        <div className="bg-green-600 w-full flex-[5]">
-          comments
+        <div className="glassmorphism w-full flex-[5]">
+        {user.interests.length > 0 && (
+          <Interests user={user}/>   
+        )}
         </div>
       </div>  
     </div>

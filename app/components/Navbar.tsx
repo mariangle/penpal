@@ -5,7 +5,7 @@ import { HiMail, HiOutlineGlobe } from "react-icons/hi"
 import Button from "./Button"
 import Link from "next/link"
 import Icon from "./Icon"
-import UserCard from "./AccountCard"
+import UserNavigation from "./UserNavigation"
 
 import { usePathname } from "next/navigation"
 import { UserContext } from "../context/UserContext"
@@ -33,7 +33,7 @@ const Navbar = () => {
                 <Link href={"/inbox"}>
                   <Icon icon={HiMail} size={25} color="lightgrey"/>
                 </Link>
-                <UserCard showMenu={true} />
+                <UserNavigation showMenu={true} />
               </>
             ) : (
               <div className="flex gap-2 items-center">

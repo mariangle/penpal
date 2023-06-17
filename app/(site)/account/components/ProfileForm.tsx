@@ -7,13 +7,11 @@ import Button from "@/app/components/Button";
 import { useFormatFullDate } from "@/app/hooks/useUtil";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { IUser } from "@/app/types/User";
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
-import { toast } from "react-hot-toast";
-import { UserContext } from "@/app/context/UserContext";
+import { useEffect, useState } from "react";
+import useUser from "@/app/hooks/useUser";
 
 const ProfileForm = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { user, updateUser, loading } = useUser();
   const { register, handleSubmit, setValue } = useForm<FieldValues>();
   const [data, setData] = useState<IUser | undefined>(undefined);
   const [bioLength, setBioLength] = useState(0);
@@ -39,22 +37,15 @@ const ProfileForm = () => {
     }
   }, [user, setValue]);
 
-  const updateUser: SubmitHandler<FieldValues> = async (data) => {
-    try {
-      const response = await axios.put(`/api/users/${user?.id}`, {
-        ...data,
-        userId: user?.id,
-      });
-      setUser(response.data);
-      toast.success("Your profile has been updated.");
-    } catch (err) {
-      toast.error("An error occurred.");
-      console.log("Error updating user:", err);
+  const handleUpdateUser: SubmitHandler<FieldValues> = async (data) => {
+    if (user) {
+      await updateUser(data, user.id);
     }
   };
 
+
   return (
-    <form onSubmit={handleSubmit(updateUser)}>
+    <form onSubmit={handleSubmit(handleUpdateUser)}>
       <Input label="Name" id="name" type="text" register={register} />
       <Input label="Profile Image URL" id="image" type="text" register={register} />
       <Textarea
@@ -77,7 +68,7 @@ const ProfileForm = () => {
             useFormatFullDate(new Date(data.updatedAt).toLocaleString())}
         </div>
         <div>
-          <Button type="submit">Save</Button>
+          <Button type="submit" disabled={loading}>Save</Button>
         </div>
       </div>
     </form>

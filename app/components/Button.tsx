@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
          style === "secondary" ? "bg-blue-500" : 
          style === "tertiary" ? "bg-yellow-300" :
          fullWidth ? "w-full" : "" }
-        `}      
+        ${disabled ? "opacity-50 cursor-default" : ""}`}
         >
         {children}
     </button>

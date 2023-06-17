@@ -3,7 +3,7 @@ import { UseFormRegister, FieldValues } from "react-hook-form";
 import { HiInformationCircle, HiQuestionMarkCircle } from "react-icons/hi"
 
 interface InputProps {
-  label: string;
+  label?: string;
   id: string;
   type: string;
   value?: string | number;
@@ -21,21 +21,13 @@ const Input: React.FC<InputProps> = ({
 }) => {
   const [showInfo, setShowInfo] = useState(false);
 
-  const handleMouseEnter = () => {
-    setShowInfo(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowInfo(false);
-  };
-
   const getIcon = () => {
     return (
       (help || info) && (
         <div
           className="text-gray-300 cursor-pointer"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={() => setShowInfo(true)}
+          onMouseLeave={() => setShowInfo(false)}
         >
           {help ? <HiQuestionMarkCircle /> : <HiInformationCircle />}
         </div>

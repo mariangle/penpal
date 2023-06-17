@@ -15,7 +15,7 @@ const Icon: React.FC<IconProps> = ({
 }) => {
   if (background) {
     return (
-      <div className={`rounded-full p-1 bg-${color}`}>
+      <div className={`rounded-full p-1 bg-${color} bg-[${color}]`}>
         <IconComponent size={size} color="white" />
       </div>
     );
