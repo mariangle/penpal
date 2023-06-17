@@ -12,7 +12,7 @@ import axios from "axios"
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation"
 import { getCountry } from "@/app/hooks/useUtil"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 interface AuthFormProps {
   variant: 'login' | 'register'
@@ -21,6 +21,7 @@ interface AuthFormProps {
 const AuthForm = ({ variant }: AuthFormProps) => {
   const router = useRouter();
   const { register, handleSubmit, setValue } = useForm<FieldValues>({})
+  const [ loading, setLoading ] = useState<boolean>(false);
 
   useEffect(() => {
     if (variant === 'register') {
@@ -35,35 +36,45 @@ const AuthForm = ({ variant }: AuthFormProps) => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (variant === "register"){
-      axios.post("/api/register", data)
-      .then(() => {
-        toast.success("User registered");
-      })
-      .catch((error) => {
-        if (error.response) {
-          const errorMessage = error.response.data;
-          toast.error(errorMessage);
-        } else {
-          toast.error("Error occurred");
-        }
-      });
-    }
+    setLoading(true); 
 
-  if (variant === "login") {
-    signIn("credentials", {...data, redirect: false })
-    .then((callback) => {{
-        if (callback?.error){
-            toast.error("Invalid credentials")
-        }
-        if (callback?.ok && !callback?.error) {
-          toast.success("Welcome back!");
-          console.log(callback)
-          router.push("/"); 
-        }
-    }})
-   }
-  }
+    if (variant === "register") {
+      axios
+        .post("/api/register", data)
+        .then(() => {
+          toast.success("Registered succesfully!");
+          router.push("/login");
+        })
+        .catch((error) => {
+          if (error.response) {
+            const errorMessage = error.response.data;
+            toast.error(errorMessage);
+          } else {
+            toast.error("Error occurred");
+          }
+        })
+        .finally(() => {
+          setLoading(false); 
+        })
+      }
+
+    if (variant === "login") {
+      signIn("credentials", { ...data, redirect: false })
+        .then((callback) => {
+          if (callback?.error) {
+            toast.error("Invalid credentials");
+          }
+          if (callback?.ok && !callback?.error) {
+            toast.success("Welcome back!");
+            console.log(callback);
+            router.push("/");
+          }
+        })
+        .finally(() => {
+          setLoading(false); 
+        });
+    }
+  };
 
   const handleClick = () => {
     if (variant === 'login') {
@@ -78,7 +89,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             { variant === "register" && (
-              <Input type="text" id="name" label="Name" register={register} maxLength={20}/>
+              <Input type="text" id="name" label="Name" register={register} maxLength={10}/>
             )}
               <Input type="email" id="email" label="Email" register={register}/>
               <PasswordField id="password" label="Password" register={register}/>
@@ -89,7 +100,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
               </div>
             )}
             <div>
-              <Button fullWidth type="submit">
+              <Button fullWidth type="submit" disabled={loading}>
                 {variant === "login" ? "Sign In" : "Sign Up"}
               </Button>
             </div>
