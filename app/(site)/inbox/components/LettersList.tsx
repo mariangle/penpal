@@ -1,12 +1,13 @@
 
 import { useLetter } from "@/app/hooks/useLetter";
-import { useFormatDate } from "@/app/hooks/useUtil";
+import useFormat from "@/app/hooks/useFormat";
 
 import Loading from "@/app/components/Loading";
 import Link from "next/link";
 
 const LettersList = () => {
   const { letters, loading } = useLetter();
+  const { formatDate } = useFormat();
 
   if (loading) return <Loading />
   
@@ -17,7 +18,7 @@ const LettersList = () => {
           <div className="flex items-end justify-between gap-4">
             <h4 className="font-bold">{letter.sender.email}</h4> 
             <h5 className="font-bold text-blue-600 whitespace-nowrap">
-              {useFormatDate(letter.createdAt.toLocaleString())}
+              {formatDate(letter.createdAt.toLocaleString())}
             </h5>
           </div>
           <div>

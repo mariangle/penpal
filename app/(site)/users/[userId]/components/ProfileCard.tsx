@@ -4,7 +4,7 @@ import ProfilePicture from "@/app/components/ProfilePicture";
 
 import { HiLocationMarker, HiCheckCircle, HiUser, HiMail } from 'react-icons/hi';
 
-import { getAge } from '@/app/hooks/useUtil';
+import { getAge } from '@/app/actions/userActions';
 import { getLastOnline } from '@/app/actions/getLastOnline';
 import { IUser } from '@/app/types/User';
 

@@ -1,6 +1,6 @@
 "use client"
 
-import ProfileCard from "./users/components/UserCard"
+import ProfileCard from "../components/UserCard"
 import Loading from "../components/Loading"
 
 import { useEffect, useState } from "react"
@@ -25,7 +25,7 @@ const Home = () => {
           Discover <span className="orange_gradient text-center">PenPals</span>
         </h1>
         <p className="desc text-center">
-        Embrace the nostalgia of traditional letter writing in a digital world. Connect with penpals worldwide and enjoy the anticipation of heartfelt messages that arrive at their own pace.</p>
+        Connect with penpals worldwide and enjoy the anticipation of heartfelt messages that arrive at their own pace.</p>
       </div>
       <div className="feed">
       {users.length === 0 ? (

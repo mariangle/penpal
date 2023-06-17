@@ -5,20 +5,30 @@ import Textarea from "@/app/components/Textarea";
 import Button from "@/app/components/Button";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { useLetter } from "@/app/hooks/useLetter";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "@/app/context/UserContext";
 
-const LetterForm: React.FC = () => {
+interface LetterFormProps {
+  receiverEmail?: string
+}
+
+const LetterForm: React.FC<LetterFormProps> = ({
+    receiverEmail
+  }) => {
   const { sendLetter, loading } = useLetter();
   const { user } = useContext(UserContext);
 
-  const { register, handleSubmit } = useForm<FieldValues>();
+  const { register, handleSubmit, setValue } = useForm<FieldValues>();
   const [recipientType, setRecipientType] = useState<string>('specific');
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const letterData = { ...data, recipientType };
     await sendLetter(letterData);
   };
+
+  useEffect(() => {
+    setValue("email", receiverEmail)
+  }, [receiverEmail]);
 
   return (
       <form onSubmit={handleSubmit(onSubmit)}>

@@ -4,13 +4,14 @@ import Input from "@/app/components/Input";
 import Textarea from "@/app/components/Textarea";
 import Button from "@/app/components/Button";
 
-import { useFormatFullDate } from "@/app/hooks/useUtil";
+import useFormat from "@/app/hooks/useFormat";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { IUser } from "@/app/types/User";
 import { useEffect, useState } from "react";
 import useUser from "@/app/hooks/useUser";
 
 const ProfileForm = () => {
+  const { formatFullDate } = useFormat();
   const { user, updateUser, loading } = useUser();
   const { register, handleSubmit, setValue } = useForm<FieldValues>();
   const [data, setData] = useState<IUser | undefined>(undefined);
@@ -44,7 +45,7 @@ const ProfileForm = () => {
 
   return (
     <form onSubmit={handleSubmit(handleUpdateUser)}>
-      <Input label="Name" id="name" type="text" register={register} maxLength={20}/>
+      <Input label="Name" id="name" type="text" register={register} maxLength={10}/>
       <Input label="Profile Image URL" id="image" type="text" register={register} />
       <Textarea
         label="Bio"
@@ -60,11 +61,12 @@ const ProfileForm = () => {
       <Input label="Cover Image URL" id="coverPhoto" type="text" register={register} />
       <Input label="Date of Birth" id="dob" type="date" register={register} />
       <div className="flex gap-2 items-center justify-between">
-        <div className="text-gray-600 text-sm">
-          Last Updated{" "}
-          {data?.updatedAt &&
-            useFormatFullDate(new Date(data.updatedAt).toLocaleString())}
-        </div>
+      <div className="text-gray-600 text-sm">
+        Last Updated:{" "}
+        {data?.updatedAt && (
+          formatFullDate(new Date(data.updatedAt).toLocaleString())
+        )}
+      </div>
         <div>
           <Button type="submit" disabled={loading}>Save</Button>
         </div>

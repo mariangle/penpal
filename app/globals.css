@@ -117,7 +117,7 @@ body {
 }
 
 .dropdown {
-  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-3 justify-end items-start z-10 shadow-lg;
+  @apply absolute right-0 top-full mt-3 w-full rounded-lg bg-white min-w-[210px] flex flex-col justify-end items-start z-10 shadow-lg;
 }
 
 .dropdown_link {
@@ -125,11 +125,17 @@ body {
 }
 
 .feed {
-  @apply mx-auto w-full flex flex-col md:flex-row justify-center items-center gap-2;
+  @apply flex flex-wrap gap-2 max-w-screen-md;
+  @media (min-width: 500px) {
+    justify-content: center;
+  }
 }
 
 .profile_card {
-  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
+  @apply break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding backdrop-blur-lg backdrop-filter whitespace-nowrap;
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 }
 
 .flex-center {

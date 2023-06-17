@@ -11,7 +11,7 @@ import { toast } from "react-hot-toast"
 import axios from "axios"
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation"
-import { getCountry } from "@/app/hooks/useUtil"
+import { getCountry } from "@/app/actions/userActions"
 import { useEffect, useState } from "react"
 
 interface AuthFormProps {

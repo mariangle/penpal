@@ -31,7 +31,7 @@ const UserNavigation: React.FC<UserNavigationProps> = ({ showMenu }) => {
       </div>
       {/* DROPDOWN */}
       {showDropdown && showMenu && (
-        <div className="dropdown">
+        <div className="dropdown gap-3 p-5">
           <div>
             <p className="text-sm font-medium">{user?.name}</p>
             <p className="text-xs text-gray-500">{user?.email}</p>
@@ -42,9 +42,9 @@ const UserNavigation: React.FC<UserNavigationProps> = ({ showMenu }) => {
               Your Profile
             </button>
           </Link>
-          <Link onClick={() => toggleDropdown(!showDropdown)} href={`/account/settings`} className="dropdown_link">
+          <Link onClick={() => toggleDropdown(!showDropdown)} href={`/account/edit-profile`} className="dropdown_link">
             <Icon icon={HiCog} background color="black"size={12}/>
-            <button>Settings</button>
+            <button>Account</button>
           </Link>
           <button 
             onClick={async () => await signOut()} 

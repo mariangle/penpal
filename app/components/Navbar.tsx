@@ -17,15 +17,15 @@ const Navbar = () => {
       const pathname = usePathname();
     
     return (
-      <nav className='flex justify-between items-center px-4 py-6 border-b w-full h-16'>
-        <div className="flex gap-4">
+      <nav className='flex gap-2 justify-between items-center px-4 py-6 border-b w-full h-16'>
+        <div className="flex gap-4 md">
           <Link href="/" className="font-bold flex items-center gap-2">
             <HiOutlineGlobe />
-            <h1>Pen<span className="orange_gradient">Pal</span></h1>
+            <h1 className="hidden md:block">Pen<span className="orange_gradient">Pal</span></h1>
           </Link>
           <SearchInput />
         </div>
-        <div className="flex gap-4 items-center">
+        <div className="flex justify-end gap-4 items-center flex-1">
             { user ? (
               <>
                 { pathname.includes("inbox") && (

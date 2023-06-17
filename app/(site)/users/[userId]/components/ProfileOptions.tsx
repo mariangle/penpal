@@ -18,9 +18,11 @@ const ProfileOverview = () => {
         </Link>
       ) : 
       (
-        <div className="flex flex-col justify-between md:flex-row md:items-center md:gap-4">
-          <button className="outline_btn w-full">Send Letter</button>
-        </div>
+        <Link href={"/letter/new"}>
+          <Button fullWidth>
+            Send Letter
+          </Button>
+      </Link>
       )}
     </div>
   );

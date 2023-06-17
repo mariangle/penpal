@@ -55,29 +55,29 @@ const SearchInput = () => {
           type="text"
           id="search"
           placeholder="Search name or email..."
-          className="search_input"
+          className="search_input w-full"
           value={searchQuery}
           onChange={(e) => handleFilter(e.target.value)}
         />
       </div>
       {showDropdown && (
-        <div className="dropdown" ref={dropdownRef}>
+        <div className="dropdown p-1" ref={dropdownRef}>
           {filteredUsers.length > 0 ? (
             filteredUsers.map((user) => (
               <Link
                 key={user.id}
-                className="flex gap-2 items-center"
+                className="flex gap-2 items-center hover:bg-gray-100 w-full p-2"
                 href={`/users/${user?.id}`}
                 onClick={handleClickUser}
               >
-                <div className="w-6 h-6">
+                <div className="w-8 h-8">
                   <ProfilePicture user={user} />
                 </div>
-                <div className="text-sm">{user.name}</div>
+                <div className="text-sm font-semibold">{user.name}</div>
               </Link>
             ))
           ) : (
-            <div className="text-sm">No users found.</div>
+            <div className="text-xs p-2">No users found.</div>
           )}
         </div>
       )}
