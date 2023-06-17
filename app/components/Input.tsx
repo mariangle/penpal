@@ -9,6 +9,7 @@ interface InputProps {
   value?: string | number;
   register?: UseFormRegister<FieldValues>;
   placeholder?: string;
+  maxLength?: number;
   required?: boolean;
   disabled?: boolean;
   info?: string;
@@ -17,7 +18,7 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = ({
   label, id, type, value, register, 
-  placeholder, required, disabled, info, help
+  placeholder, maxLength, required, disabled, info, help
 }) => {
   const [showInfo, setShowInfo] = useState(false);
 
@@ -44,7 +45,7 @@ const Input: React.FC<InputProps> = ({
         <div className="relative">
           {getIcon()}
           {showInfo && (
-            <div className="absolute top-8 left-0 bg-white p-2 text-sm">
+            <div className="absolute top-4 left-0 bg-white p-2 text-sm border">
               {help || info}
             </div>
           )}
@@ -54,11 +55,16 @@ const Input: React.FC<InputProps> = ({
         <input
           type={type}
           id={id}
+          name={id}
           value={value}
           disabled={disabled}
+          maxLength={maxLength}
+          autoComplete="on"
           {...(register && register(id, { required }))}
           placeholder={placeholder}
-          className="w-full border p-2 mb-4 rounded-md"
+          className={`w-full border p-2 mb-4 rounded-md
+          ${disabled ? "cursor-not-allowed" : ""}
+          `}
         />
       </div>
     </div>

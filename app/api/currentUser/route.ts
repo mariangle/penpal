@@ -17,6 +17,7 @@ export const GET = async (req: NextRequest) => {
       name: true,
       email: true,
       image: true,
+      coverPhoto: true,
       about: true,
       interests: true,
       country: true,

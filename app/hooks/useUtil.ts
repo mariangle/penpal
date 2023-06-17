@@ -22,7 +22,7 @@ export const useFormatDate = (date: string): string => {
     return `${hours}:${minutes} ${day}-${month}-${year}`;
   };
   
-  export const getCountry = () => {
+  export const getCountry = (): Promise<string> => {
     return fetch('http://ip-api.com/json') 
       .then((response) => response.json())
       .then((data) => {

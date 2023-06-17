@@ -15,7 +15,6 @@ const ProfileForm = () => {
   const { register, handleSubmit, setValue } = useForm<FieldValues>();
   const [data, setData] = useState<IUser | undefined>(undefined);
   const [bioLength, setBioLength] = useState(0);
-  const MAX_BIO_LENGTH = 150;
 
   const handleBioChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
@@ -43,21 +42,20 @@ const ProfileForm = () => {
     }
   };
 
-
   return (
     <form onSubmit={handleSubmit(handleUpdateUser)}>
-      <Input label="Name" id="name" type="text" register={register} />
+      <Input label="Name" id="name" type="text" register={register} maxLength={20}/>
       <Input label="Profile Image URL" id="image" type="text" register={register} />
       <Textarea
         label="Bio"
         id="about"
         rows={2}
         register={register}
-        maxLength={MAX_BIO_LENGTH}
+        maxLength={150}
         onChange={handleBioChange}
       />
       <div className="text-gray-600 text-sm mb-4">
-        {MAX_BIO_LENGTH - bioLength} characters left.
+        {150 - bioLength} characters left.
       </div>
       <Input label="Cover Image URL" id="coverPhoto" type="text" register={register} />
       <Input label="Date of Birth" id="dob" type="date" register={register} />

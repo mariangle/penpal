@@ -1,6 +1,6 @@
 "use client"
 
-import { HiMail, HiOutlineGlobe, HiMoon } from "react-icons/hi"
+import { HiMail, HiOutlineGlobe, HiMoon, HiUsers } from "react-icons/hi"
 
 import Button from "./Button"
 import Link from "next/link"
@@ -31,6 +31,7 @@ const Navbar = () => {
                 { pathname.includes("inbox") && (
                   <Button><Link href={"/letter/new"}>Compose</Link></Button>
                 )}
+                <HiUsers />
                 <HiMoon />
                 <Link href={"/inbox"}>
                   <HiMail />
@@ -39,7 +40,7 @@ const Navbar = () => {
               </>
             ) : (
               <div className="flex gap-2 items-center">
-                <Link href={"/login"}>Sign In</Link>
+                <Link href={"/login"}>Log In</Link>
                 <Link href={"/register"}><button className="outline_btn">Join</button></Link>
               </div>
             )}

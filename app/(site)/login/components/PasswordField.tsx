@@ -17,13 +17,14 @@ const PasswordField : React.FC<PasswordFieldProps> = ({
   
   return (
     <div className="flex flex-col mb-4">
-      <label htmlFor="password" className="block text-sm font-medium text-gray-900">
+      <label htmlFor={id} className="block text-sm font-medium text-gray-900">
         {label}
       </label>
       <div className="relative">
         <input
           type={showPassword ? "text" : "password"}
           {...register(id, { required })} 
+          id={id}
           className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
         />
           <button
@@ -31,7 +32,7 @@ const PasswordField : React.FC<PasswordFieldProps> = ({
             onClick={() => setShowPassword(!showPassword)}
             className="absolute top-1/2 right-4 transform -translate-y-1/2 focus:outline-none text-sm"
           >
-            {showPassword ? <HiEye />: <HiEyeOff />}
+            {showPassword ? <HiEyeOff />: <HiEye />}
           </button>
       </div>
     </div>

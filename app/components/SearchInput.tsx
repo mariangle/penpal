@@ -50,9 +50,10 @@ const SearchInput = () => {
   return (
     <div className="relative">
       <div className="flex gap-2 items-center justify-between relative">
-        <HiSearch className="absolute left-2" />
+        <HiSearch className="absolute left-2"/>
         <input
           type="text"
+          id="search"
           placeholder="Search name or email..."
           className="search_input"
           value={searchQuery}

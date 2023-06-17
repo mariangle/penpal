@@ -37,7 +37,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (variant === "register"){
       axios.post("/api/register", data)
-      .then((res) => {
+      .then(() => {
         toast.success("User registered");
       })
       .catch((error) => {
@@ -57,7 +57,8 @@ const AuthForm = ({ variant }: AuthFormProps) => {
             toast.error("Invalid credentials")
         }
         if (callback?.ok && !callback?.error) {
-          toast.success("Logged in");
+          toast.success("Welcome back!");
+          console.log(callback)
           router.push("/"); 
         }
     }})
@@ -73,14 +74,14 @@ const AuthForm = ({ variant }: AuthFormProps) => {
   };
 
   return (
-    <div className="bg-white p-4 rounded-md">
+    <>
       <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             { variant === "register" && (
-              <Input type="text" id="name" label="Name" register={register}/>
+              <Input type="text" id="name" label="Name" register={register} maxLength={20}/>
             )}
-            <Input type="email" id="email" label="Email" register={register}/>
-            <PasswordField id="password" label="Password" register={register}/>
+              <Input type="email" id="email" label="Email" register={register}/>
+              <PasswordField id="password" label="Password" register={register}/>
             { variant === "register" && (
               <div className="flex gap-2">
                 <Input type="date" id="dob" label="Date of Birth" register={register} />
@@ -89,7 +90,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
             )}
             <div>
               <Button fullWidth type="submit">
-                {variant === "login" ? "Sign In" : "Register"}
+                {variant === "login" ? "Sign In" : "Sign Up"}
               </Button>
             </div>
           </div>
@@ -113,15 +114,15 @@ const AuthForm = ({ variant }: AuthFormProps) => {
           </div>
         </>
       )}
-        <div className="flex gap-2 justify-center text-sm mt-6 åpx-2 text-gray-500">
+        <div className="flex gap-2 justify-center text-sm mt-4 åpx-2 text-gray-500">
             <div>
-                {variant === "login" ? "New to Messenger?" : "Already have an account?"}
+                {variant === "login" ? "New to PenPal?" : "Already have an account?"}
             </div>
             <div onClick={handleClick} className="underline cursor-pointer">
                 {variant === "login" ? "Create an account" : "Login"}
             </div>
         </div>
-    </div>
+    </>
   ) 
 }
 

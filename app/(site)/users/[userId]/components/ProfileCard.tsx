@@ -1,6 +1,5 @@
 import Icon from '@/app/components/Icon';
 import ProfileOptions from "@/app/(site)/users/[userId]/components/ProfileOptions";
-import Interests from "@/app/(site)/users/[userId]/components/Interests";
 import ProfilePicture from "@/app/components/ProfilePicture";
 
 import { HiOutlineLocationMarker, HiCheckCircle, HiUser, HiMail } from 'react-icons/hi';
@@ -14,7 +13,7 @@ const Overview = ({ profile } : { profile: IUser }) => {
           <div
           className="cover_image"
           style={{
-            backgroundImage: `linear-gradient(rgba(41, 86, 182, 0.4), rgba(0, 0, 0, 0.8)), url(${profile.coverPhoto})`,
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url(${profile.coverPhoto})`,
             backdropFilter: "blur(20px)",
           }}
         >       
