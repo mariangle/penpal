@@ -6,7 +6,7 @@ interface InputProps {
   label?: string;
   id: string;
   type: string;
-  value?: string | number;
+  value?: string | number
   register?: UseFormRegister<FieldValues>;
   placeholder?: string;
   maxLength?: number;

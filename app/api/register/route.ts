@@ -2,7 +2,7 @@ import bcrypt from "bcrypt"
 import prisma from "../../libs/prismadb"
 import { NextResponse } from "next/server"
 import { parseISO } from 'date-fns'
-import { getAge } from "@/app/hooks/useFormat";
+import { getAge } from "@/app/actions/userActions"
 
 export async function POST(
     req: Request

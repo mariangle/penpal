@@ -52,8 +52,8 @@ const LetterForm: React.FC<LetterFormProps> = ({
            )}
         </div>
         <Input type="text" label="From" id="sender" value={user?.email} disabled/>
-        <Input type="text" label="Letter Title" id="title" register={register}/>
-        <Textarea label="Letter Content" id="content" register={register} rows={5}/>
+        <Input type="text" label="Title" id="title" register={register}/>
+        <Textarea label="Content" id="content" register={register} rows={5}/>
         <Input type="text" label="Image URL" id="image" register={register}/>
         <Button type="submit" disabled={loading}>Send</Button>
       </form>

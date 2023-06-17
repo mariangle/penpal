@@ -125,7 +125,7 @@ body {
 }
 
 .feed {
-  @apply flex flex-wrap gap-2 max-w-screen-md;
+  @apply flex flex-wrap gap-2 max-w-screen-lg;
   @media (min-width: 500px) {
     justify-content: center;
   }
