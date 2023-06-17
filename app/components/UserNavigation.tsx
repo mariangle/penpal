@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { HiChevronDown, HiCog, HiOutlineLogout, HiUser } from "react-icons/hi";
+import { HiChevronDown, HiCog, HiLogout, HiUser } from "react-icons/hi";
 
 import ProfilePicture from "./ProfilePicture";
 import Link from "next/link";
@@ -16,10 +16,6 @@ interface UserNavigationProps {
 const UserNavigation: React.FC<UserNavigationProps> = ({ showMenu }) => {
   const [showDropdown, toggleDropdown] = useState<boolean>(false);
   const { user } = useContext(UserContext) as { user: IUser };
-
-  const handleSignOut = async () => {
-    await signOut(); 
-  };
 
   return (
     <div className="relative">
@@ -50,8 +46,11 @@ const UserNavigation: React.FC<UserNavigationProps> = ({ showMenu }) => {
             <Icon icon={HiCog} background color="black"size={12}/>
             <button>Settings</button>
           </Link>
-          <button onClick={handleSignOut} className="dropdown_link">
-            <Icon icon={HiOutlineLogout} background color="black" size={12}/>
+          <button 
+            onClick={async () => await signOut()} 
+            className="dropdown_link"
+          >
+            <Icon icon={HiLogout} background color="black" size={12}/>
             Logout
           </button>
         </div>

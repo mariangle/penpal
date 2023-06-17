@@ -1,10 +1,10 @@
 "use client"
 
-import { HiMail, HiOutlineGlobe } from "react-icons/hi"
+import { HiMail, HiOutlineGlobe, HiMoon } from "react-icons/hi"
 
 import Button from "./Button"
 import Link from "next/link"
-import Icon from "./Icon"
+import SearchInput from "./SearchInput"
 import UserNavigation from "./UserNavigation"
 
 import { usePathname } from "next/navigation"
@@ -17,12 +17,13 @@ const Navbar = () => {
       const pathname = usePathname();
     
     return (
-      <>
-        <div>
-          <Link href="/" className="font-bold flex items-center gap-1">
+      <nav className='flex justify-between items-center px-4 py-6 border-b w-full h-16'>
+        <div className="flex gap-4">
+          <Link href="/" className="font-bold flex items-center gap-2">
             <HiOutlineGlobe />
             <h1>Pen<span className="orange_gradient">Pal</span></h1>
           </Link>
+          <SearchInput />
         </div>
         <div className="flex gap-4 items-center">
             { user ? (
@@ -30,8 +31,9 @@ const Navbar = () => {
                 { pathname.includes("inbox") && (
                   <Button><Link href={"/letter/new"}>Compose</Link></Button>
                 )}
+                <HiMoon />
                 <Link href={"/inbox"}>
-                  <Icon icon={HiMail} size={25} color="lightgrey"/>
+                  <HiMail />
                 </Link>
                 <UserNavigation showMenu={true} />
               </>
@@ -42,7 +44,7 @@ const Navbar = () => {
               </div>
             )}
         </div>
-      </>
+      </nav>
     )
     }
 

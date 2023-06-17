@@ -104,6 +104,10 @@ body {
   @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
 }
 
+.search_input {
+  @apply rounded-md border border-gray-200 bg-white py-2 font-inter pl-8 pr-2 text-sm font-medium focus:border-black focus:outline-none focus:ring-0;
+}
+
 .glassmorphism {
   @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
 }

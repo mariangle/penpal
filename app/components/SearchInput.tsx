@@ -1,0 +1,87 @@
+import ProfilePicture from "./ProfilePicture";
+import { useEffect, useRef, useState } from "react";
+import { HiSearch } from "react-icons/hi";
+import { IUser } from "../types/User";
+import Link from "next/link";
+import { getUsers } from "../actions/getUsers";
+
+const SearchInput = () => {
+  const [users, setUsers] = useState<IUser[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const users = await getUsers();
+      setUsers(users);
+    };
+    fetchUsers();
+  }, []);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+
+  const handleFilter = (value: string) => {
+    setSearchQuery(value);
+    setShowDropdown(value !== "");
+  };
+
+  const handleClickUser = () => {
+    setShowDropdown(false);
+    setSearchQuery("");
+  };
+
+  const filteredUsers = users.filter(({ name, email }) =>
+    [name, email].some((value) => value.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
+  return (
+    <div className="relative">
+      <div className="flex gap-2 items-center justify-between relative">
+        <HiSearch className="absolute left-2" />
+        <input
+          type="text"
+          placeholder="Search name or email..."
+          className="search_input"
+          value={searchQuery}
+          onChange={(e) => handleFilter(e.target.value)}
+        />
+      </div>
+      {showDropdown && (
+        <div className="dropdown" ref={dropdownRef}>
+          {filteredUsers.length > 0 ? (
+            filteredUsers.map((user) => (
+              <Link
+                key={user.id}
+                className="flex gap-2 items-center"
+                href={`/users/${user?.id}`}
+                onClick={handleClickUser}
+              >
+                <div className="w-6 h-6">
+                  <ProfilePicture user={user} />
+                </div>
+                <div className="text-sm">{user.name}</div>
+              </Link>
+            ))
+          ) : (
+            <div className="text-sm">No users found.</div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default SearchInput;

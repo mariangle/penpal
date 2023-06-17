@@ -3,24 +3,20 @@
 import ProfileCard from "./users/components/UserCard"
 import Loading from "../components/Loading"
 
-import axios from "axios"
 import { useEffect, useState } from "react"
 import { IUser } from "../types/User"
+import { getUsers } from "../actions/getUsers"
 
 const Home = () => {
-  const [data, setData] = useState<IUser[]>([])
+  const [users, setUsers] = useState<IUser[]>([])
 
   useEffect(() => {
     const fetchUsers = async () => {
-      try {
-        const { data} = await axios.get("/api/users")
-        setData(data)
-      } catch (error) {
-        console.error("Error fetching users:", error)
-      }
-    }
-    fetchUsers()
-  }, [])
+      const users = await getUsers();
+      setUsers(users);
+    };
+    fetchUsers();
+  }, []);
   
   return (
     <div className="flex-center flex-col items-center w-full">
@@ -32,10 +28,10 @@ const Home = () => {
         Embrace the nostalgia of traditional letter writing in a digital world. Connect with penpals worldwide and enjoy the anticipation of heartfelt messages that arrive at their own pace.</p>
       </div>
       <div className="feed">
-      {data.length === 0 ? (
+      {users.length === 0 ? (
         <Loading />
       ) : (
-        data?.map((user) => (
+        users?.map((user) => (
           <ProfileCard key={user.id} user={user} />
         ))
       )}

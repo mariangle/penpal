@@ -24,9 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div className="gradient"/>
             </div>
             <main className='app'>
-              <nav className='flex justify-between items-center px-4 py-6 border-b w-full h-16'>
-                <Navbar />
-              </nav>
+              <Navbar />
               <ToastContext />
               {children}
             </main>

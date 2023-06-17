@@ -3,7 +3,7 @@ import ProfileOptions from "@/app/(site)/users/[userId]/components/ProfileOption
 import Interests from "@/app/(site)/users/[userId]/components/Interests";
 import ProfilePicture from "@/app/components/ProfilePicture";
 
-import { HiLocationMarker, HiCheckCircle, HiUser, HiMail } from 'react-icons/hi';
+import { HiOutlineLocationMarker, HiCheckCircle, HiUser, HiMail } from 'react-icons/hi';
 
 import { getAge } from '@/app/hooks/useUtil';
 import { IUser } from '@/app/types/User';
@@ -45,7 +45,7 @@ const Overview = ({ profile } : { profile: IUser }) => {
                 </div>
               </div>
               <div className='flex items-center gap-2'>
-                <HiLocationMarker />
+                <HiOutlineLocationMarker />
                 <div>
                   {profile.country}
                 </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { UseFormRegister, FieldValues } from "react-hook-form"
+import { HiEye, HiEyeOff } from "react-icons/hi";
 
 interface PasswordFieldProps {
     id : string,
@@ -30,7 +31,7 @@ const PasswordField : React.FC<PasswordFieldProps> = ({
             onClick={() => setShowPassword(!showPassword)}
             className="absolute top-1/2 right-4 transform -translate-y-1/2 focus:outline-none text-sm"
           >
-            {showPassword ? "Hide": "Show"}
+            {showPassword ? <HiEye />: <HiEyeOff />}
           </button>
       </div>
     </div>
