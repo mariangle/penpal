@@ -2,9 +2,10 @@ import Icon from '@/app/components/Icon';
 import ProfileOptions from "@/app/(site)/users/[userId]/components/ProfileOptions";
 import ProfilePicture from "@/app/components/ProfilePicture";
 
-import { HiOutlineLocationMarker, HiCheckCircle, HiUser, HiMail } from 'react-icons/hi';
+import { HiLocationMarker, HiCheckCircle, HiUser, HiMail } from 'react-icons/hi';
 
 import { getAge } from '@/app/hooks/useUtil';
+import { getLastOnline } from '@/app/actions/getLastOnline';
 import { IUser } from '@/app/types/User';
 
 const Overview = ({ profile } : { profile: IUser }) => {
@@ -13,8 +14,7 @@ const Overview = ({ profile } : { profile: IUser }) => {
           <div
           className="cover_image"
           style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url(${profile.coverPhoto})`,
-            backdropFilter: "blur(20px)",
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url(${profile.coverPhoto})`
           }}
         >       
           <div className='p-4 text-white'>
@@ -23,8 +23,8 @@ const Overview = ({ profile } : { profile: IUser }) => {
                   <ProfilePicture user={profile}/>
                 </div>
               </div>
-              <div className="flex gap-2 items-center">
-                <h1 className="font-bold text-xl blue_gradient">
+              <div className="flex-center mt-2 gap-2">
+                <h1 className="font-bold text-xl text-center">
                   {profile.name}
                 </h1>
                 {profile.isVerified && (
@@ -44,7 +44,7 @@ const Overview = ({ profile } : { profile: IUser }) => {
                 </div>
               </div>
               <div className='flex items-center gap-2'>
-                <HiOutlineLocationMarker />
+                <HiLocationMarker />
                 <div>
                   {profile.country}
                 </div>
@@ -52,7 +52,7 @@ const Overview = ({ profile } : { profile: IUser }) => {
               {profile.about && (
                 <div className='mt-2'>
                   <div className='text-sm'>
-                    About:
+                    Bio:
                   </div>
                   <div className="bg-black bg-opacity-20 px-2 py-1 rounded-md mt-1">
                     {profile.about}
@@ -60,6 +60,11 @@ const Overview = ({ profile } : { profile: IUser }) => {
                 </div>
               )}
               <ProfileOptions />
+              {profile.lastLoggedIn && (
+                <div className='mt-2 text-xs'>
+                  Last online: {getLastOnline(profile.lastLoggedIn.toString())}
+                </div>
+            )}
           </div>     
         </div>
     </div>
