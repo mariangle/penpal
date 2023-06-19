@@ -12,6 +12,7 @@ export const useLetter = () => {
   const { user } = useContext(UserContext);
   const [ sentLetters, setSentLetters ] = useState<ILetter[]>([]);
   const [ receivedLetters, setReceivedLetters ] = useState<ILetter[]>([]);
+  const [ pendingLetters, setPendingLetters ] = useState<ILetter[]>([]);
   const [ loading, setLoading ] = useState<boolean>(false);
 
   const sendLetter = async (data: FieldValues) => {
@@ -68,13 +69,22 @@ export const useLetter = () => {
         const currentDate = new Date();
 
         const letters = response.data;
-        const sent = letters.filter((letter: ILetter) => letter.senderId === user.id);
+
+        const sent = letters.filter((letter: ILetter) => {
+          return letter.senderId === user?.id && new Date(letter.arrivalAt) <= currentDate;
+        });
+
+        const pending = letters.filter((letter: ILetter) => {
+          return letter.senderId === user?.id && new Date(letter.arrivalAt) >= currentDate;
+        });     
+
         const received = letters.filter((letter: ILetter) => {
           return letter.receiverId === user?.id && new Date(letter.arrivalAt) <= currentDate;
         });
 
         setSentLetters(sent);
         setReceivedLetters(received);
+        setPendingLetters(pending)
        }
     } catch (error) {
       console.log("Error retrieving letters:", error);
@@ -83,14 +93,12 @@ export const useLetter = () => {
     }
   };
 
-  useEffect(() => {
-    getLetters();
-  }, []); 
-
   return {
     sendLetter,
     sentLetters,
+    pendingLetters,
     receivedLetters,
+    getLetters,
     loading,
   };
 };

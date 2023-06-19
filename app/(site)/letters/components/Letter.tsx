@@ -1,12 +1,28 @@
+"use client"
 import useFormat from "@/app/hooks/useFormat"
 
 import { ILetter } from "@/app/types/Letter"
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
-const Letter = ({ letter }: { letter: ILetter }) => {
+import { getLetter } from "@/app/actions/getLetter";
+
+const Letter = () => {
+  const [letter, setLetter] = useState<ILetter | undefined>(undefined);
   const { formatDate } = useFormat();
+  const { letterId } = useParams();
+
+  useEffect(() => {
+    getLetter(letterId)
+      .then((letter) => {
+        setLetter(letter)
+      })
+  }, [letterId]);
+
+  if (!letter) return null;
 
   return (
-    <div>
+    <div className="w-full bg-white p-4 shadow-xl md:ml-4">
        {/* SENDER INFORMATION */}
       <div className="flex flex-col items-end mb-4">
         <div>
