@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { HiChevronDown, HiCog, HiLogout, HiUser } from "react-icons/hi";
 
 import ProfilePicture from "./ProfilePicture";
@@ -8,6 +8,7 @@ import Icon from "./Icon";
 import { UserContext } from "../context/UserContext";
 import { IUser } from "../types/User";
 import { signOut } from "next-auth/react";
+import { calculateLetterArrival  } from "../actions/getArrival";
 
 interface UserNavigationProps {
   showMenu: boolean;
@@ -16,6 +17,19 @@ interface UserNavigationProps {
 const UserNavigation: React.FC<UserNavigationProps> = ({ showMenu }) => {
   const [showDropdown, toggleDropdown] = useState<boolean>(false);
   const { user } = useContext(UserContext) as { user: IUser };
+
+  useEffect(() => {
+    // Calculate arrival date on component mount
+    calculateLetterArrival ('Denmark', 'Greece').then((result) => {
+      if (result) {
+        console.log('Arrival Date:', result);
+        // Use the arrival date as needed in your component
+      } else {
+        console.error('Failed to calculate arrival date');
+      }
+    });
+  }, []);
+
 
   return (
     <div className="relative">

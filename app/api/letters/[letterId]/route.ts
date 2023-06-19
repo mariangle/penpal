@@ -12,7 +12,8 @@ export const GET = async (req: NextApiRequest) => {
   }
 
   const letter = await prisma.letter.findUnique({
-    where: { id: letterId }
+    where: { id: letterId },
+    include: { sender: true },
     });
 
   if (!letter) {    

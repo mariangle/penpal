@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useState, useEffect } from "react"
-import { useSession, signOut } from "next-auth/react"
+import { useSession, signOut, signIn } from "next-auth/react"
 import axios from "axios";
 import { IUser } from "../types/User";
 
@@ -9,12 +9,14 @@ interface UserContextType {
   user: IUser | undefined;
   setUser: (user: IUser | undefined) => void;
   signOut: () => Promise<void>;
+  signIn: () => Promise<void>;
 }
 
 export const UserContext = createContext<UserContextType>({
   user: undefined,
   setUser: () => {},
-  signOut: async () => {}
+  signOut: async () => {},
+  signIn: async () => {}
 });
 
 const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
@@ -39,7 +41,7 @@ const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
   }, [session?.user?.email]);
 
   return (
-    <UserContext.Provider value={{ user, signOut, setUser }}>
+    <UserContext.Provider value={{ user, signOut, setUser, signIn }}>
       {children}
     </UserContext.Provider>
   )

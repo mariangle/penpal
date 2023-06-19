@@ -1,12 +1,14 @@
 "use client"
 
+import Loading from '@/app/components/Loading';
+import Letter from '../components/Letter';
+
 import { ILetter } from '@/app/types/Letter';
 import { useEffect, useState } from 'react';
 import { useParams } from "next/navigation";
 import axios from 'axios';
-import Loading from '@/app/components/Loading';
 
-const Letter = () => {
+const LetterPage = () => {
   const [letter, setLetter] = useState<ILetter | undefined>(undefined);
   const { letterId } = useParams();
 
@@ -31,9 +33,9 @@ const Letter = () => {
 
   return (
     <div className='bg-white rounded-md p-4 w-full shadow-xl'>
-      {letter.content}
+      <Letter letter={letter}></Letter>
     </div>
   )
 }
 
-export default Letter
+export default LetterPage
