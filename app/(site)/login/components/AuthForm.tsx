@@ -65,22 +65,13 @@ const AuthForm = ({ variant }: AuthFormProps) => {
             toast.error("Invalid credentials");
           }
           if (callback?.ok && !callback?.error) {
-            toast.success("Welcome back!");
-            console.log(callback);
             router.push("/");
+            toast.success("Welcome back!");
           }
         })
         .finally(() => {
           setLoading(false); 
         });
-    }
-  };
-
-  const handleClick = () => {
-    if (variant === 'login') {
-      router.push('/register');
-    } else if (variant === 'register') {
-      router.push('/login');
     }
   };
 
@@ -100,9 +91,14 @@ const AuthForm = ({ variant }: AuthFormProps) => {
               </div>
             )}
             <div>
-              <Button fullWidth type="submit" disabled={loading}>
-                {variant === "login" ? "Sign In" : "Sign Up"}
-              </Button>
+            <Button fullWidth type="submit" disabled={loading}>
+              {loading && (
+                <span>
+                  {variant === "login" ? "Signing In..." : "Signing Up..."}
+                </span>
+              )}
+              {!loading && (variant === "login" ? "Sign In" : "Sign Up")}
+            </Button>
             </div>
           </div>
       </form>
@@ -129,8 +125,8 @@ const AuthForm = ({ variant }: AuthFormProps) => {
             <div>
                 {variant === "login" ? "New to PenPal?" : "Already have an account?"}
             </div>
-            <div onClick={handleClick} className="underline cursor-pointer">
-                {variant === "login" ? "Create an account" : "Login"}
+            <div onClick={() => router.push(variant === "login" ? "/register" : "/register")} className="underline cursor-pointer">
+              {variant === "login" ? "Create an account" : "Login"}
             </div>
         </div>
     </>

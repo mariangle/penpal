@@ -68,7 +68,7 @@ const ProfileForm = () => {
         )}
       </div>
         <div>
-          <Button type="submit" disabled={loading}>Save</Button>
+          <Button type="submit" disabled={loading}>{loading ? "Saving..." : "Save"}</Button>
         </div>
       </div>
     </form>
