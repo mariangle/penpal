@@ -29,7 +29,7 @@
 ## About The Project
   ![image](https://github.com/mariangle/penpal-next-ts/assets/124585244/4ec5d0d4-6354-46a6-8e32-299698caf29d)
 
-Penpal is a full stack application hat replicates the experience of writing physical letters by introducing delays in delivery time according to the distance between users. To familiarize myself with TypeScript, I began by coding in JavaScript and resolved any errors along the way. Throughout the development process, my primary focus was on crafting a reliable API, ensuring a smooth user experience, and implementing efficient error handling mechanisms for future deployment.
+Penpal is a full stack application that replicates the experience of writing physical letters by introducing delays in delivery time according to the distance between users. To familiarize myself with TypeScript, I began by coding in JavaScript and resolved any errors along the way. Throughout the development process, my primary focus was on crafting a reliable API, ensuring a smooth user experience, and implementing efficient error handling mechanisms for future deployment.
 
 
 
@@ -53,7 +53,7 @@ To get a local copy up and running, follow these steps.
    git clone https://github.com/mariangle/penpal-next-ts.git
    ```
 
-2. Configure your database URL in an `.env` file
+2. Configure DATEBASE_URL and SECRET in a `.env` file
 
 3. Install required npm packages   
 
@@ -84,11 +84,11 @@ To get a local copy up and running, follow these steps.
 <!-- ROADMAP -->
 ## Roadmap
 - [ ] Improve letter system
-  - [ ] Categorize sent and received letters
+  - [x] Categorize sent and received letters
   - [ ] Implement text formatter for more letter customization
   - [ ] Make letters arrive depend on distance between users
   - [ ] Add send letter to "random" user or based off filters feature
-- [ ] Followers/following or friendlist
+- [ ] Followers/following or friendlist system
 - [ ] Allow users to manage their interests
 - [ ] Put reviews or comments on a user's profile
 - [ ] Sign in with GitHub or Google
@@ -118,10 +118,11 @@ Maria - marianguyenle17@gmail.com
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
+* [nextAuth](https://authjs.dev/)
 * [react-icons](https://react-icons.github.io/react-icons/)
 * [react-hot-toast](https://react-hot-toast.com/)
 * [date-fns](https://date-fns.org/)
-* [dub.sh](https://fontawesome.com)
+* [dub.sh](https://dub.sh/)
 
 <p align="right">(<a href="#penpal">back to top</a>)</p>
   

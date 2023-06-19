@@ -9,7 +9,7 @@ const Sidebar = () => {
   return (
     <aside className="w-full p-4">
         <div className="flex-between border-b pb-4">
-          <h1 className="text-2xl font-extrabold blue_gradient">MailBox</h1>
+          <h1 className="text-2xl font-extrabold blue_gradient">Mailbox</h1>
           {letters?.length ? (
             <p className="text-sm">{letters?.length} letter&#40;s&#41;</p>
           ): (          

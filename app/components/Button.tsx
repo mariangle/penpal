@@ -1,5 +1,5 @@
 interface ButtonProps {
-    style? : "primary" | "secondary" | "tertiary" | undefined;
+    style? : "primary" | "white" | "transparent" | undefined;
     type? : "submit"
     fullWidth?: boolean;
     onClick?: () => void,
@@ -15,10 +15,10 @@ const Button: React.FC<ButtonProps> = ({
         onClick={onClick}
         type={type}
         disabled={disabled}
-        className={`rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center
+        className={`rounded-full border text-white border-black bg-black py-1.5 px-5 transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center
         ${style === "primary" ? "bg-red-600 hover:bg-red-400 border-none" : 
-         style === "secondary" ? "bg-blue-500" : 
-         style === "tertiary" ? "bg-yellow-300" :
+         style === "white" ? "bg-white border-white text-black hover:text-black" : 
+         style === "transparent" ? "bg-yellow-300" :
          fullWidth ? "w-full" : "" }
         ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
         >

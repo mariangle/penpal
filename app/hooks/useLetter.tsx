@@ -7,9 +7,10 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation"
 
 export const useLetter = () => {
-  const { user } = useContext(UserContext);
   const router = useRouter();
-  const [letters, setLetters] = useState<ILetter[]>([]);
+  const { user } = useContext(UserContext);
+  const [sentLetters, setSentLetters] = useState<ILetter[]>([]);
+  const [receivedLetters, setReceivedLetters] = useState<ILetter[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const sendLetter = async (data: FieldValues) => {
@@ -32,17 +33,17 @@ export const useLetter = () => {
       const response = await axios.post('/api/letters', updatedData);
 
       toast.success('Letter sent successfully!');
-      setLoading(false);
       router.push("/")
 
       return response.data;
     } catch (error) {
-      setLoading(false);
       if (axios.isAxiosError(error)) {
         toast.error(error.response?.data || error.message);
       } else {
         toast.error("Unexpected error");
       }
+    } finally {
+      setLoading(false)
     }
   };
   
@@ -55,8 +56,12 @@ export const useLetter = () => {
         const response = await axios.get("/api/letters", {
           params: { userId: user.id },
         });
-    
-        setLetters(response.data);
+        const allLetters = response.data;
+        const sent = allLetters.filter((letter: ILetter) => letter.senderId === user.id);
+        const received = allLetters.filter((letter: ILetter) => letter.receiverId === user?.id);
+
+        setSentLetters(sent);
+        setReceivedLetters(received);
        }
     } catch (error) {
       console.log("Error retrieving letters:", error);
@@ -71,7 +76,8 @@ export const useLetter = () => {
 
   return {
     sendLetter,
-    letters,
+    sentLetters,
+    receivedLetters,
     loading,
   };
 };

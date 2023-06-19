@@ -1,5 +1,6 @@
 const useFormat = () => {
-  const formatDate = (date: string): string => {
+
+  const formatDate = (date: Date): string => {
     const parsedDate = new Date(date);
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
@@ -10,7 +11,7 @@ const useFormat = () => {
     return parsedDate.toLocaleString(undefined, options);
   };
 
-  const formatFullDate = (date: string): string => {
+  const formatFullDate = (date: Date): string => {
     const parsedDate = new Date(date);
     const hours = parsedDate.getHours().toString().padStart(2, '0');
     const minutes = parsedDate.getMinutes().toString().padStart(2, '0');

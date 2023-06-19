@@ -15,6 +15,8 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  process.env.NODE_OPTIONS = '--no-warnings';
+
   return (
     <AuthContext>
       <UserContextProvider>

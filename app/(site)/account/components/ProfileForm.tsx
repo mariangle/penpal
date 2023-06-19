@@ -64,7 +64,7 @@ const ProfileForm = () => {
       <div className="text-gray-600 text-sm">
         Last Updated:{" "}
         {data?.updatedAt && (
-          formatFullDate(new Date(data.updatedAt).toLocaleString())
+          formatFullDate(new Date(data.updatedAt))
         )}
       </div>
         <div>

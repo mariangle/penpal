@@ -30,11 +30,16 @@ export const GET = async (
     const userId =  searchParams.get("userId")
 
     if (!userId) {
-        return new NextResponse("Unauthorized", { status: 401 });
+        return new NextResponse("User ID not found", { status: 404 });
     }      
 
     const letters = await prisma.letter.findMany({
-        where: { receiverId: userId },
+        where: {
+          OR: [
+            { senderId: userId },
+            { receiverId: userId }
+          ]
+        },
         include: { sender: true },
     })
 

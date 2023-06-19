@@ -20,7 +20,7 @@ const Home = () => {
   
   return (
     <div className="flex-center flex-col items-center w-full">
-      <div className="min-h-[30vh] grid content-center my-6">
+      <div className="min-h-[40vh] grid content-center my-6">
         <h1 className="head_text text-center">
           Discover <span className="orange_gradient text-center">PenPals</span>
         </h1>
