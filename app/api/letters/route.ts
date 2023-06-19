@@ -4,19 +4,19 @@ import { NextResponse } from "next/server"
 export const POST = async ( 
     req: Request
 ) => {
-    const { title, image, content, senderId, receiverId } = await req.json();
+    const { image, content, senderId, receiverId, arrivalAt } = await req.json();
 
-    if (!title || !content || !senderId || !receiverId){
+    if (!content || !senderId || !receiverId || !arrivalAt){
         return new NextResponse("Missing Fields", { status: 400 })
     }
 
     const letter = await prisma.letter.create({
         data: {
-            title,
             image, 
             content,
             senderId,
-            receiverId
+            receiverId,
+            arrivalAt
         }
     })
 

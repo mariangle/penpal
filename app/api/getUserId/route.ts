@@ -15,11 +15,13 @@ export const GET = async (req: NextApiRequest) => {
     where: { email: email },
     select: {
       id: true,
+      country: true,
+      email: true,
     },
   });
 
   if (!user) {
-    return new NextResponse("User with provided email not found", { status: 404 });
+    return new NextResponse("Email not found", { status: 404 });
   }
   
 

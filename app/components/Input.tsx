@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { UseFormRegister, FieldValues } from "react-hook-form";
 import { HiInformationCircle, HiQuestionMarkCircle } from "react-icons/hi"
+import { ChangeEventHandler } from "react";
 
 interface InputProps {
   label?: string;
@@ -14,11 +15,12 @@ interface InputProps {
   disabled?: boolean;
   info?: string;
   help?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>; 
 }
 
 const Input: React.FC<InputProps> = ({
   label, id, type, value, register, 
-  placeholder, maxLength, required, disabled, info, help
+  placeholder, maxLength, required, disabled, info, help, onChange
 }) => {
   const [showInfo, setShowInfo] = useState(false);
 
@@ -57,6 +59,7 @@ const Input: React.FC<InputProps> = ({
           id={id}
           name={id}
           value={value}
+          onChange={onChange}
           disabled={disabled}
           maxLength={maxLength}
           autoComplete="on"

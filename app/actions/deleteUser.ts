@@ -11,6 +11,5 @@ export const deleteUser = async (userId: string) => {
       await signOut();
   } catch (err) {
       toast.success("Something went wrong")
-      console.log("Error occured", err)
   }
 };

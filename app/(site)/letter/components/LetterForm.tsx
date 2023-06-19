@@ -5,30 +5,21 @@ import Textarea from "@/app/components/Textarea";
 import Button from "@/app/components/Button";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { useLetter } from "@/app/hooks/useLetter";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "@/app/context/UserContext";
 
-interface LetterFormProps {
-  receiverEmail?: string
-}
-
-const LetterForm: React.FC<LetterFormProps> = ({
-    receiverEmail
-  }) => {
+const LetterForm = () => {
   const { sendLetter, loading } = useLetter();
   const { user } = useContext(UserContext);
 
-  const { register, handleSubmit, setValue } = useForm<FieldValues>();
-  const [recipientType, setRecipientType] = useState<string>('specific');
+  const { register, handleSubmit } = useForm<FieldValues>();
+  const [ recipientType, setRecipientType ] = useState<string>('specific');
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const letterData = { ...data, recipientType };
     await sendLetter(letterData);
   };
 
-  useEffect(() => {
-    setValue("email", receiverEmail)
-  }, [receiverEmail]);
 
   return (
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -52,7 +43,6 @@ const LetterForm: React.FC<LetterFormProps> = ({
            )}
         </div>
         <Input type="text" label="From" id="sender" value={user?.email} disabled/>
-        <Input type="text" label="Title" id="title" register={register}/>
         <Textarea label="Content" id="content" register={register} rows={5}/>
         <Input type="text" label="Image URL" id="image" register={register}/>
         <Button type="submit" disabled={loading}>{loading ? "Sending..." : "Send"}</Button>

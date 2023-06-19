@@ -18,16 +18,11 @@ const ProfileOverview = () => {
         </Link>
       ) : 
       (
-        <div className='flex gap-2'>
-          <Link href={"/letter/new"}>
-            <Button fullWidth style='white'>
-              Message
-            </Button>
-          </Link>
-          <Button fullWidth>
-            Add Friend
+        <Link href={"/letter/new"}>
+          <Button style="transparent" fullWidth>
+            Message
           </Button>
-        </div>
+        </Link>
       )}
     </div>
   );

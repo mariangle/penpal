@@ -43,8 +43,8 @@ const SearchInput = () => {
     setSearchQuery("");
   };
 
-  const filteredUsers = users.filter(({ name, email }) =>
-    [name, email].some((value) => value.toLowerCase().includes(searchQuery.toLowerCase()))
+  const filteredUsers = users.filter(({ name }) =>
+    [name].some((value) => value.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   return (
@@ -54,7 +54,7 @@ const SearchInput = () => {
         <input
           type="text"
           id="search"
-          placeholder="Search name or email..."
+          placeholder="Search for users"
           className="search_input w-full"
           value={searchQuery}
           onChange={(e) => handleFilter(e.target.value)}

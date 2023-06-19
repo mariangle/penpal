@@ -5,13 +5,14 @@ import { FieldValues } from "react-hook-form";
 import { ILetter } from "../types/Letter";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation"
+import { calculateLetterArrival } from "../actions/getArrival";
 
 export const useLetter = () => {
   const router = useRouter();
   const { user } = useContext(UserContext);
-  const [sentLetters, setSentLetters] = useState<ILetter[]>([]);
-  const [receivedLetters, setReceivedLetters] = useState<ILetter[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [ sentLetters, setSentLetters ] = useState<ILetter[]>([]);
+  const [ receivedLetters, setReceivedLetters ] = useState<ILetter[]>([]);
+  const [ loading, setLoading ] = useState<boolean>(false);
 
   const sendLetter = async (data: FieldValues) => {
     try {
@@ -21,29 +22,36 @@ export const useLetter = () => {
         params: { email: data.email },
       });
 
-      if (!foundUser.data) {
-        throw new Error('Email not found');
+      if (!user){
+        throw new Error('You must be logged in to send a letter');
       }
+
+      if (user.email === foundUser.data.email){
+        throw new Error('You cannot send yourself a letter');
+      }
+
+      const arrival = await calculateLetterArrival(user.country, foundUser.data.country);
 
       const updatedData = {
         ...data,
-        senderId: user?.id,
+        senderId: user.id,
         receiverId: foundUser.data.id,
+        arrivalAt: arrival.arrivalDate
       };
-      const response = await axios.post('/api/letters', updatedData);
 
-      toast.success('Letter sent successfully!');
+      await axios.post('/api/letters', updatedData);
+
+      toast.success(`Letter sent! It will arrive in ${arrival.deliveryDays} days.`);
       router.push("/")
 
-      return response.data;
     } catch (error) {
-      if (axios.isAxiosError(error)) {
+      if (axios.isAxiosError(error)) { // response messages from server
         toast.error(error.response?.data || error.message);
-      } else {
-        toast.error("Unexpected error");
+      } else if (error instanceof Error) { // error messages that this function throws
+        toast.error(error.message);
       }
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
   
@@ -56,9 +64,14 @@ export const useLetter = () => {
         const response = await axios.get("/api/letters", {
           params: { userId: user.id },
         });
-        const allLetters = response.data;
-        const sent = allLetters.filter((letter: ILetter) => letter.senderId === user.id);
-        const received = allLetters.filter((letter: ILetter) => letter.receiverId === user?.id);
+
+        const currentDate = new Date();
+
+        const letters = response.data;
+        const sent = letters.filter((letter: ILetter) => letter.senderId === user.id);
+        const received = letters.filter((letter: ILetter) => {
+          return letter.receiverId === user?.id && new Date(letter.arrivalAt) <= currentDate;
+        });
 
         setSentLetters(sent);
         setReceivedLetters(received);

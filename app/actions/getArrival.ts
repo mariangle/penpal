@@ -8,7 +8,7 @@ interface Country {
 
 interface ArrivalData {
   arrivalDate: Date | null;
-  estimatedDeliveryDays: number;
+  deliveryDays: number;
 }
 
 
@@ -29,13 +29,13 @@ export const calculateLetterArrival = async (country1: string, country2: string)
 
     return {
       arrivalDate,
-      estimatedDeliveryDays: travelTimeInDays,
+      deliveryDays: travelTimeInDays,
     };
   } catch (error) {
     console.error('Error calculating arrival date:', error);
     return {
       arrivalDate: null,
-      estimatedDeliveryDays: 0,
+      deliveryDays: 0,
     };
   }
 };

@@ -5,8 +5,8 @@ export interface ILetter {
     receiverId: string;
     senderId: string;
     sender: IUser;
-    title: string;
     content: string;
     image?: string;
     createdAt: Date;
+    arrivalAt: Date;
 }

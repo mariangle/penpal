@@ -42,7 +42,7 @@ const LettersList = () => {
             </h5>
           </div>
           <div>
-            <p className="truncate pt-2">{letter.title}</p>
+            <p className="truncate pt-2">{letter.content}</p>
           </div>
         </Link>
       ))}

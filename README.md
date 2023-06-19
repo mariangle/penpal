@@ -53,7 +53,7 @@ To get a local copy up and running, follow these steps.
    git clone https://github.com/mariangle/penpal-next-ts.git
    ```
 
-2. Configure DATEBASE_URL and SECRET in a `.env` file
+2. Configure your DATEBASE_URL and SECRET in a `.env` file
 
 3. Install required npm packages   
 
@@ -86,10 +86,8 @@ To get a local copy up and running, follow these steps.
 - [ ] Improve letter system
   - [x] Categorize sent and received letters
   - [ ] Implement text formatter for more letter customization
-  - [ ] Make letters arrive depend on distance between users
+  - [x] Make letters arrive depend on distance between users
   - [ ] Add send letter to "random" user or based off filters feature
-- [ ] Followers/following or friendlist system
-- [ ] Allow users to manage their interests
 - [ ] Put reviews or comments on a user's profile
 - [ ] Sign in with GitHub or Google
 
