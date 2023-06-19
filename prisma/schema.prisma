@@ -28,17 +28,43 @@ model User {
 
   sentLetters     Letter[] @relation("SentLetter")
   receivedLetters Letter[] @relation("ReceivedLetter")
+  receivedReviews Review[] @relation("UserReviews")
+  authorReviews   Review[] @relation("AuthorReviews")
 }
 
 model Letter {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  title      String
   image      String?
   content    String
   createdAt  DateTime @default(now())
   senderId   String   @db.ObjectId
   receiverId String   @db.ObjectId
+  arrivalAt  DateTime?
 
   sender   User @relation("SentLetter", fields: [senderId], references: [id])
   receiver User @relation("ReceivedLetter", fields: [receiverId], references: [id])
+}
+
+model Review { 
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  rating     Int
+  title      String
+  content    String
+  createdAt  DateTime @default(now())
+  userId     String   @db.ObjectId
+  authorId   String   @db.ObjectId
+
+  user     User @relation("UserReviews", fields: [userId], references: [id])
+  author   User @relation("AuthorReviews", fields: [authorId], references: [id])
+  replies  Reply[] @relation("ReviewReplies")
+}
+
+
+model Reply {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  content  String
+  createdAt DateTime @default(now())
+  reviewId String   @db.ObjectId
+
+  review   Review @relation("ReviewReplies", fields: [reviewId], references: [id])
 }
