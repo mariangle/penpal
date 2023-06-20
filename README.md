@@ -36,10 +36,11 @@ Penpal is a full stack application that replicates the experience of writing phy
 
 ### Built With
 
-* Next.js
-* Prisma
-* TypeScript
-* TailwindCSS
+* [Next.js](https://nextjs.org/) - framework
+* [TypeScript](https://www.typescriptlang.org/) - language
+* [Tailwind](https://tailwindcss.comm) - CSS
+* [MongoDB](https://mongodb.com) - database
+* [NextAuth.js](https://next-auth.js.org/) - auth
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -87,9 +88,8 @@ To get a local copy up and running, follow these steps.
   - [x] Categorize sent and received letters
   - [ ] Implement text formatter for more letter customization
   - [x] Make letters arrive depend on distance between users
-  - [ ] Add send letter to "random" user or based off filters feature
-- [ ] Put reviews or comments on a user's profile
-- [ ] Sign in with GitHub or Google
+- [ ] Implement reviews feature
+- [ ] Add GitHub or Google as providers
 
 
 

@@ -1,6 +1,7 @@
 "use client"
 
-import { HiMail, HiOutlineGlobe, HiMoon } from "react-icons/hi"
+import { FcGlobe } from "react-icons/fc"
+import { BsFillEnvelopeFill } from "react-icons/bs"
 
 import Link from "next/link"
 import SearchInput from "./SearchInput"
@@ -16,8 +17,8 @@ const Navbar = () => {
     return (
       <nav className='flex gap-2 justify-between items-center px-4 py-6 border-b w-full h-16'>
         <div className="flex gap-4 md">
-          <Link href="/" className="font-bold flex items-center gap-2">
-            <HiOutlineGlobe />
+          <Link href="/" className="font-bold flex items-center gap-1">
+            <FcGlobe />
             <h1 className="hidden md:block">Pen<span className="orange_gradient">Pal</span></h1>
           </Link>
           <SearchInput />
@@ -25,9 +26,8 @@ const Navbar = () => {
         <div className="flex justify-end gap-4 items-center flex-1">
             { user ? (
               <>
-                <HiMoon />
                 <Link href={"/letters/inbox"}>
-                  <HiMail />
+                  <BsFillEnvelopeFill />
                 </Link>
                 <UserNavigation showMenu={true} />
               </>

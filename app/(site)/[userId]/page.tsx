@@ -2,7 +2,8 @@
 
 import Loading from "@/app/components/Loading";
 import ProfileCard from "./components/ProfileCard";
-import Interests from "./components/Interests";
+import Biography from "./components/Biography";
+import Reviews from "./components/Reviews";
 
 import { useParams } from "next/navigation";
 import { getUserById } from "@/app/actions/getUserById";
@@ -25,16 +26,13 @@ const Profile = () => {
 
   return (
     <div className="w-full">
-      <div className="md:flex gap-4">
-        <div className="md:min-w-[15rem] flex-[2]">       
-          <ProfileCard profile={user}/>
+        <ProfileCard profile={user}/>
+        <div className="mt-6 md:flex gap-6 px-2 md:px-0">
+          <div className="w-full  md:max-w-xs ">
+            <Biography bio={user.about} />
+          </div>
+          <Reviews />
         </div>
-        <div className="glassmorphism w-full flex-[5]">
-        {user.interests.length > 0 && (
-          <Interests user={user}/>   
-        )}
-        </div>
-      </div>  
     </div>
   )
 };

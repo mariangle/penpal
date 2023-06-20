@@ -19,7 +19,7 @@ const UserNavigation: React.FC<UserNavigationProps> = ({ showMenu }) => {
 
   return (
     <div className="relative">
-      <div className="flex items-center gap-2 cursor-pointer" onClick={() => toggleDropdown(!showDropdown)}>
+      <div className="flex-gap cursor-pointer" onClick={() => toggleDropdown(!showDropdown)}>
         <div className="flex gap-2"> 
           <div className="w-10 h-10">
               <ProfilePicture user={user} />
@@ -36,7 +36,7 @@ const UserNavigation: React.FC<UserNavigationProps> = ({ showMenu }) => {
             <p className="text-sm font-medium">{user?.name}</p>
             <p className="text-xs text-gray-500">{user?.email}</p>
           </div>
-          <Link onClick={() => toggleDropdown(!showDropdown)} href={`/users/${user?.id}`} className="dropdown_link">
+          <Link onClick={() => toggleDropdown(!showDropdown)} href={`/${user?.id}`} className="dropdown_link">
             <Icon icon={HiUser} background color="black" size={12}/>
             <button>
               Your Profile

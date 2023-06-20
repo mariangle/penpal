@@ -1,5 +1,6 @@
 import Button from '@/app/components/Button';
 import Link from 'next/link';
+import { BsFillEnvelopePaperFill} from "react-icons/bs"
 
 import useUser from '@/app/hooks/useUser';
 import { useParams } from "next/navigation";
@@ -19,8 +20,8 @@ const ProfileOverview = () => {
       ) : 
       (
         <Link href={"/letter/new"}>
-          <Button style="transparent" fullWidth>
-            Message
+          <Button style="transparent">
+            <BsFillEnvelopePaperFill />
           </Button>
         </Link>
       )}

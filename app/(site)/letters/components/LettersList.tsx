@@ -34,14 +34,14 @@ const LettersList = () => {
   if (loading) return null;
 
   return (
-    <div className="flex flex-col items-start gap-6 border p-2 md:max-w-[12rem] w-full rounded-md bg-zinc-100 min-h-[20vh]">
+    <div className="flex flex-col items-start border p-2 md:max-w-[12rem] w-full rounded-md bg-zinc-100 min-h-[20vh]">
       {letters?.map((letter) => (
         <Link key={letter.id} className="max-h-48 inline-block w-full" href={`${pathname}/${letter.id}`}>
           <div className="p-2 rounded-md">
-            <h5 className="font-bold text-blue-600 whitespace-nowrap text-sm">
+            <h5 className="font-bold text-blue-600 whitespace-nowrap text-xs">
               {formatDate(letter.createdAt)}
             </h5>
-            <h4 className="font-bold text-xs">from: {letter.sender.email}</h4>
+            <h4 className="font-bold text-xs">{letter.sender.email}</h4>
           </div>
         </Link>
       ))}

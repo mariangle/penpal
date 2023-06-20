@@ -8,9 +8,10 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-/* styling is from : https://dub.sh */
+/* <--- styling is from : https://dub.sh --> */
 
 .main {
   width: 100vw;
@@ -77,7 +78,7 @@ body {
 }
 
 .app {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6 w-full;
+  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto w-full;
 }
 
 .outline_btn {
@@ -105,7 +106,7 @@ body {
 }
 
 .search_input {
-  @apply rounded-md border border-gray-200 bg-white py-2 font-inter pl-8 pr-2 text-sm font-medium focus:border-black focus:outline-none focus:ring-0;
+  @apply rounded-md border border-gray-200 bg-white py-2 font-inter pl-8 pr-2 text-sm focus:border-black focus:outline-none focus:ring-0;
 }
 
 .glassmorphism {
@@ -150,10 +151,22 @@ body {
   @apply flex justify-between items-center;
 }
 
+.flex-gap {
+  @apply flex items-center gap-2;
+}
+
 .cover_image {
   background: rgba(0, 0, 0, 0.7);
   background-position: center;
   background-size: cover;
   background-repeat: repeat;
   @apply rounded-md;
+}
+
+.child {
+  width: 100%;
+  z-index: -10;
+  background-position: center;
+  background-size: center;
+  background-repeat: repeat;
 }

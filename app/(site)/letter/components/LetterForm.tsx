@@ -23,25 +23,7 @@ const LetterForm = () => {
 
   return (
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex items-end gap-4">
-          <div>
-            <label htmlFor="recipientType" className="block text-sm font-medium text-gray-700 mb-1">
-              Recipient
-            </label>
-            <select
-              id="recipientType"
-              className="border p-2 mb-4 rounded-md"
-              value={recipientType}
-              onChange={(e) => setRecipientType(e.target.value)}
-            >
-              <option value="specific">Specific</option>
-              <option value="random">Random</option>
-            </select>
-          </div>
-          {recipientType === "specific" && (
-            <Input type="text" label="Email" id="email" register={register} placeholder="example@email.com" />
-           )}
-        </div>
+        <Input type="text" label="Email" id="email" register={register} placeholder="example@email.com" />
         <Input type="text" label="From" id="sender" value={user?.email} disabled/>
         <Textarea label="Content" id="content" register={register} rows={5}/>
         <Input type="text" label="Image URL" id="image" register={register}/>

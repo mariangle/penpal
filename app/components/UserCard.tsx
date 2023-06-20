@@ -13,7 +13,7 @@ interface UserCardProps {
 
 const UserCard: React.FC<UserCardProps> = ({ user }) => {
   return (
-    <Link className='profile_card relative' href={`/users/${user.id}`}>
+    <Link className='profile_card relative' href={`/${user.id}`}>
         {user.coverPhoto && (<div
           className="cover_image absolute w-full h-full z-[-1]"
           style={{

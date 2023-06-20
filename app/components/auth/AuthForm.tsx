@@ -91,7 +91,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
               </div>
             )}
             <div>
-            <Button fullWidth type="submit" disabled={loading}>
+            <Button type="submit" style="primary" disabled={loading} fullWidth>
               {loading && (
                 <span>
                   {variant === "login" ? "Signing In..." : "Signing Up..."}
@@ -125,7 +125,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
             <div>
                 {variant === "login" ? "New to PenPal?" : "Already have an account?"}
             </div>
-            <div onClick={() => router.push(variant === "login" ? "/register" : "/register")} className="underline cursor-pointer">
+            <div onClick={() => router.push(variant === "login" ? "/register" : "/login")} className="underline cursor-pointer">
               {variant === "login" ? "Create an account" : "Login"}
             </div>
         </div>

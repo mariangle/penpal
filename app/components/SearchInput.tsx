@@ -67,7 +67,7 @@ const SearchInput = () => {
               <Link
                 key={user.id}
                 className="flex gap-2 items-center hover:bg-gray-100 w-full p-2"
-                href={`/users/${user?.id}`}
+                href={`/${user?.id}`}
                 onClick={handleClickUser}
               >
                 <div className="w-8 h-8">
