@@ -26,6 +26,7 @@ const PasswordField : React.FC<PasswordFieldProps> = ({
           {...register(id, { required })} 
           id={id}
           className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+          autoComplete="current-password"
         />
           <button
             type="button"

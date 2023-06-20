@@ -20,7 +20,7 @@ export const POST = async (
         }
     })
 
-    return NextResponse.json(letter)
+    return NextResponse.json(letter, { status: 200 })
 }
 
 export const GET = async (

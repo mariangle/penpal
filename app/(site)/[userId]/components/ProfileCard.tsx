@@ -10,7 +10,7 @@ import { IUser } from '@/app/types/User';
 
 const Overview = ({ profile } : { profile: IUser }) => {
   return (
-      <div className={`rounded-b-lg md:min-h-[30vh] relative p-6 w-full ${profile.coverPhoto ? "text-white" : "text-black"} bg-black bg-opacity-50 md:flex md:justify-between md:items-end gap-4`}>
+      <div className={`rounded-b-lg md:min-h-[30vh] relative p-6 w-full text-white bg-black bg-opacity-50 md:flex md:justify-between md:items-end gap-4`}>
           {/* <---  COVER PHOTO ---> */}
           <div
               className="child absolute h-full w-full top-0 left-0"

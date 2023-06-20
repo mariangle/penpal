@@ -15,7 +15,7 @@ import { getCountry } from "@/app/actions/userActions"
 import { useEffect, useState } from "react"
 
 interface AuthFormProps {
-  variant: 'login' | 'register'
+  variant: 'Login' | 'Register'
 }
 
 const AuthForm = ({ variant }: AuthFormProps) => {
@@ -24,7 +24,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
   const [ loading, setLoading ] = useState<boolean>(false);
 
   useEffect(() => {
-    if (variant === 'register') {
+    if (variant === 'Register') {
       getCountry().then((country) => {
         setValue('country', country); 
       });
@@ -38,7 +38,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setLoading(true); 
 
-    if (variant === "register") {
+    if (variant === "Register") {
       axios
         .post("/api/register", data)
         .then(() => {
@@ -58,7 +58,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
         })
       }
 
-    if (variant === "login") {
+    if (variant === "Login") {
       signIn("credentials", { ...data, redirect: false })
         .then((callback) => {
           if (callback?.error) {
@@ -79,12 +79,12 @@ const AuthForm = ({ variant }: AuthFormProps) => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
           <div>
-            { variant === "register" && (
+            { variant === "Register" && (
               <Input type="text" id="name" label="Name" register={register} maxLength={10}/>
             )}
               <Input type="email" id="email" label="Email" register={register}/>
               <PasswordField id="password" label="Password" register={register}/>
-            { variant === "register" && (
+            { variant === "Register" && (
               <div className="flex gap-2">
                 <Input type="date" id="dob" label="Date of Birth" register={register} />
                 <Input type="text" id="country" label="Country" register={register} disabled info="We retrieve your country information based on your IP address to provide a personalized experience."/>
@@ -94,15 +94,15 @@ const AuthForm = ({ variant }: AuthFormProps) => {
             <Button type="submit" style="primary" disabled={loading} fullWidth>
               {loading && (
                 <span>
-                  {variant === "login" ? "Signing In..." : "Signing Up..."}
+                  {variant === "Login" ? "Signing In..." : "Signing Up..."}
                 </span>
               )}
-              {!loading && (variant === "login" ? "Sign In" : "Sign Up")}
+              {!loading && (variant === "Login" ? "Sign In" : "Sign Up")}
             </Button>
             </div>
           </div>
       </form>
-      { variant === "login" && (
+      { variant === "Login" && (
         <>
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
@@ -123,10 +123,10 @@ const AuthForm = ({ variant }: AuthFormProps) => {
       )}
         <div className="flex gap-2 justify-center text-sm mt-4 åpx-2 text-gray-500">
             <div>
-                {variant === "login" ? "New to PenPal?" : "Already have an account?"}
+                {variant === "Login" ? "New to PenPal?" : "Already have an account?"}
             </div>
-            <div onClick={() => router.push(variant === "login" ? "/register" : "/login")} className="underline cursor-pointer">
-              {variant === "login" ? "Create an account" : "Login"}
+            <div onClick={() => router.push(variant === "Login" ? "/register" : "/login")} className="underline cursor-pointer">
+              {variant === "Login" ? "Create an account" : "Login"}
             </div>
         </div>
     </>

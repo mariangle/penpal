@@ -8,12 +8,6 @@ export enum Gender {
   Other = "other"
 }
 
-export enum Role {
-  Admin = "admin",
-  User = "user",
-  Moderator = "mod"
-}
-
 export interface  IUser {
     id: string;
     name: string;
@@ -28,8 +22,7 @@ export interface  IUser {
     createdAt: Date;
     updatedAt: Date;
     lastLoggedIn: Date;
-
-    // role: Role
+    
     // Gender: Gender
   }
   

@@ -5,7 +5,7 @@ import { BsFillEnvelopePaperFill} from "react-icons/bs"
 import useUser from '@/app/hooks/useUser';
 import { useParams } from "next/navigation";
 
-const ProfileOverview = () => {
+const ProfileOptions = () => {
   const { userId } = useParams();
   const { isCurrentUser } = useUser();
 
@@ -29,4 +29,4 @@ const ProfileOverview = () => {
   );
 };
 
-export default ProfileOverview;
+export default ProfileOptions;

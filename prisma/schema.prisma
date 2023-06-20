@@ -50,7 +50,6 @@ model Review {
   rating     Int
   title      String
   content    String
-  helpful    Int
   createdAt  DateTime @default(now())
   userId     String   @db.ObjectId
   authorId   String   @db.ObjectId

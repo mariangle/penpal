@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "./util.css";
 
 @tailwind base;
 @tailwind components;
@@ -11,7 +12,7 @@ body {
   overflow-x: hidden;
 }
 
-/* <--- styling is from : https://dub.sh --> */
+/* <--- https://dub.sh --> */
 
 .main {
   width: 100vw;
@@ -139,28 +140,11 @@ body {
   }
 }
 
-.flex-center {
-  @apply flex justify-center items-center;
-}
-
-.flex-start {
-  @apply flex justify-start items-start;
-}
-
-.flex-between {
-  @apply flex justify-between items-center;
-}
-
-.flex-gap {
-  @apply flex items-center gap-2;
-}
-
 .cover_image {
   background: rgba(0, 0, 0, 0.7);
   background-position: center;
   background-size: cover;
   background-repeat: repeat;
-  @apply rounded-md;
 }
 
 .child {

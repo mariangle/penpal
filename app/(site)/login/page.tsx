@@ -8,7 +8,7 @@ const Login = () => {
             <h1 className="text-4xl text-center font-bold mt-4 blue_gradient">PenPal</h1>
             <p className="text-gray-500 my-4 text-sm text-center">Sign in to your account.</p>
           </div>
-          <AuthForm variant="login"/>
+          <AuthForm variant="Login"/>
         </div>
     </div>
   )

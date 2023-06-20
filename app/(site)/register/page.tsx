@@ -7,7 +7,7 @@ const Register = () => {
           <div className="my-4">
             <h1 className="text-4xl text-center font-bold mt-4 blue_gradient">Register</h1>
           </div>
-          <AuthForm variant="register"/>
+          <AuthForm variant="Register"/>
         </div>
     </div>
   )

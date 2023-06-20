@@ -13,11 +13,9 @@ const LetterForm = () => {
   const { user } = useContext(UserContext);
 
   const { register, handleSubmit } = useForm<FieldValues>();
-  const [ recipientType, setRecipientType ] = useState<string>('specific');
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const letterData = { ...data, recipientType };
-    await sendLetter(letterData);
+    await sendLetter(data);
   };
 
 

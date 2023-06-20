@@ -45,11 +45,11 @@ export const useLetter = () => {
       toast.success(`Letter sent! It will arrive in ${arrival.deliveryDays} days.`);
       router.push("/")
 
-    } catch (error) {
-      if (axios.isAxiosError(error)) { // response messages from server
-        toast.error(error.response?.data || error.message);
-      } else if (error instanceof Error) { // error messages that this function throws
-        toast.error(error.message);
+    } catch (err) {
+      if (axios.isAxiosError(err)) { // response messages from server
+        toast.error(err.response?.data || err.message);
+      } else if (err instanceof Error) { // error messages that this function throws
+        toast.error(err.message);
       }
     } finally {
       setLoading(false);
