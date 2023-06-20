@@ -1,16 +1,15 @@
-import Link from "next/link";
 import Review from "./Review";
-import Button from "@/app/components/Button";
+import ReviewForm from "./ReviewForm";
 
-import { usePathname, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IReview } from "@/app/types/Review";
 import axios from "axios";
+import useReview from "@/app/hooks/useReview";
 
 const Reviews = () => {
-  const pathname = usePathname();
   const { userId } = useParams();
-  const [reviews, setReviews] = useState<IReview[]>([]);
+  const { reviews, setReviews, canLeaveReview } = useReview();
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -20,20 +19,14 @@ const Reviews = () => {
       setReviews(reviews);
     };
     fetchReviews();
-  }, []);
+  }, [reviews]);
 
   return (
-    <div className="mt-2 w-full rounded-md">
-      <div className="text-sm p-4 profile_card">Reviews</div>
-      <div>
-        <Link href={`/review/${pathname}`}>
-            <Button>
-                Write Review
-            </Button>
-        </Link>
-      </div>
+    <div className="w-full rounded-md">
       <div className="p-4 profile_card">
-        <ReviewsList reviews={reviews} />
+      <h2 className="text-sm">Reviews</h2>
+        {canLeaveReview() && (<ReviewForm />)}
+        <ReviewsList reviews={reviews} /> 
       </div>
     </div>
   );
@@ -45,9 +38,9 @@ interface ReviewsListProps {
 
 const ReviewsList = ({ reviews }: ReviewsListProps) => {
     return (
-      <div className="flex flex-col gap-4">
-        {reviews.map((review) => (
-            <Review review={review} key={review.id}/>
+      <div className="flex flex-col gap-4 mt-2">
+        {reviews.reverse().map((review) => (
+          <Review review={review} key={review.id} />
         ))}
       </div>
     );

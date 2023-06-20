@@ -4,6 +4,7 @@ import { HiChevronDown, HiCog, HiLogout, HiUser } from "react-icons/hi";
 import ProfilePicture from "./ProfilePicture";
 import Link from "next/link";
 import Icon from "./Icon";
+import Button from "./Button";
 
 import { UserContext } from "../context/UserContext";
 import { IUser } from "../types/User";
@@ -38,21 +39,22 @@ const UserNavigation: React.FC<UserNavigationProps> = ({ showMenu }) => {
           </div>
           <Link onClick={() => toggleDropdown(!showDropdown)} href={`/${user?.id}`} className="dropdown_link">
             <Icon icon={HiUser} background color="black" size={12}/>
-            <button>
+            <Button>
               Your Profile
-            </button>
+            </Button>
           </Link>
           <Link onClick={() => toggleDropdown(!showDropdown)} href={`/account/edit-profile`} className="dropdown_link">
             <Icon icon={HiCog} background color="black"size={12}/>
-            <button>Account</button>
+            <Button>Account</Button>
           </Link>
-          <button 
-            onClick={async () => await signOut()} 
-            className="dropdown_link"
-          >
-            <Icon icon={HiLogout} background color="black" size={12}/>
-            Logout
-          </button>
+          <div className="dropdown_link">
+              <Icon icon={HiLogout} background color="black" size={12}/>
+              <Button 
+                onClick={async () => await signOut()}
+                >              
+                Logout
+            </Button>
+          </div>
         </div>
       )}
     </div>

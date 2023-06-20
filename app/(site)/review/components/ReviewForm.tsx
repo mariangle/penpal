@@ -1,11 +1,9 @@
 "use client"
 
-import Input from "@/app/components/Input"
 import Textarea from "@/app/components/Textarea"
 import Button from "@/app/components/Button";
 import ReviewRating from "./ReviewRating";
 
-import { ILetter } from "@/app/types/Letter";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import useUser from "@/app/hooks/useUser";
@@ -13,42 +11,34 @@ import useUser from "@/app/hooks/useUser";
 import useReview from "@/app/hooks/useReview";
 import { toast } from "react-hot-toast";
 
-interface ReviewFormProps {
-    variant: "Post" | "Edit"
-    letter?: ILetter;
-}
-
-const ReviewForm: React.FC<ReviewFormProps>= ({
-    variant, letter
-}) => {
+const ReviewForm = () => {
     const { user } = useUser();
-    const { postReview, editReview, loading } = useReview();
+    const { postReview, loading } = useReview();
     const { register, handleSubmit } = useForm<FieldValues>({})
-    const [ rating, setRating ] = useState(5);
+    const [ rating, setRating ] = useState(0);
 
     const onSubmit: SubmitHandler<FieldValues> = async (formData) => {
         
         if (!formData.content) {
-            return toast.error("Please fill out all required fields");
+            return toast.error("Review cannot be empty!");
+        }
+
+        if (!rating) {
+            return toast.error("Please rate the PenPal");
         }
 
         const updatedData = { ...formData, rating }
-
-        if (variant === "Post"){
-            await postReview(updatedData)
-        } else if (variant === "Edit"){
-            await editReview(updatedData)
-        }
+        await postReview(updatedData)
     }
 
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-4">
-            <h1>{variant} Review</h1>
-            <ReviewRating onChange={setRating} rating={rating} />
-            <Textarea label="Content" id="content" register={register}/>
-            <Button type="submit" disabled={loading || !user} fullWidth>{loading ? `${variant}ing...` : variant}</Button>
-            {!user && (<span className="text-xs">To review a PenPal, please log in.</span>)}
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-2">
+            <Textarea id="content" register={register} maxLength={150} placeholder="Write a review..."/>
+            <div className="flex-gap">
+                <Button type="submit" disabled={loading || !user} style="black">{loading ? "Submitting..." : "Submit"}</Button>
+                <ReviewRating onChange={setRating} rating={rating} />
+            </div>
         </form>
     )
 }

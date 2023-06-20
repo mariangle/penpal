@@ -1,8 +1,9 @@
 import ProfilePicture from "@/app/components/ProfilePicture";
-import { BsStarFill } from "react-icons/bs";
-import { formatDate } from "@/app/util/formatUtils";
+import Button from "@/app/components/Button";
 
-
+import { BsStarFill, BsTrashFill } from "react-icons/bs";
+import { getTimeElapsed } from "@/app/util/formatUtils";
+import useReview from "@/app/hooks/useReview";
 import { IReview } from "@/app/types/Review";
 
 const StarRating = ({ rating }: { rating: number }) => {
@@ -22,22 +23,34 @@ const StarRating = ({ rating }: { rating: number }) => {
   };
 
 const Review = ({ review }: { review: IReview }) => {
-  
+  const { deleteReview, loading, isReviewAuthor } = useReview();
+
+  const handleDelete = async () => {
+    await deleteReview(review.id)
+  }
+
     return (
-      <div>
+      <div className="profile_card p-4">
         <div className="flex-between flex-gap">
             <div className="w-10 h-10">
               <ProfilePicture user={review.author} />
             </div>
             <div className="w-full">
-                <h3 className="font-semibold">{review.author.name}</h3>
-                <div className="flex-between mb-1">
-                    <StarRating rating={review.rating} />
-                    <time className="text-xs text-gray-600">{formatDate(review.createdAt)}</time>
+                <div className="flex-between">
+                    <h3 className="font-semibold">{review.author.name}</h3>
+                    <div className="flex-gap">
+                      <time className="text-xs text-gray-600">{getTimeElapsed(review.createdAt)}</time>
+                      {isReviewAuthor(review.author.id) && (
+                        <Button onClick={handleDelete} disabled={loading}>
+                          <BsTrashFill color="gray"/>
+                        </Button>
+                      )}
+                    </div>
                 </div>
+                <StarRating rating={review.rating} />
             </div>
         </div>
-        <p className="whitespace-pre-wrap">{review.content}</p>
+        <p className="whitespace-pre-wrap mt-2">{review.content}</p>
       </div>
     );
   };

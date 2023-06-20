@@ -1,7 +1,7 @@
 "use client"
 
 import Loading from "@/app/components/Loading";
-import ProfileCard from "./components/ProfileCard";
+import ProfileOverview from "./components/ProfileOverview";
 import Biography from "./components/Biography";
 import Reviews from "../review/components/Reviews";
 
@@ -26,8 +26,8 @@ const Profile = () => {
 
   return (
     <div className="w-full">
-        <ProfileCard profile={user}/>
-        <div className="mt-6 md:flex gap-6 px-2 md:px-0">
+        <ProfileOverview profile={user}/>
+        <div className="mt-6 flex flex-col md:flex-row gap-6">
           <div className="w-full  md:max-w-xs ">
             <Biography bio={user.about} />
           </div>

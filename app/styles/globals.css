@@ -134,7 +134,7 @@ body {
 }
 
 .profile_card {
-  @apply break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding backdrop-blur-lg backdrop-filter whitespace-nowrap;
+  @apply break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding backdrop-blur-lg backdrop-filter whitespace-pre-wrap;
   @media (max-width: 500px) {
     width: 100%;
   }
@@ -145,6 +145,7 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: repeat;
+  @apply rounded-md;
 }
 
 .child {

@@ -19,7 +19,7 @@ const layout = ({children} : {children : React.ReactNode} ) => {
               <div className="border-b pb-4 flex md:flex-col justify-between">
                 <h1 className="text-2xl font-extrabold blue_gradient mb-4">Mailbox</h1>
                 <Link href={"/letter/new"}>
-                  <Button fullWidth>
+                  <Button fullWidth style="black">
                     <HiPencilAlt />
                     <div>Compose</div>
                   </Button>

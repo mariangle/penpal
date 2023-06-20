@@ -10,6 +10,7 @@ export const GET = async () => {
         coverPhoto: true,
         country: true,
         dob: true,
+        isVerified: true
       }
     });
     

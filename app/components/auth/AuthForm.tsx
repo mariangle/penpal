@@ -91,7 +91,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
               </div>
             )}
             <div>
-            <Button type="submit" style="primary" disabled={loading} fullWidth>
+            <Button type="submit" style="black" disabled={loading} fullWidth>
               {loading && (
                 <span>
                   {variant === "Login" ? "Signing In..." : "Signing Up..."}

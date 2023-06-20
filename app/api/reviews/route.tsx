@@ -53,3 +53,24 @@ export const GET = async (req: Request) => {
   }
 }
 
+export const DELETE = async (req: Request) => {
+  const { searchParams } = new URL(req.url as string);
+  const reviewId =  searchParams.get("reviewId")
+
+  if (!reviewId) {
+    return new NextResponse("Review ID not found", { status: 404 });
+  }
+
+  try {
+    const review = await prisma.review.delete({
+      where: {
+        id: reviewId
+      }
+    })
+  
+    return new Response(JSON.stringify(review), { status: 200})
+
+  } catch (error) {
+    console.log(error)
+  }
+}

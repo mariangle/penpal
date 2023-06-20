@@ -13,7 +13,7 @@ const ProfileOptions = () => {
     <div className='mt-2'>
       {isCurrentUser(userId) ? (
         <Link href={"/account/edit-profile"}>
-          <Button fullWidth>
+          <Button fullWidth style='transparent'>
             Edit Profile
           </Button>
         </Link>

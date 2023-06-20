@@ -21,8 +21,7 @@ const useUser = () => {
   };
 
   const isCurrentUser = (userId: string): boolean => {
-    if(user?.id === userId) return true;
-    return false;
+    return user?.id === userId;
   };
 
   const updateUser = async (data: any, userId: string) => {

@@ -4,6 +4,7 @@ import { FcGlobe } from "react-icons/fc"
 import { BsFillEnvelopeFill } from "react-icons/bs"
 
 import Link from "next/link"
+import Button from "./Button"
 import SearchInput from "./SearchInput"
 import UserNavigation from "./UserNavigation"
 
@@ -34,7 +35,9 @@ const Navbar = () => {
             ) : (
               <div className="flex gap-2 items-center">
                 <Link href={"/login"}>Log In</Link>
-                <Link href={"/register"}><button className="outline_btn">Join</button></Link>
+                <Link href={"/register"}>
+                  <Button style="black">Join</Button>
+                </Link>
               </div>
             )}
         </div>
