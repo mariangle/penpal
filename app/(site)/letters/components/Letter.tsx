@@ -1,5 +1,5 @@
 "use client"
-import useFormat from "@/app/hooks/useFormat"
+import { formatDate } from "@/app/util/formatUtils";
 
 import { ILetter } from "@/app/types/Letter"
 import { useEffect, useState } from "react";
@@ -9,7 +9,6 @@ import { getLetter } from "@/app/actions/getLetter";
 
 const Letter = () => {
   const [letter, setLetter] = useState<ILetter | undefined>(undefined);
-  const { formatDate } = useFormat();
   const { letterId } = useParams();
 
   useEffect(() => {

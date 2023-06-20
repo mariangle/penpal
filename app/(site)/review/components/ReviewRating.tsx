@@ -36,7 +36,7 @@ const Star: React.FC<StarProps> = ({ selected, onClick }) => {
     return (
       <span
         onClick={onClick}
-        className={`cursor-pointer ${selected ? "text-yellow-400" : "text-gray-400"}`}
+        className={`cursor-pointer ${selected ? "text-yellow-500" : "text-gray-400"}`}
       >
         <BsStarFill />
       </span>

@@ -6,6 +6,7 @@ import { ILetter } from "../types/Letter";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation"
 import { calculateLetterArrival } from "../actions/getArrival";
+import { handleError } from "../util/errorHandlers";
 
 export const useLetter = () => {
   const router = useRouter();
@@ -23,13 +24,8 @@ export const useLetter = () => {
         params: { email: data.email },
       });
 
-      if (!user){
-        throw new Error('You must be logged in to send a letter');
-      }
-
-      if (user.email === foundUser.data.email){
-        throw new Error('You cannot send yourself a letter');
-      }
+      if (!user) return toast.error('You must be logged in to send a letter');
+      if (user.email === foundUser.data.email) return toast.error('You cannot send yourself a letter');
 
       const arrival = await calculateLetterArrival(user.country, foundUser.data.country);
 
@@ -40,17 +36,13 @@ export const useLetter = () => {
         arrivalAt: arrival.arrivalDate
       };
 
-      await axios.post('/api/letters', updatedData);
+      const response = await axios.post('/api/letters', updatedData);
 
       toast.success(`Letter sent! It will arrive in ${arrival.deliveryDays} days.`);
-      router.push("/")
+      router.push(`/letters/pending/${response.data.id}`)
 
-    } catch (err) {
-      if (axios.isAxiosError(err)) { // response messages from server
-        toast.error(err.response?.data || err.message);
-      } else if (err instanceof Error) { // error messages that this function throws
-        toast.error(err.message);
-      }
+    } catch (error) {
+      handleError(error);
     } finally {
       setLoading(false);
     }

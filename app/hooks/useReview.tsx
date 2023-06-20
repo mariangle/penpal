@@ -18,11 +18,6 @@ const useReview = () => {
     const postReview = async (data: FieldValues) => {
         try {
           setLoading(true);
-
-        if (!data.title || !data.content || !data.rating ) {
-            toast.error("Please fill out all required fields");
-            return;
-        } 
           const postData = { ...data, userId, authorId: user?.id };
           await axios.post(`/api/reviews/`, postData);
           toast.success("Review posted!");
@@ -35,7 +30,7 @@ const useReview = () => {
       };
 
     const editReview = (data: FieldValues) => {
-
+    
     }
 
     return {

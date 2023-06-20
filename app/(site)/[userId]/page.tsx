@@ -3,7 +3,7 @@
 import Loading from "@/app/components/Loading";
 import ProfileCard from "./components/ProfileCard";
 import Biography from "./components/Biography";
-import Reviews from "./components/Reviews";
+import Reviews from "../review/components/Reviews";
 
 import { useParams } from "next/navigation";
 import { getUserById } from "@/app/actions/getUserById";
@@ -20,7 +20,7 @@ const Profile = () => {
       setUser(fetchedUser);
     } 
     fetchUser();
-  }, [user])
+  }, [])
 
   if (!user) return <Loading />;
 

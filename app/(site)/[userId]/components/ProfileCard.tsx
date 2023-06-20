@@ -5,7 +5,7 @@ import ProfilePicture from "@/app/components/ProfilePicture";
 import { HiLocationMarker, HiCheckCircle, HiUser, HiMail } from 'react-icons/hi';
 
 import { getAge } from '@/app/actions/userActions';
-import { getLastOnline } from '@/app/actions/getLastOnline';
+import { getTimeElapsed } from '@/app/actions/getTimeElapsed';
 import { IUser } from '@/app/types/User';
 
 const Overview = ({ profile } : { profile: IUser }) => {
@@ -62,13 +62,13 @@ const Overview = ({ profile } : { profile: IUser }) => {
               </div>
             </div>
           </div>
-          <div>
-            <ProfileOptions />
-              {profile.lastLoggedIn && (
-                <div className='mt-2 text-xs'>
-                  Last online: {getLastOnline(profile.lastLoggedIn.toString())}
-              </div>
+          <div className='flex-gap'>
+            {profile.lastLoggedIn && (
+            <div className='mt-2 text-xs'>
+                  Last online: {getTimeElapsed(profile.lastLoggedIn)}
+            </div>
             )}
+            <ProfileOptions />
           </div>
       </div>
   )

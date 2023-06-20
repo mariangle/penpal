@@ -48,7 +48,6 @@ model Letter {
 model Review { 
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   rating     Int
-  title      String
   content    String
   createdAt  DateTime @default(now())
   userId     String   @db.ObjectId

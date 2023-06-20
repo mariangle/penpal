@@ -4,8 +4,8 @@ const Biography = ({ bio } : { bio : string }) => {
             <div className='text-sm'>
                 Biography
             </div>
-            <div className="py-1 rounded-md mt-2 border px-4 bg-white">
-                {bio}
+            <div className="rounded-md mt-2 border p-4 bg-white whitespace-pre-wrap">
+                <p>{bio}</p>
             </div>
         </div>
     )

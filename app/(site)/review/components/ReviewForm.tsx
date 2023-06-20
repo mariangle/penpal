@@ -11,6 +11,7 @@ import { useState } from "react";
 import useUser from "@/app/hooks/useUser";
 
 import useReview from "@/app/hooks/useReview";
+import { toast } from "react-hot-toast";
 
 interface ReviewFormProps {
     variant: "Post" | "Edit"
@@ -26,11 +27,17 @@ const ReviewForm: React.FC<ReviewFormProps>= ({
     const [ rating, setRating ] = useState(5);
 
     const onSubmit: SubmitHandler<FieldValues> = async (formData) => {
+        
+        if (!formData.content) {
+            return toast.error("Please fill out all required fields");
+        }
+
+        const updatedData = { ...formData, rating }
+
         if (variant === "Post"){
-            const updatedData = { ...formData, rating }
             await postReview(updatedData)
         } else if (variant === "Edit"){
-
+            await editReview(updatedData)
         }
     }
 
@@ -39,7 +46,6 @@ const ReviewForm: React.FC<ReviewFormProps>= ({
         <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-4">
             <h1>{variant} Review</h1>
             <ReviewRating onChange={setRating} rating={rating} />
-            <Input label="Title" id="title" type="text" register={register}/>
             <Textarea label="Content" id="content" register={register}/>
             <Button type="submit" disabled={loading || !user} fullWidth>{loading ? `${variant}ing...` : variant}</Button>
             {!user && (<span className="text-xs">To review a PenPal, please log in.</span>)}

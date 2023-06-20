@@ -1,6 +1,6 @@
 import { differenceInYears, differenceInMonths, differenceInWeeks, differenceInDays, differenceInHours, differenceInMinutes } from 'date-fns';
 
-export const getLastOnline = (timestamp: string) => {
+export const getTimeElapsed = (timestamp: Date) => {
   const lastOnline = new Date(timestamp);
   const now = new Date();
   const years = differenceInYears(now, lastOnline);

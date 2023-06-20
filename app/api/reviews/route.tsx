@@ -2,9 +2,9 @@ import prisma from '@/app/libs/prismadb';
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {
-  const { title, rating, content, userId, authorId } = await req.json();
+  const { rating, content, userId, authorId } = await req.json();
 
-  if (!title || !content || !rating) {
+  if (!content || !rating) {
     return new NextResponse("Missing fields", { status: 400 });
   }
 
@@ -15,7 +15,6 @@ export const POST = async (req: Request) => {
   try {
     const review = await prisma.review.create({
       data: {
-        title,
         content,
         rating,
         authorId,
@@ -28,3 +27,29 @@ export const POST = async (req: Request) => {
     return new NextResponse("Internal server error", { status: 500 });
   }
 };
+
+export const GET = async (req: Request) => {
+  const { searchParams } = new URL(req.url as string);
+  const userId =  searchParams.get("userId")
+
+  if (!userId){
+    return new NextResponse("User ID not found", { status: 404 });
+  }
+
+  try {
+    const reviews = await prisma.review.findMany({
+      where: {
+        userId: userId
+      },
+      include: {
+        author: true
+      }
+    });
+
+    return new Response(JSON.stringify(reviews), { status: 200})
+
+  } catch (error) {
+    return new NextResponse("Internal server error", { status: 500 });
+  }
+}
+
