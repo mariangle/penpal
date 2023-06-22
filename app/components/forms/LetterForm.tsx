@@ -3,21 +3,23 @@
 import Input from "@/app/components/Input";
 import Textarea from "@/app/components/Textarea";
 import Button from "@/app/components/Button";
+
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { useLetter } from "@/app/hooks/useLetter";
-import { useContext, useState } from "react";
-import { UserContext } from "@/app/context/UserContext";
+import useUser from "@/app/hooks/useUser";
+import { toast } from "react-hot-toast";
 
 const LetterForm = () => {
   const { sendLetter, loading } = useLetter();
-  const { user } = useContext(UserContext);
-
+  const { user } = useUser();
   const { register, handleSubmit } = useForm<FieldValues>();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    if (!user) return toast.error("Please log in to send a letter.");
+    if (!data.email || !data.sender || !data.content) return toast.error("Please make sure to fill in all required fields.");
+    
     await sendLetter(data);
   };
-
 
   return (
       <form onSubmit={handleSubmit(onSubmit)}>

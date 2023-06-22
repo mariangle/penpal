@@ -42,7 +42,7 @@ export const GET = async (req: Request) => {
         userId: userId
       },
       include: {
-        author: true
+        author: true,
       }
     });
 

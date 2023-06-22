@@ -23,7 +23,7 @@ const StarRating = ({ rating }: { rating: number }) => {
   };
 
 const Review = ({ review }: { review: IReview }) => {
-  const { deleteReview, loading, isReviewAuthor } = useReview();
+  const { deleteReview, loading, canDeleteReview } = useReview();
 
   const handleDelete = async () => {
     await deleteReview(review.id)
@@ -40,7 +40,7 @@ const Review = ({ review }: { review: IReview }) => {
                     <h3 className="font-semibold">{review.author.name}</h3>
                     <div className="flex-gap">
                       <time className="text-xs text-gray-600">{getTimeElapsed(review.createdAt)}</time>
-                      {isReviewAuthor(review.author.id) && (
+                      {canDeleteReview(review.author.id) && (
                         <Button onClick={handleDelete} disabled={loading}>
                           <BsTrashFill color="gray"/>
                         </Button>

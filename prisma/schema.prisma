@@ -29,7 +29,7 @@ model User {
   sentLetters     Letter[] @relation("SentLetter")
   receivedLetters Letter[] @relation("ReceivedLetter")
   receivedReviews Review[] @relation("UserReviews")
-  authorReviews   Review[] @relation("AuthorReviews")
+  writtenReviews   Review[] @relation("WrittenReviews")
 }
 
 model Letter {
@@ -54,7 +54,7 @@ model Review {
   authorId   String   @db.ObjectId
 
   user     User @relation("UserReviews", fields: [userId], references: [id])
-  author   User @relation("AuthorReviews", fields: [authorId], references: [id])
+  author   User @relation("WrittenReviews", fields: [authorId], references: [id])
   replies  Reply[] @relation("ReviewReplies")
 }
 

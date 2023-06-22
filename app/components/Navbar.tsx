@@ -8,12 +8,11 @@ import Button from "./Button"
 import SearchInput from "./SearchInput"
 import UserNavigation from "./UserNavigation"
 
-import { UserContext } from "../context/UserContext"
-import { useContext } from "react"
+import useUser from "../hooks/useUser"
 
 
 const Navbar = () => {
-    const { user } = useContext(UserContext)
+    const { user } =useUser();
     
     return (
       <nav className='flex gap-2 justify-between items-center px-4 py-6 border-b w-full h-16'>

@@ -1,25 +1,12 @@
 import Review from "./Review";
-import ReviewForm from "./ReviewForm";
+import ReviewForm from "../../../components/forms/ReviewForm";
 
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import { IReview } from "@/app/types/Review";
-import axios from "axios";
 import useReview from "@/app/hooks/useReview";
 
 const Reviews = () => {
-  const { userId } = useParams();
-  const { reviews, setReviews, canLeaveReview } = useReview();
-
-  useEffect(() => {
-    const fetchReviews = async () => {
-      const { data: reviews } = await axios.get("/api/reviews", {
-        params: { userId: userId },
-      });
-      setReviews(reviews);
-    };
-    fetchReviews();
-  }, [reviews]);
+  const { reviews, canLeaveReview } = useReview();
+  
 
   return (
     <div className="w-full rounded-md">
@@ -32,11 +19,7 @@ const Reviews = () => {
   );
 };
 
-interface ReviewsListProps {
-    reviews: IReview[];
-  }
-
-const ReviewsList = ({ reviews }: ReviewsListProps) => {
+  const ReviewsList: React.FC<{ reviews: IReview[] }> = ({ reviews }) => {
     return (
       <div className="flex flex-col gap-4 mt-2">
         {reviews.reverse().map((review) => (
@@ -45,5 +28,5 @@ const ReviewsList = ({ reviews }: ReviewsListProps) => {
       </div>
     );
   };
-
-export default Reviews;
+  
+  export default Reviews;

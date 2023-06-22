@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "next/navigation";
 
 import useUser from "./useUser";
@@ -10,38 +10,41 @@ import { IReview } from "../types/Review";
 
 const useReview = () => {
     const { user } = useUser();
+    const { userId } = useParams();
     const [ reviews, setReviews ] = useState<IReview[]>([]);
     const [ loading, setLoading ] = useState<boolean>(false);
-    const { userId } = useParams();
 
     const postReview = async (data: FieldValues) => {
-        try {
-          setLoading(true);
-          const postData = { ...data, userId, authorId: user?.id };
-          await axios.post(`/api/reviews/`, postData);
-        } catch (error) {
-          handleError(error);
-        } finally {
-          setLoading(false);
-        }
-      };
+      try {
+        setLoading(true);
+        const postData = { ...data, userId, authorId: user?.id };
+        const { data: newReview } = await axios.post(`/api/reviews/`, postData);
+        setReviews([...reviews, newReview]);
+        fetchReviews(); 
+      } catch (error) {
+        handleError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
     const deleteReview = async (reviewId: string) => {
       try {
         setLoading(true);
-        const { data: updatedReviews } = await axios.delete("/api/reviews", {
+        await axios.delete("/api/reviews", {
           params: { reviewId: reviewId },
         });
-        setReviews(updatedReviews);
-      } catch (error){
+    
+        setReviews(reviews.filter(review => review.id !== reviewId));
+      } catch (error) {
         handleError(error);
       } finally {
-        setLoading(false);   
+        setLoading(false);
       }
-    }
+    };
 
-    const isReviewAuthor = (authorId: string): boolean => {
-      return user?.id === authorId;
+    const canDeleteReview = (authorId: string): boolean => {
+      return user?.id === authorId || userId === user?.id;
     };
 
     const canLeaveReview = (): boolean => {
@@ -50,13 +53,32 @@ const useReview = () => {
     
       return !isReviewingSelf && !hasReviewed;
     };
+
+    const fetchReviews = async () => {
+      try {
+        const { data: reviews } = await axios.get("/api/reviews", {
+          params: { userId: userId },
+        });
+        return reviews;
+      } catch (error) {
+        handleError(error);
+      }
+    };
+  
+    useEffect(() => {
+      const getReviews = async () => {
+        const reviews = await fetchReviews();
+        setReviews(reviews);
+      }
+      getReviews();
+    }, [reviews.length]);
     
     return {
         postReview,
         deleteReview,
         reviews,
         setReviews,
-        isReviewAuthor,
+        canDeleteReview,
         canLeaveReview,
         loading,
     }

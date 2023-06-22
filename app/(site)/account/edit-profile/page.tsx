@@ -1,12 +1,11 @@
 "use client"
 
 
-import { useContext } from "react"
-import ProfileForm from "../components/ProfileForm"
-import { UserContext } from "@/app/context/UserContext"
+import useUser from "@/app/hooks/useUser"
+import ProfileForm from "../../../components/forms/ProfileForm"
 
 const EditProfile = () => {
-  const { user } = useContext(UserContext)
+  const { user } = useUser();
 
   if (!user) return "Loading..."
 

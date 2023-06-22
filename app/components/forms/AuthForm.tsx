@@ -2,17 +2,13 @@
 
 import Input from "@/app/components/Input"
 import Button from "@/app/components/Button"
-import AuthSocialButton from "./AuthSocialButton"
-import PasswordField from "./PasswordField"
+import AuthSocialButton from "../auth/AuthSocialButton"
+import PasswordField from "../auth/PasswordField"
 import { BsGithub, BsGoogle } from "react-icons/bs"
 
-import { signIn } from "next-auth/react"
-import { toast } from "react-hot-toast"
-import axios from "axios"
-import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation"
-import { getCountry } from "@/app/actions/userActions"
-import { useEffect, useState } from "react"
+import useAuth from "@/app/hooks/useAuth"
 
 interface AuthFormProps {
   variant: 'Login' | 'Register'
@@ -20,58 +16,15 @@ interface AuthFormProps {
 
 const AuthForm = ({ variant }: AuthFormProps) => {
   const router = useRouter();
-  const { register, handleSubmit, setValue } = useForm<FieldValues>({})
-  const [ loading, setLoading ] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (variant === 'Register') {
-      getCountry().then((country) => {
-        setValue('country', country); 
-      });
-    }
-  }, [setValue, variant]);
-
-  const socialAction = (action : string) => {
-    signIn(action, { redirect: false })
-  };
+  const { data, loading, login, register, socialAction, handleSubmit } = useAuth();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    setLoading(true); 
-
     if (variant === "Register") {
-      axios
-        .post("/api/register", data)
-        .then(() => {
-          toast.success("Registered succesfully!");
-          router.push("/login");
-        })
-        .catch((error) => {
-          if (error.response) {
-            const errorMessage = error.response.data;
-            toast.error(errorMessage);
-          } else {
-            toast.error("Error occurred");
-          }
-        })
-        .finally(() => {
-          setLoading(false); 
-        })
-      }
+      register(data);
+    }
 
     if (variant === "Login") {
-      signIn("credentials", { ...data, redirect: false })
-        .then((callback) => {
-          if (callback?.error) {
-            toast.error("Invalid credentials");
-          }
-          if (callback?.ok && !callback?.error) {
-            router.push("/");
-            toast.success("Welcome back!");
-          }
-        })
-        .finally(() => {
-          setLoading(false); 
-        });
+      login(data)
     }
   };
 
@@ -80,14 +33,14 @@ const AuthForm = ({ variant }: AuthFormProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             { variant === "Register" && (
-              <Input type="text" id="name" label="Name" register={register} maxLength={10}/>
+              <Input type="text" id="name" label="Name" register={data} maxLength={10}/>
             )}
-              <Input type="email" id="email" label="Email" register={register}/>
-              <PasswordField id="password" label="Password" register={register}/>
+              <Input type="email" id="email" label="Email" register={data}/>
+              <PasswordField id="password" label="Password" register={data}/>
             { variant === "Register" && (
               <div className="flex gap-2">
-                <Input type="date" id="dob" label="Date of Birth" register={register} />
-                <Input type="text" id="country" label="Country" register={register} disabled info="We retrieve your country information based on your IP address to provide a personalized experience."/>
+                <Input type="date" id="dob" label="Date of Birth" register={data} />
+                <Input type="text" id="country" label="Country" register={data} disabled info="We retrieve your country information based on your IP address to provide a personalized experience."/>
               </div>
             )}
             <div>

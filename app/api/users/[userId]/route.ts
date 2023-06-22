@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/app/libs/prismadb';
 import { parseISO } from 'date-fns';
+import getCurrentUser from '@/app/actions/getCurrentUser';
 
 
 export const GET = async (req: NextRequest) => {
@@ -36,15 +37,22 @@ export const GET = async (req: NextRequest) => {
 };
 
 export const PUT = async (req: NextRequest) => {
-  const { name, image, coverPhoto, about, dob, userId } = await req.json();
+  const currentUser = await getCurrentUser();
+
+  if (!currentUser){
+    return new NextResponse('Unauthorized', { status: 401 });
+  }
+  const { name, image, coverPhoto, about, dob } = await req.json();
   
   if (!name || !dob) {
     return new NextResponse('Missing Fields', { status: 400 });
   }
 
+  const isVerified = coverPhoto && image && about ? true : false;
+
   try {
     const user = await prisma.user.update({
-      where: { id: userId },
+      where: { id: currentUser.id },
       data: {
         name,
         image,
@@ -52,15 +60,16 @@ export const PUT = async (req: NextRequest) => {
         about,
         dob: parseISO(dob),
         updatedAt: new Date(),
+        isVerified
       },
     });
 
     if (!user) {
       return new NextResponse('User not found', { status: 404 });
     }
-
+    console.log("delete other one")
     return new Response(JSON.stringify(user), { status: 200 });
   } catch (error) {
-    console.log(error);
+    return new NextResponse('Internal Error', { status: 500 });
   }
 };

@@ -34,12 +34,10 @@ const ProfileForm = () => {
         setBioLength(user.about.length);
       }
     }
-  }, [user, setValue]);
+  }, [setValue]);
 
   const handleUpdateUser: SubmitHandler<FieldValues> = async (data) => {
-    if (user) {
-      await updateUser(data, user.id);
-    }
+    await updateUser(data);
   };
 
   return (

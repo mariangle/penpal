@@ -1,4 +1,4 @@
-import LetterForm from "@/app/(site)/letter/components/LetterForm"
+import LetterForm from "@/app/components/forms/LetterForm"
 
 const newLetter = () => {
   return (

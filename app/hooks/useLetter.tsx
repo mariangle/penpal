@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "@/app/context/UserContext";
 import { FieldValues } from "react-hook-form";
 import { ILetter } from "../types/Letter";
@@ -23,6 +23,7 @@ export const useLetter = () => {
       const foundUser = await axios.get(`/api/getUserId`, {
         params: { email: data.email },
       });
+      
 
       if (!user) return toast.error('You must be logged in to send a letter');
       if (user.email === foundUser.data.email) return toast.error('You cannot send yourself a letter');
@@ -54,13 +55,11 @@ export const useLetter = () => {
       setLoading(true);
   
       if (user?.id) {
-        const response = await axios.get("/api/letters", {
+        const { data: letters} = await axios.get("/api/letters", {
           params: { userId: user.id },
         });
 
         const currentDate = new Date();
-
-        const letters = response.data;
 
         const sent = letters.filter((letter: ILetter) => {
           return letter.senderId === user?.id && new Date(letter.arrivalAt) <= currentDate;
@@ -94,3 +93,5 @@ export const useLetter = () => {
     loading,
   };
 };
+
+export default useLetter;

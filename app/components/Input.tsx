@@ -2,8 +2,9 @@ import { useState } from "react";
 import { UseFormRegister, FieldValues } from "react-hook-form";
 import { HiInformationCircle, HiQuestionMarkCircle } from "react-icons/hi"
 import { ChangeEventHandler } from "react";
+import { ComponentProps } from "react";
 
-interface InputProps {
+type InputProps = {
   label?: string;
   id: string;
   type: string;
@@ -16,7 +17,7 @@ interface InputProps {
   info?: string;
   help?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>; 
-}
+} & ComponentProps<"input">
 
 const Input: React.FC<InputProps> = ({
   label, id, type, value, register, 

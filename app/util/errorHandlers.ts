@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 export const handleAxiosError = (error: AxiosError) => {
   const { response } = error;
   if (response?.status === 400) {
-    toast.error("Please fill out all fields");
+    toast.error("Missing fields");
   } else if (response?.status === 401) {
     toast.error("Please login to try this event");
   } else if (response?.status === 404) {

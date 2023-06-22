@@ -1,10 +1,10 @@
 "use client" 
 
-import ReviewForm from "../components/ReviewForm";
+import ReviewForm from "../../../components/forms/ReviewForm";
 
 const page = () => {
     return (
-        <ReviewForm variant="Post"/>
+        <ReviewForm />
     )
 }
 

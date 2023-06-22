@@ -1,15 +1,15 @@
-import { useContext, useEffect, useState } from "react";
-import { useLetter } from "@/app/hooks/useLetter";
-import { formatDate } from "@/app/util/formatUtils";
+import useUser from "@/app/hooks/useUser";
+import useLetter from "@/app/hooks/useLetter";
+
 import Link from "next/link";
 
 import { usePathname } from "next/navigation"
 import { ILetter } from "@/app/types/Letter";
-import { UserContext } from "@/app/context/UserContext";
-
+import { useEffect, useState } from "react";
+import { formatDate } from "@/app/util/formatUtils";
 
 const LettersList = () => {
-  const { user } = useContext(UserContext)
+  const { user } = useUser();
   const { receivedLetters, pendingLetters, sentLetters, loading, getLetters } = useLetter();
   const [ letters, setLetters ] = useState<ILetter[]>([])
   const pathname = usePathname();

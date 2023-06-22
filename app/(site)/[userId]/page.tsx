@@ -20,7 +20,7 @@ const Profile = () => {
       setUser(fetchedUser);
     } 
     fetchUser();
-  }, [])
+  }, [userId])
 
   if (!user) return <Loading />;
 

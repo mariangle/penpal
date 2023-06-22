@@ -3,6 +3,7 @@ import { UserContext } from "@/app/context/UserContext";
 import { IUser } from "@/app/types/User";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { FieldValues } from "react-hook-form";
 
 const useUser = () => {
   const { user, setUser } = useContext(UserContext);
@@ -24,13 +25,10 @@ const useUser = () => {
     return user?.id === userId;
   };
 
-  const updateUser = async (data: any, userId: string) => {
+  const updateUser = async (data: FieldValues) => {
     setLoading(true) 
     try {
-      const response = await axios.put(`/api/currentUser`, {
-        ...data,
-        userId: userId,
-      });
+      const response = await axios.put(`/api/users/{userId}`, data);
       setUser(response.data);
       toast.success("Your profile has been updated.");
     } catch (err) {

@@ -1,4 +1,3 @@
-import { useState, useContext, useEffect } from "react";
 import { HiChevronDown, HiCog, HiLogout, HiUser } from "react-icons/hi";
 
 import ProfilePicture from "./ProfilePicture";
@@ -6,9 +5,11 @@ import Link from "next/link";
 import Icon from "./Icon";
 import Button from "./Button";
 
-import { UserContext } from "../context/UserContext";
+import useUser from "../hooks/useUser";
+
 import { IUser } from "../types/User";
 import { signOut } from "next-auth/react";
+import { useState } from "react";
 
 interface UserNavigationProps {
   showMenu: boolean;
@@ -16,7 +17,7 @@ interface UserNavigationProps {
 
 const UserNavigation: React.FC<UserNavigationProps> = ({ showMenu }) => {
   const [showDropdown, toggleDropdown] = useState<boolean>(false);
-  const { user } = useContext(UserContext) as { user: IUser };
+  const { user } = useUser() as { user: IUser };
 
   return (
     <div className="relative">
