@@ -24,52 +24,52 @@ const useAuth = () => {
       });  
   }, []);
   
-    const loginUser = (data: FieldValues) => {
-        setLoading(true);
-        signIn("credentials", { ...data, redirect: false })
-        .then((callback) => {
-          if (callback?.error) {
-            toast.error("Invalid credentials");
-          }
-          if (callback?.ok && !callback?.error) {
-            router.push("/");
-            toast.success("Welcome back!");
+  const login = (data: FieldValues) => {
+      setLoading(true);
+      signIn("credentials", { ...data, redirect: false })
+      .then((callback) => {
+        if (callback?.error) {
+          toast.error("Invalid credentials");
+        }
+        if (callback?.ok && !callback?.error) {
+          router.push("/");
+          toast.success("Welcome back!");
+        }
+      })
+      .finally(() => {
+        setLoading(false); 
+      });    
+  };
+
+  const register = (data: FieldValues) => {
+      setLoading(true);
+      axios
+        .post("/api/users", data)
+        .then(() => {
+          toast.success("Registered succesfully!");
+          router.push("/login");
+        })
+        .catch((error) => {
+          if (error.response) {
+            const errorMessage = error.response.data;
+            toast.error(errorMessage);
+          } else {
+            toast.error("Error occurred");
           }
         })
         .finally(() => {
           setLoading(false); 
-        });    
+        })
     };
 
-    const registerUser = (data: FieldValues) => {
-        setLoading(true);
-        axios
-          .post("/api/users", data)
-          .then(() => {
-            toast.success("Registered succesfully!");
-            router.push("/login");
-          })
-          .catch((error) => {
-            if (error.response) {
-              const errorMessage = error.response.data;
-              toast.error(errorMessage);
-            } else {
-              toast.error("Error occurred");
-            }
-          })
-          .finally(() => {
-            setLoading(false); 
-          })
-      };
-  
-    return {
-      socialAction,
-      login: loginUser,
-      register: registerUser,
-      loading,
-      data,
-      handleSubmit,
-    };
+  return {
+    socialAction,
+    login,
+    register,
+    loading,
+    data,
+    handleSubmit,
   };
+};
   
   export default useAuth;

@@ -15,6 +15,7 @@ export const GET = async (req: NextApiRequest) => {
     where: { email: email },
     select: {
       id: true,
+      name: true,
       country: true,
       email: true,
     },

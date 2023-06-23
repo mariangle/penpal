@@ -1,22 +1,21 @@
-"use client"
-
 import ProfileCard from "../components/UserCard"
 import Loading from "../components/Loading"
+import { IUser } from "../types/User";
 
-import { useEffect, useState } from "react"
-import { IUser } from "../types/User"
-import { getUsers } from "../actions/getUsers"
+async function fetchUsers() {
+  const res = await fetch("http://localhost:3000/api/users", {
+    cache: "no-store",
+  });
 
-const Home = () => {
-  const [users, setUsers] = useState<IUser[]>([])
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const users = await getUsers();
-      setUsers(users);
-    };
-    fetchUsers();
-  }, []);
+  return res.json();
+}
+
+const Home = async () => {
+  const users: IUser[] = await fetchUsers();
   
   return (
     <div className="flex-center flex-col items-center w-full">
@@ -31,7 +30,7 @@ const Home = () => {
       {users.length === 0 ? (
         <Loading />
       ) : (
-        users?.map((user) => (
+        users?.map((user: IUser) => (
           <ProfileCard key={user.id} user={user} />
         ))
       )}

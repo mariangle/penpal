@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import AuthContext from '../context/AuthContext'
 import ToastContext from '../context/ToasterContext'
 import UserContextProvider from '../context/UserContext'
+import ReviewsContextProvider from '../context/ReviewsContext'
 
 import Navbar from '../components/Navbar'
 
@@ -20,18 +21,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <AuthContext>
       <UserContextProvider>
-        <html lang="en" className="h-full">
-          <body className={`${inter.className} flex flex-col min-h-screen relative`}>
-            <div className="main">
-                <div className="gradient"/>
-            </div>
-            <main className='app'>
-              <Navbar />
-              <ToastContext />
-              {children}
-            </main>
-          </body>
-        </html>
+        <ReviewsContextProvider>
+          <html lang="en" className="h-full">
+            <body className={`${inter.className} flex flex-col min-h-screen relative`}>
+              <div className="main">
+                  <div className="gradient"/>
+              </div>
+              <main className='app'>
+                <Navbar />
+                <ToastContext />
+                {children}
+              </main>
+            </body>
+          </html>
+        </ReviewsContextProvider>
       </UserContextProvider>
     </AuthContext>
   );

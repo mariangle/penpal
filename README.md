@@ -88,9 +88,7 @@ To get a local copy up and running, follow these steps.
   - [x] Categorize sent and received letters
   - [ ] Implement text formatter for more letter customization
   - [x] Make letters arrive depend on distance between users
-- [ ] Implement reviews feature
-- [ ] Add GitHub or Google as providers
-
+- [x] Implement reviewing system
 
 
 <!-- LICENSE -->

@@ -29,10 +29,8 @@ const ReviewForm = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="mt-2">
             <Textarea id="content" register={register} maxLength={150} placeholder="Write a review..."/>
-            <div className="flex-gap">
-                <Button type="submit" disabled={loading} style="black">{loading ? "Submitting..." : "Submit"}</Button>
-                <ReviewRating onChange={setRating} rating={rating} />
-            </div>
+            <ReviewRating onChange={setRating} rating={rating} />
+            <Button type="submit" disabled={loading} style="black">{loading ? "Submitting..." : "Submit"}</Button>
         </form>
     )
 }

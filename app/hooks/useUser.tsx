@@ -4,6 +4,7 @@ import { IUser } from "@/app/types/User";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { FieldValues } from "react-hook-form";
+import { signOut } from "next-auth/react";
 
 const useUser = () => {
   const { user, setUser } = useContext(UserContext);
@@ -39,6 +40,16 @@ const useUser = () => {
     }
   };
 
+ const deleteUser = async () => {
+  try {
+      const response = await axios.delete("/api/users/{userId}")
+      toast.success(response.data)
+      await signOut();
+  } catch (err) {
+      toast.error("Something went wrong")
+  }
+  };  
+
   return {
     user,
     setUser,
@@ -46,6 +57,7 @@ const useUser = () => {
     loading,
     getUserById,
     isCurrentUser,
+    deleteUser,
   };
 };
 

@@ -2,17 +2,33 @@ import Review from "./Review";
 import ReviewForm from "../../../components/forms/ReviewForm";
 
 import { IReview } from "@/app/types/Review";
-import useReview from "@/app/hooks/useReview";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import axios from "axios";
+
 
 const Reviews = () => {
-  const { reviews, canLeaveReview } = useReview();
-  
+  const [ reviews, setReviews ] = useState<IReview[]>([]);
+  const { userId } = useParams(); 
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+          const { data: reviews } = await axios.get("/api/reviews", {
+              params: { userId: userId },
+            });
+          setReviews(reviews);
+          } catch (err) {
+          console.log("Error fetching reviews:", err)
+      }
+  }
+  fetchReviews();
+  }, [])
 
   return (
     <div className="w-full rounded-md">
       <div className="p-4 profile_card">
       <h2 className="text-sm">Reviews</h2>
-        {canLeaveReview() && (<ReviewForm />)}
         <ReviewsList reviews={reviews} /> 
       </div>
     </div>

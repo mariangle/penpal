@@ -7,15 +7,12 @@ import Icon from "@/app/components/Icon"
 import { HiCheckCircle, HiXCircle } from "react-icons/hi"
 
 import useUser from "@/app/hooks/useUser"
-import { deleteUser } from "@/app/actions/deleteUser"
 
 const SettingsForm = () => {
-    const { user } = useUser()
+    const { user, deleteUser } = useUser()
 
     const handleDelete = async () => {
-        if (user){
-            await deleteUser(user.id)
-        }
+        await deleteUser();
     }
  
   return (

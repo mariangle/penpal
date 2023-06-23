@@ -19,11 +19,18 @@ const ProfileOptions = () => {
         </Link>
       ) : 
       (
-        <Link href={"/letter/new"}>
-          <Button style="transparent">
-            <BsFillEnvelopePaperFill />
-          </Button>
-        </Link>
+        <div className='flex-gap'>
+          <Link href={`/review/${userId}`}>
+            <Button style="transparent">
+              Review
+            </Button>
+          </Link>
+          <Link href={"/letter/new"}>
+            <Button style="white">
+              <BsFillEnvelopePaperFill />
+            </Button>
+          </Link>
+        </div>
       )}
     </div>
   );

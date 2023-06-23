@@ -2,9 +2,7 @@
 
 import Input from "@/app/components/Input"
 import Button from "@/app/components/Button"
-import AuthSocialButton from "../auth/AuthSocialButton"
 import PasswordField from "../auth/PasswordField"
-import { BsGithub, BsGoogle } from "react-icons/bs"
 
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation"
@@ -16,7 +14,7 @@ interface AuthFormProps {
 
 const AuthForm = ({ variant }: AuthFormProps) => {
   const router = useRouter();
-  const { data, loading, login, register, socialAction, handleSubmit } = useAuth();
+  const { data, loading, login, register, handleSubmit } = useAuth();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (variant === "Register") {
@@ -55,25 +53,6 @@ const AuthForm = ({ variant }: AuthFormProps) => {
             </div>
           </div>
       </form>
-      { variant === "Login" && (
-        <>
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300">
-                </div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-                <span className="bg-white px-2 text-gray-500">
-                    Or continue with
-                </span>
-            </div>
-          </div>
-          <div>
-            <AuthSocialButton onClick={() => socialAction("github")} icon={BsGithub}></AuthSocialButton>
-            <AuthSocialButton onClick={() => socialAction("google")} icon={BsGoogle}></AuthSocialButton>
-          </div>
-        </>
-      )}
         <div className="flex gap-2 justify-center text-sm mt-4 åpx-2 text-gray-500">
             <div>
                 {variant === "Login" ? "New to PenPal?" : "Already have an account?"}

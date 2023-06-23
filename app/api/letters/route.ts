@@ -1,5 +1,6 @@
 import prisma from '@/app/libs/prismadb';
 import { NextResponse } from "next/server"
+import getCurrentUser from '@/app/actions/getCurrentUser';
 
 export const POST = async ( 
     req: Request
@@ -26,18 +27,18 @@ export const POST = async (
 export const GET = async (
     req: Request
 ) => {
-    const { searchParams } = new URL(req.url as string);
-    const userId =  searchParams.get("userId")
 
-    if (!userId) {
-        return new NextResponse("User ID not found", { status: 404 });
+    const currentUser = await getCurrentUser()
+
+    if (!currentUser) {
+        return new NextResponse("Unauthorized", { status: 401 });
     }      
 
     const letters = await prisma.letter.findMany({
         where: {
           OR: [
-            { senderId: userId },
-            { receiverId: userId }
+            { senderId: currentUser.id },
+            { receiverId: currentUser.id }
           ]
         },
         include: { sender: true },

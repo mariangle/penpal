@@ -21,16 +21,16 @@ export const UserContext = createContext<UserContextType>({
 
 const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
   const { data: session } = useSession()
-  const [user, setUser] = useState<IUser | undefined>(undefined);
+  const [ user, setUser ] = useState<IUser | undefined>(undefined);
 
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
         if (session?.user?.email){
-          const response = await axios.get("/api/currentUser", {
+          const { data: user} = await axios.get("/api/currentUser", {
             params: { email: session?.user?.email },
           });
-          setUser(response.data);
+          setUser(user);
         }
       } catch (error) {
         console.error("Error fetching user:", error);

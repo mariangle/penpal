@@ -1,10 +1,16 @@
-"use client" 
-
 import ReviewForm from "../../../components/forms/ReviewForm";
 
-const page = () => {
+import getCurrentUser from "@/app/actions/getCurrentUser";
+
+const page = async () => {
+    // const user = await getUserById(userId);
+
     return (
-        <ReviewForm />
+        <div className="flex-center min-h-[90vh]">
+            <div className="bg-white p-4">
+                <ReviewForm />
+            </div>
+        </div>
     )
 }
 

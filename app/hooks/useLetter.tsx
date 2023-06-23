@@ -53,30 +53,23 @@ export const useLetter = () => {
   const getLetters = async () => {
     try {
       setLoading(true);
-  
-      if (user?.id) {
-        const { data: letters} = await axios.get("/api/letters", {
-          params: { userId: user.id },
-        });
+      const { data: letters} = await axios.get("/api/letters",)
 
-        const currentDate = new Date();
+      const sent = letters.filter((letter: ILetter) => {
+        return letter.senderId === user?.id && new Date(letter.arrivalAt) <= new Date();
+      });
 
-        const sent = letters.filter((letter: ILetter) => {
-          return letter.senderId === user?.id && new Date(letter.arrivalAt) <= currentDate;
-        });
+      const pending = letters.filter((letter: ILetter) => {
+        return letter.senderId === user?.id && new Date(letter.arrivalAt) >= new Date();
+      });     
 
-        const pending = letters.filter((letter: ILetter) => {
-          return letter.senderId === user?.id && new Date(letter.arrivalAt) >= currentDate;
-        });     
+      const received = letters.filter((letter: ILetter) => {
+        return letter.receiverId === user?.id && new Date(letter.arrivalAt) <= new Date();
+      });
 
-        const received = letters.filter((letter: ILetter) => {
-          return letter.receiverId === user?.id && new Date(letter.arrivalAt) <= currentDate;
-        });
-
-        setSentLetters(sent);
-        setReceivedLetters(received);
-        setPendingLetters(pending)
-       }
+      setSentLetters(sent);
+      setReceivedLetters(received);
+      setPendingLetters(pending)
     } catch (error) {
       console.log("Error retrieving letters:", error);
     } finally {

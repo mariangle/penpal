@@ -1,5 +1,5 @@
 interface ButtonProps {
-    style? : "black" | "red" | "white" | "transparent" | undefined;
+    style? : "primary" | "black" | "red" | "white" | "transparent" | undefined;
     type? : "submit"
     fullWidth?: boolean;
     onClick?: () => void,
@@ -17,7 +17,8 @@ const Button: React.FC<ButtonProps> = ({
         disabled={disabled}
         className={`rounded-full transition-all text-center text-sm font-inter 
         ${style === "black" ? "black_btn" :
-          style === "white" ? " bg-white border-white text-black hover:text-black" :
+          style === "white" ? "white_btn" :
+          style === "primary" ? "primary_btn" :
           style === "red" ? "red_btn" :
           style === "transparent" ? "transparent_btn" :
           ""} 

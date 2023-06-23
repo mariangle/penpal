@@ -38,11 +38,11 @@ export const GET = async (req: NextRequest) => {
 
 export const PUT = async (req: NextRequest) => {
   const currentUser = await getCurrentUser();
+  const { name, image, coverPhoto, about, dob } = await req.json();
 
   if (!currentUser){
     return new NextResponse('Unauthorized', { status: 401 });
   }
-  const { name, image, coverPhoto, about, dob } = await req.json();
   
   if (!name || !dob) {
     return new NextResponse('Missing Fields', { status: 400 });
@@ -73,3 +73,25 @@ export const PUT = async (req: NextRequest) => {
     return new NextResponse('Internal Error', { status: 500 });
   }
 };
+
+export const DELETE = async (req: NextRequest) => {
+  const currentUser = await getCurrentUser();
+
+  if (!currentUser){
+    return new NextResponse('Unauthorized', { status: 401 });
+  }
+
+  await prisma.letter.deleteMany({
+    where: { senderId: currentUser.id },
+  });
+
+  const user = await prisma.user.delete({
+    where: { id: currentUser.id}
+  })
+
+  if (!user) {
+    return new NextResponse('User not found', { status: 404 });
+  }
+
+  return new NextResponse('User deleted', { status: 200 });
+}

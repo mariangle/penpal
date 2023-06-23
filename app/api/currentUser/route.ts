@@ -38,26 +38,3 @@ export const GET = async (req: NextRequest) => {
 
   return new Response(JSON.stringify(user), { status: 200})
 };
-
-export const DELETE = async (req: NextRequest) => {
-  const { searchParams } = new URL(req.url as string);
-  const userId = searchParams.get("userId");
-
-  if (!userId) {
-    return new NextResponse('User not found', { status: 404 });
-  }
-
-  await prisma.letter.deleteMany({
-    where: { senderId: userId },
-  });
-
-  const user = await prisma.user.delete({
-    where: { id: userId}
-  })
-
-  if (!user) {
-    return new NextResponse('User not found', { status: 404 });
-  }
-
-  return new NextResponse('User deleted', { status: 200 });
-}
