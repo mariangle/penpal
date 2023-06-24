@@ -23,7 +23,6 @@ const ReviewsContextProvider = ({ children }: { children: React.ReactNode }) => 
                 const { data: reviews } = await axios.get("/api/reviews", {
                     params: { userId: userId },
                   });
-                  console.log("userId,", userId)
 
                 setReviews(reviews);
                 } catch (err) {

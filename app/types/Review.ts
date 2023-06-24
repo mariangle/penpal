@@ -8,8 +8,6 @@ export interface IReview {
     createdAt: Date;
     userId: string;
     authorId: string;
-    helpful: number;
-
     author: IUser;
     user: IUser;
     replies: IReply[];

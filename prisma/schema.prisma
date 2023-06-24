@@ -23,13 +23,14 @@ model User {
   dob            DateTime
   isVerified     Boolean   @default(false)
   createdAt      DateTime  @default(now())
-  updatedAt      DateTime? // @updatedAt 
+  updatedAt      DateTime? 
   lastLoggedIn   DateTime?
 
   sentLetters     Letter[] @relation("SentLetter")
   receivedLetters Letter[] @relation("ReceivedLetter")
   receivedReviews Review[] @relation("UserReviews")
   writtenReviews   Review[] @relation("WrittenReviews")
+  replies   Reply[] @relation("UserReplies")
 }
 
 model Letter {
@@ -52,6 +53,7 @@ model Review {
   createdAt  DateTime @default(now())
   userId     String   @db.ObjectId
   authorId   String   @db.ObjectId
+  updatedAt  DateTime? @updatedAt
 
   user     User @relation("UserReviews", fields: [userId], references: [id])
   author   User @relation("WrittenReviews", fields: [authorId], references: [id])
@@ -64,6 +66,8 @@ model Reply {
   content  String
   createdAt DateTime @default(now())
   reviewId String   @db.ObjectId
+  authorId   String   @db.ObjectId
 
+  author   User @relation("UserReplies", fields: [authorId], references: [id])
   review   Review @relation("ReviewReplies", fields: [reviewId], references: [id])
 }

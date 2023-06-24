@@ -1,3 +1,5 @@
+"use client"
+
 import Button from '@/app/components/Button';
 import Link from 'next/link';
 import { BsFillEnvelopePaperFill} from "react-icons/bs"

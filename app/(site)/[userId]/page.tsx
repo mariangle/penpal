@@ -1,48 +1,34 @@
-"use client"
 
 import Loading from "@/app/components/Loading";
-import ProfileOverview from "./components/ProfileOverview";
+import ProfileHeader from "./components/ProfileHeader";
 import Biography from "./components/Biography";
 import Reviews from "../review/components/Reviews";
-import { ParsedUrlQuery } from 'querystring';
+import ProfileRating from "./components/ProfileRating";
 
-import { useParams } from "next/navigation";
-import { getUserById } from "@/app/actions/getUserById";
-import { useEffect, useState } from "react";
-import { IUser } from "@/app/types/User";
-import { GetServerSideProps } from "next";
+import getUser from '@/app/actions/getUser';
+import getReviews from "@/app/actions/getReviews";;
 
-interface UserPageProps {
-  id: string;
+interface IParams {
+  userId: string;
 }
 
-const UserPage = ({ id }: UserPageProps) => {
-  const { userId } = useParams();
-  const [user, setUser] = useState<IUser | null>(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const fetchedUser = await getUserById(userId);
-      setUser(fetchedUser);
-    } 
-    fetchUser();
-  }, [userId])
+const ProfilePage = async ({ params }: { params: IParams }) => {
+  const user = await getUser(params.userId);
+  const reviews = await getReviews(params.userId);
 
   if (!user) return <Loading />;
 
   return (
     <div className="w-full">
-        <ProfileOverview profile={user}/>
-        <div className="mt-6 flex flex-col md:flex-row gap-6">
-          <div className="w-full  md:max-w-xs ">
+        <ProfileHeader user={user}/>
+        <div className="mt-2 md:mt-4 flex flex-col md:flex-row gap-4 md:gap-4 px-2 xl:px-0">
+          <div className="w-full  md:max-w-xs">
             <Biography bio={user.about} />
-            id is {id}
+            <ProfileRating reviews={user.receivedReviews}/>
           </div>
-          <Reviews />
+          <Reviews reviews={reviews} />
         </div>
     </div>
   )
 };
-
-
-export default UserPage;
+export default ProfilePage;

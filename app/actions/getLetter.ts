@@ -9,6 +9,6 @@ export const getLetter = async (letterId: string) => {
         });       
         return response.data
     } catch (err) {
-        console.error("Error fetching ketter:", err);
+        console.error("Error fetching letter:", err);
     }
 }

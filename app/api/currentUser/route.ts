@@ -1,7 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server';
 import prisma from '@/app/libs/prismadb';
-import { parseISO } from 'date-fns';
-import getCurrentUser from '@/app/actions/getCurrentUser';
 
 export const GET = async (req: NextRequest) => {
   const { searchParams } = new URL(req.url as string);

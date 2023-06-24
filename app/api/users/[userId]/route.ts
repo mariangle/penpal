@@ -26,6 +26,7 @@ export const GET = async (req: NextRequest) => {
       isVerified: true,
       createdAt: true,
       lastLoggedIn: true,
+      receivedReviews: true,
     },
   });
 
@@ -67,7 +68,6 @@ export const PUT = async (req: NextRequest) => {
     if (!user) {
       return new NextResponse('User not found', { status: 404 });
     }
-    console.log("delete other one")
     return new Response(JSON.stringify(user), { status: 200 });
   } catch (error) {
     return new NextResponse('Internal Error', { status: 500 });

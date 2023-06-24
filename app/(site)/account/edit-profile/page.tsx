@@ -1,13 +1,6 @@
-"use client"
-
-
-import useUser from "@/app/hooks/useUser"
 import ProfileForm from "../../../components/forms/ProfileForm"
 
 const EditProfile = () => {
-  const { user } = useUser();
-
-  if (!user) return "Loading..."
 
   return (
     <div>

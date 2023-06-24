@@ -1,10 +1,12 @@
+"use client"
+
 import ProfilePicture from "@/app/components/ProfilePicture";
 import Button from "@/app/components/Button";
 
 import { BsStarFill, BsTrashFill } from "react-icons/bs";
 import { getTimeElapsed } from "@/app/util/formatUtils";
 import useReview from "@/app/hooks/useReview";
-import { IReview } from "@/app/types/Review";
+import { Review as IReview } from "@prisma/client";
 
 const StarRating = ({ rating }: { rating: number }) => {
     const stars = [];

@@ -8,11 +8,10 @@ import Button from "./Button"
 import SearchInput from "./SearchInput"
 import UserNavigation from "./UserNavigation"
 
-import useUser from "../hooks/useUser"
-
+import { useSession } from "next-auth/react"
 
 const Navbar = () => {
-    const { user } =useUser();
+    const { data: session, status } = useSession();
     
     return (
       <nav className='flex gap-2 justify-between items-center px-4 py-6 border-b w-full h-16'>
@@ -24,7 +23,7 @@ const Navbar = () => {
           <SearchInput />
         </div>
         <div className="flex justify-end gap-4 items-center flex-1">
-            { user ? (
+            { status === "authenticated" ? (
               <>
                 <Link href={"/letters/inbox"}>
                   <BsFillEnvelopeFill />

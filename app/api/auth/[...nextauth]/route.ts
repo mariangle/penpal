@@ -52,7 +52,11 @@ export const authOptions: AuthOptions = {
           data: { lastLoggedIn: new Date() },
         });
 
-        return user;
+        const dbUser = await prisma.user.findUnique({
+          where: { id: user.id },
+        });
+
+        return dbUser;
       }
     })
   ],
@@ -63,21 +67,7 @@ export const authOptions: AuthOptions = {
   debug: true,
   callbacks: {
     session: async ({ session, user }) => {
-      if (user) {
-        const fullUser = await prisma.user.findUnique({
-          where: { email: user.email },
-          select: { isVerified: true, interests: true },
-        });
 
-        console.log(fullUser)
-    
-        const updatedUser = {
-          ...user,
-          ...fullUser,
-        };
-    
-        session.user = updatedUser;
-      }
     
       return session;
     }, 
