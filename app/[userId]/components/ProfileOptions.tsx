@@ -1,6 +1,6 @@
 "use client"
 
-import Button from '@/app/components/Button';
+import Button from '@/components/Button';
 import Link from 'next/link';
 import { BsFillEnvelopePaperFill} from "react-icons/bs"
 
@@ -18,7 +18,7 @@ const ProfileOptions = () => {
     <div className='mt-2'>
       {isCurrentUser(userId) ? (
         <Link href={"/account/edit-profile"}>
-          <Button fullWidth style='transparent'>
+          <Button fullWidth className='transparent_btn'>
             Edit Profile
           </Button>
         </Link>
@@ -27,13 +27,13 @@ const ProfileOptions = () => {
         <div className='flex-gap'>
           { canLeaveReview() && (
           <Link href={`/review/${userId}`}>
-            <Button style="transparent">
+            <Button className='transparent_btn'>
               Review
             </Button>
           </Link>
           )}
           <Link href={"/letter/new"}>
-            <Button style="white">
+            <Button className="white_btn">
               <BsFillEnvelopePaperFill />
             </Button>
           </Link>

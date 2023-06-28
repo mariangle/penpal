@@ -4,8 +4,8 @@ import { BsFillEnvelopeFill, BsGlobeAmericas } from "react-icons/bs"
 
 import Link from "next/link"
 import Button from "./Button"
-import SearchInput from "./SearchInput"
-import UserNavigation from "./UserNavigation"
+import SearchInput from "../app/components/SearchInput"
+import UserNavigation from "../app/components/UserNavigation"
 
 import { useSession } from "next-auth/react"
 
@@ -33,7 +33,7 @@ const Navbar = () => {
               <div className="flex gap-2 items-center">
                 <Link href={"/login"}>Log In</Link>
                 <Link href={"/register"}>
-                  <Button style="black">Join</Button>
+                  <Button className="black_btn">Join</Button>
                 </Link>
               </div>
             )}

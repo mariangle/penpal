@@ -1,6 +1,6 @@
 import { IconType } from "react-icons/lib";
 
-interface IconProps {
+type IconProps = {
   icon: IconType;
   size?: number;
   color?: string;

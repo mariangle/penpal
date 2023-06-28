@@ -1,5 +1,5 @@
 
-import Loading from "@/app/components/Loading";
+import Loading from "@/components/Loading";
 import ProfileHeader from "./components/ProfileHeader";
 import Biography from "./components/Biography";
 import Reviews from "../review/components/Reviews";

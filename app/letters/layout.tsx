@@ -1,6 +1,6 @@
 "use client"
 
-import Button from "@/app/components/Button";
+import Button from "@/components/Button";
 import Link from "next/link";
 import LettersList from "./components/LettersList";
 import { HiInboxIn, HiPencilAlt } from "react-icons/hi"
@@ -19,7 +19,7 @@ const layout = ({children} : {children : React.ReactNode} ) => {
               <div className="border-b pb-4 flex md:flex-col justify-between">
                 <h1 className="text-2xl font-extrabold blue_gradient mb-4">Mailbox</h1>
                 <Link href={"/letter/new"}>
-                  <Button fullWidth style="black">
+                  <Button fullWidth className="black_btn">
                     <HiPencilAlt />
                     <div>Compose</div>
                   </Button>

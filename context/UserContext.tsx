@@ -2,8 +2,9 @@
 
 import { createContext, useState, useEffect } from "react"
 import { useSession, signOut, signIn } from "next-auth/react"
-import axios from "axios";
 import { IUser } from "@/common.types";
+
+import axios from "axios";
 
 interface UserContextType {
   user: IUser | undefined;
@@ -41,7 +42,12 @@ const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
   }, [session?.user?.email]);
 
   return (
-    <UserContext.Provider value={{ user, signOut, setUser, signIn }}>
+    <UserContext.Provider value={{ 
+      user, 
+      signOut, 
+      setUser, 
+      signIn 
+      }}>
       {children}
     </UserContext.Provider>
   )

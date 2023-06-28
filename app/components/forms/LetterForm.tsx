@@ -1,8 +1,8 @@
 "use client"
 
-import Input from "@/app/components/Input";
-import Textarea from "@/app/components/Textarea";
-import Button from "@/app/components/Button";
+import Input from "@/components/Input";
+import Textarea from "@/components/Textarea";
+import Button from "@/components/Button";
 
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { useLetter } from "@/hooks/useLetter";
@@ -27,7 +27,7 @@ const LetterForm = () => {
         <Input type="text" label="From" id="sender" value={user?.email} disabled/>
         <Textarea label="Content" id="content" register={register} rows={5}/>
         <Input type="text" label="Image URL" id="image" register={register}/>
-        <Button type="submit" disabled={loading} style="black">{loading ? "Sending..." : "Send"}</Button>
+        <Button type="submit" disabled={loading} className="black_btn">{loading ? "Sending..." : "Send"}</Button>
       </form>
   );
 };

@@ -1,8 +1,8 @@
 "use client"
 
-import Input from "@/app/components/Input"
-import Button from "@/app/components/Button"
-import Icon from "@/app/components/Icon"
+import Input from "@/components/Input"
+import Button from "@/components/Button"
+import Icon from "@/components/Icon"
 
 import { HiCheckCircle, HiXCircle } from "react-icons/hi"
 
@@ -45,7 +45,7 @@ const SettingsForm = () => {
                 <p className="text-sm text-gray-500 my-2">Please proceed with caution as this action will permanently delete your PenPal account.</p>
             </div>
             <div className="border-t border-red-600 p-4 flex justify-end">
-                <Button style="red" onClick={handleDelete}>Delete Acount</Button>
+                <Button className="red_btn" onClick={handleDelete}>Delete Acount</Button>
             </div>
         </div>
     </div>

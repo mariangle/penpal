@@ -1,8 +1,8 @@
 "use client"
 
-import Textarea from "@/app/components/Textarea"
-import Button from "@/app/components/Button";
-import ReviewRating from "../../(site)/review/components/ReviewRating";
+import Textarea from "@/components/Textarea"
+import Button from "@/components/Button";
+import ReviewRating from "../../review/components/ReviewRating";
 
 import useUser from "@/hooks/useUser";
 import useReview from "@/hooks/useReview";
@@ -30,7 +30,7 @@ const ReviewForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="mt-2">
             <Textarea id="content" register={register} maxLength={150} placeholder="Write a review..."/>
             <ReviewRating onChange={setRating} rating={rating} />
-            <Button type="submit" disabled={loading} style="black">{loading ? "Submitting..." : "Submit"}</Button>
+            <Button type="submit" disabled={loading} className="black_btn">{loading ? "Submitting..." : "Submit"}</Button>
         </form>
     )
 }

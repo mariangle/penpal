@@ -1,11 +1,13 @@
 "use client"
 
-import { toast } from "react-hot-toast"
-import axios from "axios"
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { FieldValues, useForm } from "react-hook-form";
-import { useRouter } from "next/navigation"
-import { useState, useEffect } from "react";
-import { signIn } from "next-auth/react"
+import { signIn } from "next-auth/react";
+
+import axios from "axios";
+
+import { toast } from "react-hot-toast";
 import { getCountry } from "../actions/userActions";
 
 

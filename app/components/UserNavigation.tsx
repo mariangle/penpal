@@ -2,8 +2,8 @@ import { HiChevronDown, HiCog, HiLogout, HiUser } from "react-icons/hi";
 
 import ProfilePicture from "./ProfilePicture";
 import Link from "next/link";
-import Icon from "./Icon";
-import Button from "./Button";
+import Icon from "../../components/Icon";
+import Button from "../../components/Button";
 
 import useUser from "../../hooks/useUser";
 

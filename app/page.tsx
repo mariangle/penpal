@@ -1,4 +1,4 @@
-import ProfileCard from "../components/UserCard"
+import ProfileCard from "./components/UserCard"
 import Loading from "../components/Loading"
 import { IUser } from "@/common.types";
 

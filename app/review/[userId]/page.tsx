@@ -1,4 +1,4 @@
-import ReviewForm from "../../../components/forms/ReviewForm";
+import ReviewForm from "../../components/forms/ReviewForm";
 import { getSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 

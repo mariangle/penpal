@@ -1,7 +1,7 @@
 import { UseFormRegister, FieldValues } from "react-hook-form";
 import { ChangeEventHandler } from "react";
 
-interface TextareaProps {
+type TextareaProps = {
     label?: string;
     id: string;
     value?: string;

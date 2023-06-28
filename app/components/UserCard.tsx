@@ -2,7 +2,7 @@ import { HiLocationMarker, HiCheckCircle } from "react-icons/hi"
 import { getAge } from "../../actions/userActions";
 
 import ProfilePicture from './ProfilePicture';
-import Icon from './Icon';
+import Icon from '../../components/Icon';
 import Link from 'next/link';
 
 import { IUser } from "@/common.types";
