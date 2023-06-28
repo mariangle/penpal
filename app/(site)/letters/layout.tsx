@@ -6,7 +6,7 @@ import LettersList from "./components/LettersList";
 import { HiInboxIn, HiPencilAlt } from "react-icons/hi"
 import { FaPaperPlane, FaHourglassHalf } from "react-icons/fa"
 import { usePathname } from "next/navigation"
-import { useLetter } from "@/app/hooks/useLetter";
+import { useLetter } from "@/hooks/useLetter";
 
 const layout = ({children} : {children : React.ReactNode} ) => {
   const { receivedLetters } = useLetter();

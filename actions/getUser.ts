@@ -1,4 +1,4 @@
-import prisma from "@/app/libs/prismadb";
+import prisma from "@/lib/prismaClient";
 
 const getUser = async (userId: string) => {
   try {

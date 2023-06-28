@@ -1,9 +1,11 @@
 import ReviewForm from "../../../components/forms/ReviewForm";
+import { getSession } from "@/lib/session";
+import { redirect } from "next/navigation";
 
-import getCurrentUser from "@/app/actions/getCurrentUser";
+const ReviewPage = async () => {
+    const session = await getSession();
 
-const page = async () => {
-    // const user = await getUserById(userId);
+    if (!session) redirect("/login")
 
     return (
         <div className="flex-center min-h-[90vh]">
@@ -14,4 +16,4 @@ const page = async () => {
     )
 }
 
-export default page;
+export default ReviewPage;

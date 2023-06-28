@@ -1,7 +1,7 @@
-import { User } from "@prisma/client"
+import { IUser } from "@/common.types";
 
 interface PfpProps {
-  user: User;
+  user: IUser;
   border?: boolean;
 }
 

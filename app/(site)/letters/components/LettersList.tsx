@@ -1,12 +1,12 @@
-import useUser from "@/app/hooks/useUser";
-import useLetter from "@/app/hooks/useLetter";
+import useUser from "@/hooks/useUser";
+import useLetter from "@/hooks/useLetter";
 
 import Link from "next/link";
 
 import { usePathname, useParams } from "next/navigation"
-import { ILetter } from "@/app/types/Letter";
+import { ILetter } from "@/common.types";
 import { useEffect, useState } from "react";
-import { formatDate } from "@/app/util/formatUtils";
+import { formatDate } from "@/lib/format";
 
 const LettersList = () => {
   const { user } = useUser();

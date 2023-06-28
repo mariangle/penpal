@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { NextApiRequest } from 'next';
-import prisma from '@/app/libs/prismadb';
-
+import prisma from '@/lib/prismaClient';
 
 export const GET = async (req: NextApiRequest) => {
   const { searchParams } = new URL(req.url as string);

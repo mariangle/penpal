@@ -5,8 +5,8 @@ import Textarea from "@/app/components/Textarea";
 import Button from "@/app/components/Button";
 
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-import { useLetter } from "@/app/hooks/useLetter";
-import useUser from "@/app/hooks/useUser";
+import { useLetter } from "@/hooks/useLetter";
+import useUser from "@/hooks/useUser";
 import { toast } from "react-hot-toast";
 
 const LetterForm = () => {

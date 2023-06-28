@@ -1,6 +1,5 @@
 import { differenceInYears, differenceInMonths, differenceInWeeks, differenceInDays, differenceInHours, differenceInMinutes } from 'date-fns';
 
-
 export const formatDate = (date: Date): string => {
     const parsedDate = new Date(date);
     const options: Intl.DateTimeFormatOptions = {
@@ -22,7 +21,6 @@ export const formatFullDate = (date: Date): string => {
     
     return `${hours}:${minutes} ${day}-${month}-${year}`;
   };
-
 
 export const getTimeElapsed = (timestamp: Date) => {
     const lastOnline = new Date(timestamp);

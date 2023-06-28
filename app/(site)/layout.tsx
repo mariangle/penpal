@@ -1,10 +1,10 @@
-import '../styles/globals.css'
+import '../globals.css'
 import { Inter } from 'next/font/google'
 
-import AuthContext from '../context/AuthContext'
-import ToastContext from '../context/ToasterContext'
-import UserContextProvider from '../context/UserContext'
-import ReviewsContextProvider from '../context/ReviewsContext'
+import AuthContext from '../../context/AuthContext'
+import ToastContext from '../../context/ToasterContext'
+import UserContextProvider from '../../context/UserContext'
+import ReviewsContextProvider from '../../context/ReviewsContext'
 
 import Navbar from '../components/Navbar'
 

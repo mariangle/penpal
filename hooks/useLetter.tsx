@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import { UserContext } from "@/app/context/UserContext";
+import { UserContext } from "@/context/UserContext";
 import { FieldValues } from "react-hook-form";
-import { ILetter } from "../types/Letter";
+import { ILetter } from "@/common.types";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation"
 import { calculateLetterArrival } from "../actions/getArrival";
-import { handleError } from "../util/errorHandlers";
+import { handleError } from "../lib/error";
 
 export const useLetter = () => {
   const router = useRouter();

@@ -1,7 +1,7 @@
 "use client"
 import { useContext, useState } from "react";
-import { UserContext } from "@/app/context/UserContext";
-import { IUser } from "@/app/types/User";
+import { UserContext } from "@/context/UserContext";
+import { IUser } from "@/common.types";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { FieldValues } from "react-hook-form";

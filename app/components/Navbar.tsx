@@ -1,7 +1,6 @@
 "use client"
 
-import { FcGlobe } from "react-icons/fc"
-import { BsFillEnvelopeFill } from "react-icons/bs"
+import { BsFillEnvelopeFill, BsGlobeAmericas } from "react-icons/bs"
 
 import Link from "next/link"
 import Button from "./Button"
@@ -11,13 +10,13 @@ import UserNavigation from "./UserNavigation"
 import { useSession } from "next-auth/react"
 
 const Navbar = () => {
-    const { data: session, status } = useSession();
+    const { status } = useSession();
     
     return (
       <nav className='flex gap-2 justify-between items-center px-4 py-6 border-b w-full h-16'>
         <div className="flex gap-4 md">
           <Link href="/" className="font-bold flex items-center gap-1">
-            <FcGlobe />
+            <BsGlobeAmericas />
             <h1 className="hidden md:block">Pen<span className="orange_gradient">Pal</span></h1>
           </Link>
           <SearchInput />

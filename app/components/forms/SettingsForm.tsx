@@ -6,7 +6,7 @@ import Icon from "@/app/components/Icon"
 
 import { HiCheckCircle, HiXCircle } from "react-icons/hi"
 
-import useUser from "@/app/hooks/useUser"
+import useUser from "@/hooks/useUser"
 
 const SettingsForm = () => {
     const { user, deleteUser } = useUser()
@@ -32,7 +32,12 @@ const SettingsForm = () => {
                 <h2 className="font-semibold">{user?.isVerified ? "Verified" : "Verification"}</h2>
                 {user?.isVerified ? (<Icon icon={HiCheckCircle} color="#1174c5"/>) : (<Icon icon={HiXCircle} color="#991919"/>)}
             </div>
-            {!user?.isVerified && (<p className="text-sm text-gray-500 my-2">Verify your account by adding a bio, profile image and cover photo.</p>)}
+            {!user?.isVerified ? (
+            <p className="text-sm text-gray-500 my-2">Verify your account by adding a bio, profile image and cover photo.</p>) 
+              : (
+                <p className="text-sm text-gray-500 my-2">You have verified your account.</p>
+                )
+            }
         </div>
         <div className="border rounded-md border-red-600">
             <div className="p-4">

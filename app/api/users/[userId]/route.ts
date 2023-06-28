@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import prisma from '@/app/libs/prismadb';
+import prisma from '@/lib/prismaClient';
 import { parseISO } from 'date-fns';
-import getCurrentUser from '@/app/actions/getCurrentUser';
+import getCurrentUser from '@/actions/getCurrentUser';
 
 
 export const GET = async (req: NextRequest) => {

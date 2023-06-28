@@ -1,6 +1,6 @@
 import ProfileCard from "../components/UserCard"
 import Loading from "../components/Loading"
-import { IUser } from "../types/User";
+import { IUser } from "@/common.types";
 
 async function fetchUsers() {
   const res = await fetch("http://localhost:3000/api/users", {

@@ -3,7 +3,7 @@
 import { createContext, useState, useEffect } from "react"
 import { useSession, signOut, signIn } from "next-auth/react"
 import axios from "axios";
-import { IUser } from "../types/User";
+import { IUser } from "@/common.types";
 
 interface UserContextType {
   user: IUser | undefined;

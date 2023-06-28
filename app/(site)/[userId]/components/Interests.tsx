@@ -1,4 +1,4 @@
-import { IUser } from '@/app/types/User';
+import { IUser } from "@/common.types";
 
 const ProfileInterests = ({ user }: { user: IUser }) => {
   return (

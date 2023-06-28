@@ -1,8 +1,29 @@
-import { Review as IReview } from "@prisma/client"
+"use client"
 
-import Review from "./Review";
+import { useEffect } from "react";
+import ReviewCard from "./Review";
+import axios from "axios";
+import { useParams } from "next/navigation";
+import useReview from "@/hooks/useReview";
 
-const Reviews = ({ reviews }: { reviews: IReview[] | null }) => {
+const Reviews = () => {
+  const { reviews, setReviews } = useReview();
+  const { userId } = useParams();
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+        try {
+            const { data: reviews } = await axios.get("/api/reviews", {
+                params: { userId: userId },
+              });
+            setReviews(reviews);
+            } catch (err) {
+            console.log("Error fetching reviews:", err)
+        }
+    }
+    fetchReviews();
+  }, [])
+
   return (
     <div className="w-full rounded-md">
       <div className="p-4 profile_card">
@@ -12,7 +33,7 @@ const Reviews = ({ reviews }: { reviews: IReview[] | null }) => {
       <div className="flex flex-col gap-4 mt-2">
         {reviews?.reverse().map((review) => (
           <div>
-            <Review review={review}/>
+            <ReviewCard review={review}/>
           </div>
         ))}
       </div>

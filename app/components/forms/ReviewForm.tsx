@@ -4,17 +4,15 @@ import Textarea from "@/app/components/Textarea"
 import Button from "@/app/components/Button";
 import ReviewRating from "../../(site)/review/components/ReviewRating";
 
-import useUser from "@/app/hooks/useUser";
-import useReview from "@/app/hooks/useReview";
+import useUser from "@/hooks/useUser";
+import useReview from "@/hooks/useReview";
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
 const ReviewForm = () => {
     const { user } = useUser();
-    const router = useRouter();
     const { postReview, loading } = useReview();
     const { register, handleSubmit } = useForm<FieldValues>({})
     const [ rating, setRating ] = useState(0);
@@ -25,7 +23,6 @@ const ReviewForm = () => {
       
         const updatedData = { ...formData, rating };
         await postReview(updatedData);
-        router.push("/")
       };
 
 

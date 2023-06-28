@@ -1,10 +1,10 @@
 import { parseISO } from 'date-fns';
-import { getAge } from "@/app/actions/userActions"
+import { getAge } from "@/actions/userActions"
 
 import bcrypt from "bcrypt"
 
 import { NextResponse } from 'next/server';
-import prisma from '@/app/libs/prismadb';
+import prisma from '@/lib/prismaClient';
 
 export const GET = async () => {
   try {

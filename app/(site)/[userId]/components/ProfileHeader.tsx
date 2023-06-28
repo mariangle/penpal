@@ -4,8 +4,8 @@ import ProfilePicture from "@/app/components/ProfilePicture";
 
 import { HiLocationMarker, HiCheckCircle, HiUser, HiMail } from 'react-icons/hi';
 
-import { getAge } from '@/app/actions/userActions';
-import { getTimeElapsed } from '@/app/util/formatUtils';
+import { getAge } from '@/actions/userActions';
+import { getTimeElapsed } from '@/lib/format';
 import { User } from "@prisma/client"
 
 const ProfileHeader = ({ user } : { user: User }) => {

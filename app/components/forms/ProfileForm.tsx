@@ -4,11 +4,11 @@ import Input from "@/app/components/Input";
 import Textarea from "@/app/components/Textarea";
 import Button from "@/app/components/Button";
 
-import { formatFullDate } from "@/app/util/formatUtils";
+import { formatFullDate } from "@/lib/format";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-import { IUser } from "@/app/types/User";
+import { IUser } from "@/common.types";
 import { useEffect, useState } from "react";
-import useUser from "@/app/hooks/useUser";
+import useUser from "@/hooks/useUser";
 
 const ProfileForm = () => {
   const { user, updateUser, loading } = useUser();

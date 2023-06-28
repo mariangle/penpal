@@ -11,7 +11,7 @@ export const handleAxiosError = (error: AxiosError) => {
   } else if (response?.status === 404) {
     toast.error("The requested resource was not found.");
   } else if (response?.status === 500) {
-    toast.error("omething went wrong on the server. Please try again later.");
+    toast.error("Something went wrong on the server. Please try again later.");
   } else {
     toast.error("An unexpected error occurred.");
   }
@@ -21,7 +21,6 @@ export const handleAxiosError = (error: AxiosError) => {
 export const handleGeneralError = (error: Error) => {
   toast.error(error.message);
 };
-
 
 // check if a client or server error occured and call function
 export const handleError = (error: any) => {

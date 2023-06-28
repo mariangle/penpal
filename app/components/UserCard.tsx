@@ -1,17 +1,13 @@
 import { HiLocationMarker, HiCheckCircle } from "react-icons/hi"
-import { getAge } from "../actions/userActions";
+import { getAge } from "../../actions/userActions";
 
 import ProfilePicture from './ProfilePicture';
 import Icon from './Icon';
 import Link from 'next/link';
 
-import { IUser } from '@/app/types/User'
+import { IUser } from "@/common.types";
 
-interface UserCardProps {
-  user: IUser;
-}
-
-const UserCard: React.FC<UserCardProps> = ({ user }) => {
+const UserCard = ({ user } : { user: IUser}) => {
   return (
     <Link className='profile_card relative' href={`/${user.id}`}>
         {user.coverPhoto && (<div

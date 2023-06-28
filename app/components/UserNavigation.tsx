@@ -5,9 +5,9 @@ import Link from "next/link";
 import Icon from "./Icon";
 import Button from "./Button";
 
-import useUser from "../hooks/useUser";
+import useUser from "../../hooks/useUser";
 
-import { IUser } from "../types/User";
+import { IUser } from "@/common.types";
 import { signOut } from "next-auth/react";
 import { useState } from "react";
 

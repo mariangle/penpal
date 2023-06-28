@@ -1,5 +1,5 @@
 interface ButtonProps {
-    style? : "primary" | "black" | "red" | "white" | "transparent" | undefined;
+    style? : "primary" | "black" | "red" | "white" | "transparent";
     type? : "submit"
     fullWidth?: boolean;
     onClick?: () => void,

@@ -1,6 +1,12 @@
 import LetterForm from "@/app/components/forms/LetterForm"
+import { getSession } from "@/lib/session";
+import { redirect } from "next/navigation";
 
-const newLetter = () => {
+const NewLetterPage = async () => {
+  const session = await getSession();
+
+  if (!session) redirect("/login")
+
   return (
     <div>
       <LetterForm />
@@ -8,4 +14,4 @@ const newLetter = () => {
   )
 }
 
-export default newLetter
+export default NewLetterPage

@@ -4,12 +4,15 @@ import Button from '@/app/components/Button';
 import Link from 'next/link';
 import { BsFillEnvelopePaperFill} from "react-icons/bs"
 
-import useUser from '@/app/hooks/useUser';
+import useUser from '@/hooks/useUser';
+import useReview from '@/hooks/useReview';
+
 import { useParams } from "next/navigation";
 
 const ProfileOptions = () => {
   const { userId } = useParams();
   const { isCurrentUser } = useUser();
+  const { canLeaveReview } = useReview();
 
   return (
     <div className='mt-2'>
@@ -22,11 +25,13 @@ const ProfileOptions = () => {
       ) : 
       (
         <div className='flex-gap'>
+          { canLeaveReview() && (
           <Link href={`/review/${userId}`}>
             <Button style="transparent">
               Review
             </Button>
           </Link>
+          )}
           <Link href={"/letter/new"}>
             <Button style="white">
               <BsFillEnvelopePaperFill />

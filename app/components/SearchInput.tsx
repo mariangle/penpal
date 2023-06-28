@@ -1,9 +1,9 @@
 import ProfilePicture from "./ProfilePicture";
 import { useEffect, useRef, useState } from "react";
 import { HiSearch } from "react-icons/hi";
-import { IUser } from "../types/User";
+import { IUser } from "@/common.types";
 import Link from "next/link";
-import { getUsers } from "../actions/getUsers";
+import { getUsers } from "../../actions/getUsers";
 
 const SearchInput = () => {
   const [users, setUsers] = useState<IUser[]>([]);

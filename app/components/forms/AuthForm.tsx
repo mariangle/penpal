@@ -6,7 +6,7 @@ import PasswordField from "../auth/PasswordField"
 
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation"
-import useAuth from "@/app/hooks/useAuth"
+import useAuth from "@/hooks/useAuth"
 
 interface AuthFormProps {
   variant: 'Login' | 'Register'
@@ -42,7 +42,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
               </div>
             )}
             <div>
-            <Button type="submit" style="black" disabled={loading} fullWidth>
+            <Button type="submit" style="primary" disabled={loading || variant==="Register"} fullWidth>
               {loading && (
                 <span>
                   {variant === "Login" ? "Signing In..." : "Signing Up..."}
@@ -50,6 +50,7 @@ const AuthForm = ({ variant }: AuthFormProps) => {
               )}
               {!loading && (variant === "Login" ? "Sign In" : "Sign Up")}
             </Button>
+            {variant === "Register" && ( <span className="text-xs">Registering is temporarily disabled for security measures.</span> )}
             </div>
           </div>
       </form>
