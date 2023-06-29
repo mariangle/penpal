@@ -8,7 +8,6 @@ import useAuth from "@/hooks/useAuth"
 
 import { COUNTRY_INFO_MESSAGE } from "@/lib/constants"
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import { useRouter } from "next/navigation"
 import { toast } from "react-hot-toast";
 
 const AuthForm = ({ 
@@ -16,7 +15,6 @@ const AuthForm = ({
 }: {
   variant: 'Login' | 'Register';
 }) => {
-  const router = useRouter();
   const { data, loading, login, register, handleSubmit } = useAuth();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -38,7 +36,6 @@ const AuthForm = ({
   };
 
   return (
-    <>
       <form onSubmit={handleSubmit(onSubmit)}>
         {variant === "Register" && (
           <Input type="text" id="name" label="Name" register={data} maxLength={10} />
@@ -61,7 +58,7 @@ const AuthForm = ({
         <div>
           <Button
             type="submit"
-            className="primary_btn"
+            variant="default"
             disabled={loading || variant === "Register"}
             fullWidth
           >
@@ -78,13 +75,6 @@ const AuthForm = ({
           )}
         </div>
       </form>
-      <div className="flex gap-2 justify-center text-sm mt-4 åpx-2 text-gray-500">
-        <div>{variant === "Login" ? "New to PenPal?" : "Already have an account?"}</div>
-        <div onClick={() => router.push(variant === "Login" ? "/register" : "/login")} className="underline cursor-pointer">
-          {variant === "Login" ? "Create an account" : "Login"}
-        </div>
-      </div>
-    </>
   ) 
 }
 

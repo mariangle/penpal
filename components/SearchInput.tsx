@@ -1,5 +1,7 @@
 import ProfilePicture from "./ProfilePicture";
 import Link from "next/link";
+import { Input } from "@/components/ui/input"
+
 
 import { useEffect, useRef, useState } from "react";
 import { HiSearch } from "react-icons/hi";
@@ -46,15 +48,15 @@ const SearchInput = () => {
 
   return (
     <div className="relative">
-      <div className="flex gap-2 items-center justify-between relative">
+      <div className="flex gap-5 items-center justify-between relative">
         <HiSearch className="absolute left-2"/>
-        <input
+        <Input
           type="text"
           id="search"
-          placeholder="Search for users"
-          className="search_input w-full"
+          placeholder="Search users..."
+          className="pl-8"
           value={searchQuery}
-          onChange={(e) => handleFilter(e.target.value)}
+          onChange={(e: any) => handleFilter(e.target.value)}
         />
       </div>
       {showDropdown && (

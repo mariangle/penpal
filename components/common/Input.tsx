@@ -3,6 +3,7 @@ import { UseFormRegister, FieldValues } from "react-hook-form";
 import { HiInformationCircle, HiQuestionMarkCircle } from "react-icons/hi"
 import { ChangeEventHandler } from "react";
 import { ComponentProps } from "react";
+import { Input as StyledInput } from "@/components/ui/input"
 
 type InputProps = {
   label?: string;
@@ -55,7 +56,7 @@ const Input: React.FC<InputProps> = ({
         </div>
       </div>
       <div className="mt-1">
-        <input
+        <StyledInput
           type={type}
           id={id}
           name={id}
@@ -66,7 +67,7 @@ const Input: React.FC<InputProps> = ({
           autoComplete="on"
           {...(register && register(id, { required }))}
           placeholder={placeholder}
-          className={`w-full border p-2 mb-4 rounded-md
+          className={`
           ${disabled ? "cursor-not-allowed" : ""}
           `}
         />

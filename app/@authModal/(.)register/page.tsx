@@ -7,6 +7,7 @@ import { FC } from 'react'
 // https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes
 
 const page: FC = () => {
+
   return (
     <div className='fixed inset-0 bg-zinc-900/20 z-10'>
       <div className='container flex items-center h-full max-w-lg mx-auto'>
@@ -15,13 +16,12 @@ const page: FC = () => {
               <CloseModal />
             </div>
             <div className="my-4">
-              <h1 className="text-4xl text-center font-bold mt-4 blue_gradient">Login</h1>
-              <p className="text-gray-500 my-4 text-sm text-center">Sign in to your account.</p>
+              <h1 className="text-4xl text-center font-bold mt-4 blue_gradient">Register</h1>
             </div>
-            <AuthForm variant="Login"/>
+            <AuthForm variant="Register"/>
             <div className="flex gap-2 justify-center text-sm mt-4 åpx-2 text-gray-500">
-              <div>New to PenPal?</div>
-              <Link href={"/register"} className="underline cursor-pointer">Create an account</Link>
+              <div>Already have an account?</div>
+              <Link href={"/login"} className="underline cursor-pointer">Login</Link>
             </div>
           </div>
         </div>

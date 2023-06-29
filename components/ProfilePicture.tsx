@@ -20,7 +20,7 @@ const ProfilePicture: React.FC<PfpProps> = ({ user, border }) => {
     <div
       className={`bg-gray-200 flex items-center justify-center rounded-full h-full w-full ${border ? 'border-white border-4' : ''}`}
     >
-      <span>{user?.name[0]}</span>
+      <span>{"T"}</span>
     </div>
   );
 };

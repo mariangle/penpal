@@ -1,3 +1,5 @@
+import { Button as StyledButton } from "@/components/ui/button"
+
 type ButtonProps = {
     type? : "submit" | "button"
     fullWidth?: boolean;
@@ -5,22 +7,23 @@ type ButtonProps = {
     children?:  React.ReactNode;
     disabled?: boolean;
     className?: string;
+    variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined
 }
 
 const Button: React.FC<ButtonProps> = ({
-  type, fullWidth, onClick, children, disabled, className
+  type, fullWidth, onClick, children, disabled, className, variant
 }) => {
   return (
-    <button
+    <StyledButton
         onClick={onClick}
         type={type}
         disabled={disabled}
+        variant={variant}
         className={`transition-all text-center text-sm ${className} 
-        ${fullWidth ? "w-full" : ""} 
-        ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+        ${fullWidth ? "w-full" : ""}`}
         >      
         {children}
-    </button>
+    </StyledButton>
   )
 }
 

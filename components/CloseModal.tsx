@@ -11,7 +11,7 @@ const CloseModal: FC<CloseModalProps> = ({}) => {
   const router = useRouter()
 
   return (
-    <Button className='h-6 w-6 p-0 rounded-md bg-black text-white' onClick={() => router.back()}>
+    <Button className='h-6 w-6 p-0 rounded-md bg-gray-100 text-gray-400' onClick={() => router.back()}>
       X
     </Button>
   )

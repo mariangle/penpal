@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { UseFormRegister, FieldValues } from "react-hook-form"
 import { HiEye, HiEyeOff } from "react-icons/hi";
+import { Input } from "@/components/ui/input"
 
 interface PasswordFieldProps {
     id : string,
@@ -21,11 +22,10 @@ const PasswordField : React.FC<PasswordFieldProps> = ({
         {label}
       </label>
       <div className="relative">
-        <input
+        <Input
           type={showPassword ? "text" : "password"}
           {...register(id, { required })} 
           id={id}
-          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
           autoComplete="current-password"
         />
           <button

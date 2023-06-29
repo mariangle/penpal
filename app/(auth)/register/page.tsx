@@ -1,4 +1,5 @@
 import AuthForm from "@/components/forms/AuthForm"
+import Link from "next/link";
 
 import { getSession } from "@/lib/session"
 import { redirect } from "next/navigation";
@@ -15,6 +16,10 @@ const Register = async () => {
             <h1 className="text-4xl text-center font-bold mt-4 blue_gradient">Register</h1>
           </div>
           <AuthForm variant="Register"/>
+          <div className="flex gap-2 justify-center text-sm mt-4 åpx-2 text-gray-500">
+            <div>Already have an account?</div>
+            <Link href={"/login"} className="underline cursor-pointer">Login</Link>
+          </div>
         </div>
     </div>
   )
