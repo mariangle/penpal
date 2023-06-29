@@ -1,7 +1,14 @@
 import prisma from '@/lib/prismaClient';
 import { NextResponse } from "next/server";
+import getCurrentUser from '@/actions/getCurrentUser';
 
 export const POST = async (req: Request) => {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    return new NextResponse("Unauthorized", { status: 401 });
+  }  
+  
   const { rating, content, userId, authorId } = await req.json();
 
   if (!content || !rating) {

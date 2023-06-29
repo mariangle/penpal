@@ -79,7 +79,7 @@ body {
 }
 
 .app {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto w-full;
+  @apply relative flex justify-center items-center flex-col max-w-7xl mx-auto w-full;
 }
 
 .outline_btn {

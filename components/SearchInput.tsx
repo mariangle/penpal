@@ -1,9 +1,10 @@
 import ProfilePicture from "./ProfilePicture";
+import Link from "next/link";
+
 import { useEffect, useRef, useState } from "react";
 import { HiSearch } from "react-icons/hi";
 import { IUser } from "@/common.types";
-import Link from "next/link";
-import { getUsers } from "../../actions/getUsers";
+import { getUsers } from "../actions/getUsers";
 
 const SearchInput = () => {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -12,11 +13,7 @@ const SearchInput = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const users = await getUsers();
-      setUsers(users);
-    };
-    fetchUsers();
+    getUsers().then(setUsers);
   }, []);
 
   useEffect(() => {
@@ -44,7 +41,7 @@ const SearchInput = () => {
   };
 
   const filteredUsers = users.filter(({ name }) =>
-    [name].some((value) => value.toLowerCase().includes(searchQuery.toLowerCase()))
+    name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -67,7 +64,7 @@ const SearchInput = () => {
               <Link
                 key={user.id}
                 className="flex gap-2 items-center hover:bg-gray-100 w-full p-2"
-                href={`/${user?.id}`}
+                href={`/${user.id}`}
                 onClick={handleClickUser}
               >
                 <div className="w-8 h-8">

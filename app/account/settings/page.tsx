@@ -1,6 +1,13 @@
-import SettingsForm from "../../components/forms/SettingsForm"
+import SettingsForm from "../../../components/forms/SettingsForm"
 
-const Settings = () => {
+import { getSession } from "@/lib/session";
+import { redirect } from "next/navigation";
+
+const SettingsPage = async () => {
+  const session = await getSession();
+
+  if (!session) redirect("/login")
+  
   return (
     <div>
       <div className="border-b py-4">
@@ -15,4 +22,4 @@ const Settings = () => {
   )
 }
 
-export default Settings
+export default SettingsPage

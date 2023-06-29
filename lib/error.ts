@@ -5,11 +5,11 @@ import { toast } from 'react-hot-toast';
 export const handleAxiosError = (error: AxiosError) => {
   const { response } = error;
   if (response?.status === 400) {
-    toast.error("Missing fields");
+    toast.error("Missing fields. Please ensure all required fields are filled.");
   } else if (response?.status === 401) {
-    toast.error("Please login to try this event");
+    toast.error("Server responded with an unauthorized access error.");
   } else if (response?.status === 404) {
-    toast.error("The requested resource was not found.");
+    toast.error("Server error. The requested resource could not be found.");
   } else if (response?.status === 500) {
     toast.error("Something went wrong on the server. Please try again later.");
   } else {

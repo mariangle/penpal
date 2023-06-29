@@ -1,10 +1,9 @@
-
-import Loading from "@/components/Loading";
 import ProfileHeader from "./components/ProfileHeader";
 import Biography from "./components/Biography";
 import Reviews from "../review/components/Reviews";
 
 import getUser from '@/actions/getUser';
+import { notFound } from "next/navigation";
 
 interface IParams {
   userId: string;
@@ -13,7 +12,7 @@ interface IParams {
 const ProfilePage = async ({ params }: { params: IParams }) => {
   const user = await getUser(params.userId);
 
-  if (!user) return <Loading />;
+  if (!user) return notFound();
 
   return (
     <div className="w-full">

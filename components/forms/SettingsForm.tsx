@@ -1,12 +1,13 @@
 "use client"
 
-import Input from "@/components/Input"
-import Button from "@/components/Button"
-import Icon from "@/components/Icon"
+import Input from "@/components/common/Input"
+import Button from "@/components/common/Button"
+import Icon from "@/components/common/Icon"
 
 import { HiCheckCircle, HiXCircle } from "react-icons/hi"
 
 import useUser from "@/hooks/useUser"
+import Loading from "@/components/Loading"
 
 const SettingsForm = () => {
     const { user, deleteUser } = useUser()
@@ -14,7 +15,9 @@ const SettingsForm = () => {
     const handleDelete = async () => {
         await deleteUser();
     }
- 
+
+    if (!user) return <Loading />;
+
   return (
     <div className="flex flex-col gap-4">
         <div className="border p-4 rounded-md">

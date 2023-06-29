@@ -1,20 +1,20 @@
 "use client"
 
-import Input from "@/components/Input";
-import Textarea from "@/components/Textarea";
-import Button from "@/components/Button";
+import Input from "@/components/common/Input";
+import Textarea from "@/components/common/Textarea";
+import Button from "@/components/common/Button";
+import Loading from "@/components/Loading";
 
 import { formatFullDate } from "@/lib/format";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-import { IUser } from "@/common.types";
 import { useEffect, useState } from "react";
+
 import useUser from "@/hooks/useUser";
 
 const ProfileForm = () => {
   const { user, updateUser, loading } = useUser();
   const { register, handleSubmit, setValue } = useForm<FieldValues>();
-  const [data, setData] = useState<IUser | undefined>(undefined);
-  const [bioLength, setBioLength] = useState(0);
+  const [ bioLength, setBioLength ] = useState(0);
 
   const handleBioChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
@@ -22,27 +22,26 @@ const ProfileForm = () => {
   };
 
   useEffect(() => {
-    setData(user);
-    if (user) {
-      setValue("name", user.name);
-      setValue("image", user.image);
-      setValue("about", user.about);
-      setValue("coverPhoto", user.coverPhoto);
-      setValue("dob", user.dob);
+      setValue("name", user?.name);
+      setValue("image", user?.image);
+      setValue("about", user?.about);
+      setValue("coverPhoto", user?.coverPhoto);
+      setValue("dob", user?.dob);
 
-      if (user.about) {
+      if (user?.about) {
         setBioLength(user.about.length);
       }
-    }
-  }, [setValue]);
+  }, [user]);
 
   const handleUpdateUser: SubmitHandler<FieldValues> = async (data) => {
     await updateUser(data);
   };
 
+  if (!user) return <Loading />;
+
   return (
     <form onSubmit={handleSubmit(handleUpdateUser)}>
-      <Input label="Name" id="name" type="text" register={register} maxLength={10}/>
+      <Input label="Name" id="name" type="text" register={register} maxLength={10} />
       <Input label="Profile Image URL" id="image" type="text" register={register} />
       <Textarea
         label="Bio"
@@ -60,8 +59,8 @@ const ProfileForm = () => {
       <div className="flex gap-2 items-center justify-between">
       <div className="text-gray-600 text-sm">
         Last Updated:{" "}
-        {data?.updatedAt && (
-          formatFullDate(new Date(data.updatedAt))
+        {user?.updatedAt && (
+          formatFullDate(new Date(user.updatedAt))
         )}
       </div>
         <div>

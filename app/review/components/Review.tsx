@@ -1,7 +1,7 @@
 "use client"
 
-import ProfilePicture from "@/app/components/ProfilePicture";
-import Button from "@/components/Button";
+import ProfilePicture from "@/components/ProfilePicture";
+import Button from "@/components/common/Button";
 
 import { BsStarFill, BsTrashFill } from "react-icons/bs";
 import { getTimeElapsed } from "@/lib/format";

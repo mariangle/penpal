@@ -1,6 +1,12 @@
-import ProfileForm from "../../components/forms/ProfileForm"
+import ProfileForm from "../../../components/forms/ProfileForm"
 
-const EditProfile = () => {
+import { getSession } from "@/lib/session";
+import { redirect } from "next/navigation";
+
+const EditProfilePage = async () => {
+  const session = await getSession();
+
+  if (!session) redirect("/login")
 
   return (
     <div>
@@ -16,4 +22,4 @@ const EditProfile = () => {
   )
 }
 
-export default EditProfile
+export default EditProfilePage

@@ -16,9 +16,10 @@ export const metadata = {
 }
 
 export default function RootLayout({ 
-  children 
+  children, authModal
 }: { 
-  children: React.ReactNode
+  children: React.ReactNode,
+  authModal: React.ReactNode
  }) {
   return (
     <AuthContextProvider>
@@ -29,6 +30,7 @@ export default function RootLayout({
               <div className="main">
                   <div className="gradient"/>
               </div>
+              {authModal}
               <main className='app'>
                 <Navbar />
                 <ToastContextProvider />

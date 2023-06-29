@@ -1,5 +1,5 @@
 import { parseISO } from 'date-fns';
-import { getAge } from "@/actions/userActions"
+import { getAge } from '@/lib/utils';
 
 import bcrypt from "bcrypt"
 

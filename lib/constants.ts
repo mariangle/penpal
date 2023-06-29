@@ -1,7 +1,7 @@
-export const NAV_LINKS = [
-    { href: '/', key: 'Logo', text: 'typingtest' },
-    { href: '/leaderboard', key: 'Leaderboard', text: 'Leaderboard' },
-    { href: '/login', key: 'Sign In', text: 'Sign In' },
+export const DROPDOWN_LINKS = [
+    { href: '/', text: 'Your Profile' },
+    { href: '/account/edit-profile', text: 'Account' },
+    { href: '/', text: 'Sign Out' },
 ]
 
 // messages

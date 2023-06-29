@@ -1,10 +1,9 @@
-import { HiLocationMarker, HiCheckCircle } from "react-icons/hi"
-import { getAge } from "../../actions/userActions";
-
 import ProfilePicture from './ProfilePicture';
-import Icon from '../../components/Icon';
+import Icon from './common/Icon';
 import Link from 'next/link';
 
+import { HiLocationMarker, HiCheckCircle } from "react-icons/hi"
+import { getAge } from "@/lib/utils";
 import { IUser } from "@/common.types";
 
 const UserCard = ({ user } : { user: IUser}) => {
@@ -22,7 +21,7 @@ const UserCard = ({ user } : { user: IUser}) => {
           </div>
           <div className={`flex flex-col ${user.coverPhoto ? "text-white" : "text-black"}`}>
             <div className='flex gap-2   items-center'>
-              <h3 className='font-bold'>{user.name}, {getAge(user.dob.toString())}</h3>
+              <h3 className='font-bold'>{user.name}, {getAge(user.dob)}</h3>
               <div>{user.isVerified && (<Icon icon={HiCheckCircle} color="#1174c5"/>)}</div>
             </div>
             <div className='flex items-center gap-1'> 

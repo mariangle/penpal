@@ -3,7 +3,6 @@ import prisma from '@/lib/prismaClient';
 import { parseISO } from 'date-fns';
 import getCurrentUser from '@/actions/getCurrentUser';
 
-
 export const GET = async (req: NextRequest) => {
   const { searchParams } = new URL(req.url as string);
   const userId = searchParams.get("userId")
@@ -74,7 +73,7 @@ export const PUT = async (req: NextRequest) => {
   }
 };
 
-export const DELETE = async (req: NextRequest) => {
+export const DELETE = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser){

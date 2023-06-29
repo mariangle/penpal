@@ -26,7 +26,7 @@ export const useLetter = () => {
       
 
       if (!user) return toast.error('You must be logged in to send a letter');
-      if (user.email === foundUser.data.email) return toast.error('You cannot send yourself a letter');
+      if (user.email === foundUser.data.email) toast.error('You cannot send yourself a letter');
 
       const arrival = await calculateLetterArrival(user.country, foundUser.data.country);
 

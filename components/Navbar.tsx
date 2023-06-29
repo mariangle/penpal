@@ -3,9 +3,9 @@
 import { BsFillEnvelopeFill, BsGlobeAmericas } from "react-icons/bs"
 
 import Link from "next/link"
-import Button from "./Button"
-import SearchInput from "../app/components/SearchInput"
-import UserNavigation from "../app/components/UserNavigation"
+import Button from "./common/Button"
+import SearchInput from "./SearchInput"
+import UserNavigation from "./UserNavigation"
 
 import { useSession } from "next-auth/react"
 
@@ -27,7 +27,7 @@ const Navbar = () => {
                 <Link href={"/letters/inbox"}>
                   <BsFillEnvelopeFill />
                 </Link>
-                <UserNavigation showMenu={true} />
+                <UserNavigation />
               </>
             ) : (
               <div className="flex gap-2 items-center">

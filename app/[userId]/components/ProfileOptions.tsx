@@ -1,6 +1,6 @@
 "use client"
 
-import Button from '@/components/Button';
+import Button from '@/components/common/Button';
 import Link from 'next/link';
 import { BsFillEnvelopePaperFill} from "react-icons/bs"
 
@@ -32,7 +32,7 @@ const ProfileOptions = () => {
             </Button>
           </Link>
           )}
-          <Link href={"/letter/new"}>
+          <Link href={`/letter/${userId}`}>
             <Button className="white_btn">
               <BsFillEnvelopePaperFill />
             </Button>

@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client"
 
+// https://www.prisma.io/docs/guides/other/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices
+
 declare global {
   var prisma: PrismaClient | undefined
 }

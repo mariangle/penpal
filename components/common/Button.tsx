@@ -1,5 +1,5 @@
 type ButtonProps = {
-    type? : "submit"
+    type? : "submit" | "button"
     fullWidth?: boolean;
     onClick?: () => void,
     children?:  React.ReactNode;
