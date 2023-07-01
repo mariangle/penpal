@@ -28,7 +28,7 @@ const LettersList = () => {
     if (pathname.includes("inbox")) setLetters(receivedLetters);
     else if (pathname.includes("sent")) setLetters(sentLetters);
     else if (pathname.includes("pending")) setLetters(pendingLetters);
-  }, [pathname, receivedLetters, sentLetters, pendingLetters]);
+  }, [pathname, receivedLetters, sentLetters, pendingLetters, getLetters]);
 
   if (loading) return null;
 

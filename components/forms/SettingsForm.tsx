@@ -33,7 +33,7 @@ const SettingsForm = ({ user } : { user: IUser}) => {
         </div>
         <div className="border p-4 rounded-md">
             <h2 className="font-semibold">Your Country</h2>
-            <p className="text-sm text-muted-foreground my-2">The delivery time for your letter will vary based on the distance between your country and the recipient's country.</p>
+            <p className="text-sm text-muted-foreground my-2">The delivery time for your letter will vary based on the distance between your country and the recipient&apos;s country.</p>
             <Input id="country" type="text" value={user.country} disabled/>
         </div>
         <div className="border p-4 rounded-md">

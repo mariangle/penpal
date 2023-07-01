@@ -22,7 +22,7 @@ export const ReviewList = () => {
     axios
     .get("/api/reviews", { params: { userId: userId } })
     .then(({ data }) => setReviews(data))
-  }, [])
+  }, [userId])
 
   return (
     <>

@@ -9,7 +9,7 @@ import { useLetter } from "@/hooks/useLetter";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 
-const layout = ({children} : {children : React.ReactNode} ) => {
+const Layout = ({children} : {children : React.ReactNode} ) => {
   const { receivedLetters } = useLetter();
   const pathname = usePathname();
 
@@ -51,4 +51,4 @@ const layout = ({children} : {children : React.ReactNode} ) => {
   )
 }
 
-export default layout
+export default Layout
