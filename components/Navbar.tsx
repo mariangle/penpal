@@ -5,7 +5,7 @@ import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils";
 
 import Link from "next/link"
-import UserNav from "@/components/nav/user-nav";
+import UserNav from "@/components/nav/UserNav";
 
 import useUser from "@/hooks/useUser";
 
