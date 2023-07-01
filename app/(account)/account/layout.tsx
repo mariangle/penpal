@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import getCurrentUser from '@/actions/getCurrentUser';
 
-import Sidebar from '../../../components/nav/account-sidebar';
+import Sidebar from '../../../components/nav/AccountSidebar';
 
 export default async function DashboardLayout({
   children,

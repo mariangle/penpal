@@ -1,4 +1,4 @@
-import { UserCard } from "@/components/user-card"
+import { UserCard } from "@/components/UserCard"
 import { IUser } from "@/common.types";
 import prisma from "@/lib/prismadb"
 

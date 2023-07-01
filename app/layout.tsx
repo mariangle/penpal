@@ -6,7 +6,7 @@ import ToastContextProvider from '../context/ToasterContext'
 import UserContextProvider from '../context/UserContext'
 import ReviewsContextProvider from '../context/ReviewsContext'
 
-import Navbar from '@/components/navbar'
+import Navbar from '@/components/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 

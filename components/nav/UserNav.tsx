@@ -16,12 +16,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { ThemeOptions } from "@/components/theme-options"
+import { ThemeOptions } from "@/components/ThemeOptions"
 
 import { IUser } from "@/common.types"
 import { signOut } from "next-auth/react"
 import Link from "next/link"
-import { ProfilePicture } from "@/components/profile-picture"
+import { ProfilePicture } from "@/components/ProfilePicture"
 
 const UserNav = ({ user } : { user: IUser}) => {
   

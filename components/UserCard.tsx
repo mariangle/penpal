@@ -1,4 +1,4 @@
-import { ProfilePicture } from "@/components/profile-picture"
+import { ProfilePicture } from "@/components/ProfilePicture"
 import Icon from './common/Icon';
 import Link from 'next/link';
 

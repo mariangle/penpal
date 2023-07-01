@@ -1,6 +1,6 @@
 import Icon from '@/components/common/Icon';
 import ProfileOptions from "@/components/profile/ProfileOptions";
-import { ProfilePicture } from "@/components/profile-picture";
+import { ProfilePicture } from "@/components/ProfilePicture";
 
 import { HiLocationMarker, HiCheckCircle, HiUser, HiMail } from 'react-icons/hi';
 
