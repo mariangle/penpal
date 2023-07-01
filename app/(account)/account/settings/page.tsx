@@ -1,12 +1,12 @@
-import SettingsForm from "../../../components/forms/SettingsForm"
+import getCurrentUser from "@/actions/getCurrentUser";
+import SettingsForm from "../../../../components/forms/SettingsForm"
 
-import { getSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 
 const SettingsPage = async () => {
-  const session = await getSession();
+  const user = await getCurrentUser();
 
-  if (!session) redirect("/login")
+  if (!user) redirect("/login")
   
   return (
     <div>
@@ -16,7 +16,7 @@ const SettingsPage = async () => {
         </h1>
       </div>  
       <div className="py-4">
-        <SettingsForm />
+        <SettingsForm user={user} />
       </div>    
     </div>
   )

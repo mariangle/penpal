@@ -1,7 +1,7 @@
 "use client"
 
 import { useContext, useState } from "react"
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 import useUser from "./useUser";
 import axios from "axios";
@@ -11,21 +11,18 @@ import { ReviewsContext } from "../context/ReviewsContext";
 import { toast } from "react-hot-toast";
 
 export const useReview = () => {
+  const router = useRouter();
   const { user } = useUser();
   const { userId } = useParams();
   const [ loading, setLoading ] = useState<boolean>(false);
-  const { reviews, setReviews } = useContext(ReviewsContext)
 
   const postReview = async (data: FieldValues) => {
     if (!data.rating || !data.content) return toast.error("Please fill out all required fields!");
 
-
+    setLoading(true);
     try {
-      setLoading(true);
-      const postData = { ...data, userId, authorId: user?.id };
-      const { data: review } = await axios.post(`/api/reviews/`, postData);
-      toast.success("Review posted!")
-      return review;
+      await axios.post(`/api/reviews/`, { ...data, userId });
+      router.push(`/${userId}`)
     } catch (error) {
       handleError(error);
     } finally {
@@ -36,11 +33,11 @@ export const useReview = () => {
   const deleteReview = async (reviewId: string) => {
     try {
       setLoading(true);
-      const { data: deletedReview } = await axios.delete("/api/reviews", {
+      await axios.delete("/api/reviews", {
         params: { reviewId: reviewId },
       });
-      setReviews(reviews.filter((review) => review.id !== deletedReview.id ))
       toast.success("Review deleted!")
+      window.location.assign(`/${userId}`);
     } catch (error) {
       handleError(error);
     } finally {
@@ -54,16 +51,13 @@ export const useReview = () => {
   
   const canLeaveReview = (): boolean => {
     const isReviewingSelf = userId === user?.id;
-    const hasReviewed = reviews.some((review) => review.authorId === user?.id);
   
-    return !isReviewingSelf && !hasReviewed;
+    return !isReviewingSelf;
   };
   
   return {
       postReview,
       deleteReview,
-      reviews,
-      setReviews,
       canDeleteReview,
       canLeaveReview,
       loading,

@@ -1,8 +1,8 @@
 import LetterForm from "@/components/forms/LetterForm";
-import { getSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 
 import getUser from '@/actions/getUser';
+import getCurrentUser from "@/actions/getCurrentUser";
 
 const Letter = async ({
     params
@@ -11,10 +11,10 @@ const Letter = async ({
         userId: string;
     };
 }) => {
-    const session = await getSession();
+    const currentUser = await getCurrentUser();
     const user = await getUser(params.userId);
 
-    if (!session) redirect("/login")
+    if (!currentUser) redirect("/login")
     if (!user) return null;
 
     return (

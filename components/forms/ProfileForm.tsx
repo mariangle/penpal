@@ -3,16 +3,27 @@
 import Input from "@/components/common/Input";
 import Textarea from "@/components/common/Textarea";
 import Button from "@/components/common/Button";
-import Loading from "@/components/loading";
 
 import { formatFullDate } from "@/lib/format";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { useEffect, useState } from "react";
 
-import useUser from "@/hooks/useUser";
+import { IUser } from "@/common.types";
+import { toast } from "react-hot-toast";
+import { handleError } from "@/lib/error";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
-const ProfileForm = () => {
-  const { user, updateUser, loading } = useUser();
+interface ProfileFormProps {
+  initialData: IUser;
+};
+
+export const ProfileForm: React.FC<ProfileFormProps> = ({
+  initialData
+}) => {
+  const [ loading, setLoading ] = useState<boolean>(false);
+  const router = useRouter();
+
   const { register, handleSubmit, setValue } = useForm<FieldValues>();
   const [ bioLength, setBioLength ] = useState(0);
 
@@ -22,25 +33,32 @@ const ProfileForm = () => {
   };
 
   useEffect(() => {
-      setValue("name", user?.name);
-      setValue("image", user?.image);
-      setValue("about", user?.about);
-      setValue("coverPhoto", user?.coverPhoto);
-      setValue("dob", user?.dob);
+      setValue("name", initialData?.name);
+      setValue("image", initialData?.image);
+      setValue("about", initialData?.about);
+      setValue("coverPhoto", initialData?.coverPhoto);
+      setValue("dob", initialData?.dob);
 
-      if (user?.about) {
-        setBioLength(user.about.length);
+      if (initialData?.about) {
+        setBioLength(initialData.about.length);
       }
-  }, [user]);
+  }, [initialData]);
 
-  const handleUpdateUser: SubmitHandler<FieldValues> = async (data) => {
-    await updateUser(data);
+  const onUpdate: SubmitHandler<FieldValues> = async (data: FieldValues) => {
+    setLoading(true) 
+    try {
+      await axios.put(`/api/users/{userId}`, data);
+      toast.success("Your profile has been updated.");
+      router.refresh();
+    } catch (err) {
+      handleError(err)
+    } finally { 
+      setLoading(false) 
+    }
   };
 
-  if (!user) return <Loading />;
-
   return (
-    <form onSubmit={handleSubmit(handleUpdateUser)}>
+    <form onSubmit={handleSubmit(onUpdate)}>
       <Input label="Name" id="name" type="text" register={register} maxLength={10} />
       <Input label="Profile Image URL" id="image" type="text" register={register} />
       <Textarea
@@ -59,8 +77,8 @@ const ProfileForm = () => {
       <div className="mt-4 flex-between">
           <div className="text-muted-foreground text-sm">
               Last Updated:{" "}
-              {user?.updatedAt && (
-                formatFullDate(new Date(user.updatedAt))
+              {initialData?.updatedAt && (
+                formatFullDate(new Date(initialData.updatedAt))
               )}
           </div>
           <Button type="submit" disabled={loading}>{loading ? "Saving..." : "Save"}</Button>

@@ -1,4 +1,4 @@
-import Letter from "../../components/Letter";
+import Letter from "../../../../../components/letters/Letter";
 
 const page = () => {
     return <Letter />

@@ -1,5 +1,6 @@
 import prisma from '@/lib/prismadb';
 import { NextResponse } from "next/server";
+
 import getCurrentUser from '@/actions/getCurrentUser';
 
 export const POST = async (req: Request) => {
@@ -9,14 +10,10 @@ export const POST = async (req: Request) => {
     return new NextResponse("Unauthorized", { status: 401 });
   }  
   
-  const { rating, content, userId, authorId } = await req.json();
+  const { rating, content, userId } = await req.json();
 
   if (!content || !rating) {
     return new NextResponse("Missing fields", { status: 400 });
-  }
-
-  if (!authorId) {
-    return new NextResponse("Unathorized", { status: 401 });
   }
 
   try {
@@ -24,7 +21,7 @@ export const POST = async (req: Request) => {
       data: {
         content,
         rating,
-        authorId,
+        authorId: user.id,
         userId,
       },
     });

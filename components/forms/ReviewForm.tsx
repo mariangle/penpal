@@ -21,10 +21,10 @@ export const ReviewForm = () => {
     const { register, handleSubmit } = useForm<FieldValues>({})
     const [ rating, setRating ] = useState(0);
 
-    const onSubmit: SubmitHandler<FieldValues> = async (formData) => {
+    const onSubmit: SubmitHandler<FieldValues> = async (reviewData) => {
         if (!user) return toast.error("Please log in to submit a review.");
 
-        await postReview({ ...formData, rating });
+        await postReview({ ...reviewData, rating });
       };
 
     return (

@@ -3,7 +3,7 @@
 import Button from "@/components/common/Button";
 import Link from "next/link";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import { useReview } from "@/hooks/useReview";
@@ -15,7 +15,7 @@ import { getTimeElapsed } from "@/lib/format";
 import { ReviewRating } from "@/components/reviews/review-rating";
 
 export const ReviewList = () => {
-  const { reviews, setReviews } = useReview();
+  const [ reviews, setReviews ] = useState<IReview[]>([]);
   const { userId } = useParams();
 
   useEffect(() => {

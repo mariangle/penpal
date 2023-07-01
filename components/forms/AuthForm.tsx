@@ -48,7 +48,7 @@ const AuthForm = ({
             <div>
               <Button
                 type="submit"
-                disabled={loading || variant === "Register"}
+                disabled={loading}
                 fullWidth
                 className="bg-black"
                 >

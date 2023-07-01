@@ -73,19 +73,21 @@ export const PUT = async (req: NextRequest) => {
   }
 };
 
-export const DELETE = async () => {
-  const currentUser = await getCurrentUser();
+export const DELETE = async (
+  req: Request,
+    { params }: { params: { userId: string }}
+) => {
 
-  if (!currentUser){
-    return new NextResponse('Unauthorized', { status: 401 });
+  if (!params.userId) {
+    return new NextResponse("User id is required", { status: 400 });
   }
 
   await prisma.letter.deleteMany({
-    where: { senderId: currentUser.id },
+    where: { senderId: params.userId },
   });
 
   const user = await prisma.user.delete({
-    where: { id: currentUser.id}
+    where: { id: params.userId}
   })
 
   if (!user) {

@@ -1,12 +1,12 @@
-import ProfileForm from "../../../components/forms/ProfileForm"
+import getCurrentUser from "@/actions/getCurrentUser";
+import ProfileForm from "../../../../components/forms/ProfileForm"
 
-import { getSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 
 const EditProfilePage = async () => {
-  const session = await getSession();
+  const user = await getCurrentUser();
 
-  if (!session) redirect("/login")
+  if (!user) redirect("/login")
 
   return (
     <div>
@@ -16,7 +16,7 @@ const EditProfilePage = async () => {
         </h1>
       </div>
       <div className="py-4">
-        <ProfileForm/>
+        <ProfileForm  initialData={user}/>
       </div>
     </div>
   )

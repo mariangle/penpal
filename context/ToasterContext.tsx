@@ -6,14 +6,15 @@ const ToasterContext = () => {
   return (
     <div className="z-50">
       <Toaster
-        position="top-center"
+        position="top-right"
         toastOptions={{
           style: {
-            background: "#333",
-            color: "#fff",
-            borderRadius: "8px",
+            backgroundColor: '#fff',
+            color: '#333',
+            boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+            borderRadius: '8px',
+            padding: '16px',
           },
-          duration: 3000,
         }}
       />
     </div>

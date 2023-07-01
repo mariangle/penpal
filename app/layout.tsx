@@ -33,7 +33,6 @@ export default function RootLayout({
               </div>
               {reviewModal}
               <main className='app'>
-                {/* @ts-expect-error Server Component */}
                 <Navbar />
                 <ToastContextProvider />
                 {children}

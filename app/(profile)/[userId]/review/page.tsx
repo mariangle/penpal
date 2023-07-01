@@ -15,9 +15,7 @@ import getUser from '@/actions/getUser';
 const ReviewPage = async ({
     params
 }: {
-    params: {
-        userId: string;
-    };
+    params: { userId: string; };
 }) => {
     const session = await getSession();
     const user = await getUser(params.userId);
