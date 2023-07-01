@@ -1,5 +1,5 @@
 import getCurrentUser from "./getCurrentUser"
-import prisma from "@/lib/prismaClient";
+import prisma from "@/lib/prismadb";
 
 const getLetters = async (type: string) => {
     try {

@@ -14,20 +14,8 @@
   @apply flex items-center gap-2;
 }
 
-.white_btn {
-  @apply rounded-full border border-white bg-white py-1.5 px-5 text-black transition-all hover:bg-black hover:border-black hover:text-white text-center text-sm flex items-center justify-center;
-}
-
 .black_btn {
   @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm flex items-center justify-center;
-}
-
-.primary_btn {
-  @apply rounded-lg bg-sky-500 py-1.5 px-5 text-white transition-all hover:bg-sky-600 hover:text-white text-center text-sm  flex items-center justify-center;
-}
-
-.red_btn {
-  @apply rounded-full border border-red-600 bg-red-600 py-1.5 px-5 text-white transition-all hover:bg-red-400 hover:text-white text-center text-sm flex items-center justify-center;
 }
 
 .transparent_btn {

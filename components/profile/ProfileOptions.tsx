@@ -8,6 +8,8 @@ import useUser from '@/hooks/useUser';
 import useReview from '@/hooks/useReview';
 
 import { useParams } from "next/navigation";
+import { buttonVariants } from '../ui/button';
+import { cn } from '@/lib/utils';
 
 const ProfileOptions = () => {
   const { userId } = useParams();
@@ -17,25 +19,19 @@ const ProfileOptions = () => {
   return (
     <div className='mt-2'>
       {isCurrentUser(userId) ? (
-        <Link href={"/account/edit-profile"}>
-          <Button fullWidth className='transparent_btn'>
-            Edit Profile
-          </Button>
+        <Link href={"/account/edit-profile"} className={cn(buttonVariants({variant: "default"}), "rounded-full")}>
+          Edit Profile
         </Link>
       ) : 
       (
         <div className='flex-gap'>
           { canLeaveReview() && (
-          <Link href={`/review/${userId}`}>
-            <Button className='transparent_btn'>
-              Review
-            </Button>
+          <Link href={`/${userId}/review`} className={cn(buttonVariants({variant: "secondary"}), "rounded-full")}>
+            Review
           </Link>
           )}
-          <Link href={`/letter/${userId}`}>
-            <Button className="white_btn">
-              <BsFillEnvelopePaperFill />
-            </Button>
+          <Link href={`/${userId}/letter`} className={cn(buttonVariants({variant: "default"}), "rounded-full")}>
+            <BsFillEnvelopePaperFill />
           </Link>
         </div>
       )}

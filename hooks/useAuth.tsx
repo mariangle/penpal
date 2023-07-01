@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, useForm,  } from "react-hook-form";
 import { signIn } from "next-auth/react";
 
 import axios from "axios";
@@ -11,14 +11,10 @@ import { toast } from "react-hot-toast";
 import { getCountry } from "../actions/userActions";
 
 
-const useAuth = () => {
+export const useAuth = () => {
   const router = useRouter();
   const { register: data, handleSubmit, setValue } = useForm<FieldValues>({})
   const [ loading, setLoading ] = useState<boolean>(false);
-  
-  const socialAction = (action : string) => {
-      signIn(action, { redirect: false })
-  };
 
   useEffect(() => {
         getCountry().then((country) => {
@@ -27,6 +23,10 @@ const useAuth = () => {
   }, []);
   
   const login = (data: FieldValues) => {
+    const { email, password } = data;
+    if (!email || !password) {
+      return toast.error("Please provide both email and password.");
+    }
       setLoading(true);
       signIn("credentials", { ...data, redirect: false })
       .then((callback) => {
@@ -44,6 +44,10 @@ const useAuth = () => {
   };
 
   const register = (data: FieldValues) => {
+    const { name, email, password, dob } = data;
+    if (!name || !email || !password || !dob) {
+      return toast.error("Please fill out all fields.");
+    }
       setLoading(true);
       axios
         .post("/api/users", data)
@@ -65,7 +69,6 @@ const useAuth = () => {
     };
 
   return {
-    socialAction,
     login,
     register,
     loading,
@@ -73,5 +76,3 @@ const useAuth = () => {
     handleSubmit,
   };
 };
-  
-  export default useAuth;

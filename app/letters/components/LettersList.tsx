@@ -33,7 +33,7 @@ const LettersList = () => {
   if (loading) return null;
 
   return (
-    <div className="flex flex-col items-start border p-2 md:max-w-[12rem] w-full rounded-md bg-zinc-100 min-h-[20vh]">
+    <div className="flex flex-col items-start border p-2 md:max-w-[12rem] w-full rounded-md min-h-[20vh]">
       {letters?.map((letter) => (
         <Link key={letter.id} className="max-h-48 inline-block w-full" href={`${pathname}/${letter.id}`}>
           <div className="p-2 rounded-md">

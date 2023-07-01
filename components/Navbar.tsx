@@ -1,58 +1,36 @@
 "use client"
 
-import { BsFillEnvelopeFill, BsGlobeAmericas } from "react-icons/bs"
-import { HiOutlineSun, HiOutlineMoon } from "react-icons/hi"
-import { useDarkMode } from "../hooks/useDarkmode";
+import { BsGlobeAmericas } from "react-icons/bs"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils";
 
 import Link from "next/link"
-import SearchInput from "./SearchInput"
-import UserNavigation from "./UserNavigation"
+import UserNav from "@/components/nav/user-nav";
 
-import { useSession } from "next-auth/react"
+import useUser from "@/hooks/useUser";
 
 const Navbar = () => {
-    const { status } = useSession();
-    
+    const { user } = useUser();
+
     return (
-      <nav className='flex gap-2 justify-between items-center px-4 py-6 border-b w-full h-16'>
-        <div className="flex gap-4 md">
-          <Link href="/" className="font-bold flex items-center gap-1">
-            <BsGlobeAmericas />
-            <h1 className="hidden md:block">Pen<span className="orange_gradient">Pal</span></h1>
-          </Link>
-          <SearchInput />
+      <nav className='flex gap-2 justify-between items-center px-4 border-b w-full py-2'>
+        <div className="flex gap-4">
+          <Logo />
         </div>
-        <div className="flex justify-end gap-4 items-center flex-1">
-            <ThemeIcon />
-            { status === "authenticated" ? (
-              <>
-                <Link href={"/letters/inbox"}>
-                  <BsFillEnvelopeFill />
-                </Link>
-                <UserNavigation />
-              </>
-            ) : (
-                <Link href={"/login"} className={cn(buttonVariants(), "bg-black dark:bg-white")}>Log In</Link>
-            )}
-        </div>
+        { user ? <UserNav user={user}/> : <LoginButton /> }
       </nav>
     )
 }
 
-const ThemeIcon = () => {
-  const [colorTheme, setTheme] = useDarkMode();
-  const handleToggleTheme = () => setTheme(colorTheme);
+const Logo = () => {
   return (
-    <span onClick={handleToggleTheme} className="cursor-pointer">
-      {colorTheme === "dark" ? (
-        <HiOutlineSun size={22}/>
-      ) : (
-        <HiOutlineMoon size={20}/>
-      )}
-    </span>    
-  );
-};
+    <Link href="/" className="font-bold flex-gap text-xl">
+      <BsGlobeAmericas />
+      <h1 className="hidden md:block">Pen<span className="orange_gradient">Pal</span></h1>
+    </Link>
+  )
+}
+
+const LoginButton = () => <Link href={"/login"} className={cn(buttonVariants(), "bg-black dark:bg-white rounded-full")}>Log In</Link> 
 
 export default Navbar

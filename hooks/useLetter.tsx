@@ -20,24 +20,22 @@ export const useLetter = () => {
     try {
       setLoading(true);
 
-      const foundUser = await axios.get(`/api/getUserId`, {
+      const { data: foundUser} = await axios.get(`/api/getUserId`, {
         params: { email: data.email },
       });
-      
 
+      if (!foundUser) throw new Error("Email doesn't exist.")
       if (!user) return toast.error('You must be logged in to send a letter');
-      if (user.email === foundUser.data.email) toast.error('You cannot send yourself a letter');
+      if (user.email === foundUser.email) toast.error('You cannot send yourself a letter');
 
-      const arrival = await calculateLetterArrival(user.country, foundUser.data.country);
+      const arrival = await calculateLetterArrival(user.country, foundUser.country);
 
-      const updatedData = {
+      const response = await axios.post('/api/letters', {
         ...data,
         senderId: user.id,
-        receiverId: foundUser.data.id,
+        receiverId: foundUser.id,
         arrivalAt: arrival.arrivalDate
-      };
-
-      const response = await axios.post('/api/letters', updatedData);
+      });
 
       toast.success(`Letter sent! It will arrive in ${arrival.deliveryDays} days.`);
       router.push(`/letters/pending/${response.data.id}`)

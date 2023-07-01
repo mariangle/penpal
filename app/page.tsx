@@ -1,6 +1,6 @@
-import ProfileCard from "../components/UserCard"
+import { UserCard } from "@/components/user-card"
 import { IUser } from "@/common.types";
-import prisma from "@/lib/prismaClient"
+import prisma from "@/lib/prismadb"
 
 const Home = async () => {
   const users = await prisma.user.findMany()
@@ -11,13 +11,11 @@ const Home = async () => {
         <h1 className="mt-5 text-5xl font-extrabold leading-[1.15] sm:text-6xl text-center">
           Discover <span className="orange_gradient text-center">PenPals</span>
         </h1>
-        <p className="mt-5 text-lg sm:text-xl max-w-2xl text-center">
+        <p className="mt-5 text-lg sm:text-xl max-w-2xl text-center text-muted-foreground">
         Experience the nostalgia of writing a traditional letter in a digital world. Connect with penpals worldwide and enjoy the anticipation of heartfelt messages that arrive at their own pace.</p>
       </div>
       <div className="feed">
-        {users?.map((user: IUser) => (
-            <ProfileCard key={user.id} user={user} />
-          ))}
+        {users?.map((user: IUser) => <UserCard key={user.id} user={user} />)}
       </div>
     </div>
   )

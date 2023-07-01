@@ -3,7 +3,7 @@
 import Input from "@/components/common/Input";
 import Textarea from "@/components/common/Textarea";
 import Button from "@/components/common/Button";
-import Loading from "@/components/Loading";
+import Loading from "@/components/loading";
 
 import { formatFullDate } from "@/lib/format";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
@@ -51,21 +51,19 @@ const ProfileForm = () => {
         maxLength={150}
         onChange={handleBioChange}
       />
-      <div className="text-gray-600 text-sm mb-4">
+      <div className="text-muted-foreground text-sm mb-4">
         {150 - bioLength} characters left.
       </div>
       <Input label="Cover Image URL" id="coverPhoto" type="text" register={register} />
       <Input label="Date of Birth" id="dob" type="date" register={register} />
-      <div className="flex gap-2 items-center justify-between">
-      <div className="text-gray-600 text-sm">
-        Last Updated:{" "}
-        {user?.updatedAt && (
-          formatFullDate(new Date(user.updatedAt))
-        )}
-      </div>
-        <div>
-          <Button type="submit" disabled={loading} className="black_btn">{loading ? "Saving..." : "Save"}</Button>
-        </div>
+      <div className="mt-4 flex-between">
+          <div className="text-muted-foreground text-sm">
+              Last Updated:{" "}
+              {user?.updatedAt && (
+                formatFullDate(new Date(user.updatedAt))
+              )}
+          </div>
+          <Button type="submit" disabled={loading}>{loading ? "Saving..." : "Save"}</Button>
       </div>
     </form>
   );

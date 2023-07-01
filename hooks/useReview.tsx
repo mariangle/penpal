@@ -8,23 +8,24 @@ import axios from "axios";
 import { FieldValues } from "react-hook-form";
 import { handleError } from "../lib/error";
 import { ReviewsContext } from "../context/ReviewsContext";
-import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
-const useReview = () => {
-  const router = useRouter();
+export const useReview = () => {
   const { user } = useUser();
   const { userId } = useParams();
   const [ loading, setLoading ] = useState<boolean>(false);
   const { reviews, setReviews } = useContext(ReviewsContext)
 
   const postReview = async (data: FieldValues) => {
+    if (!data.rating || !data.content) return toast.error("Please fill out all required fields!");
+
+
     try {
       setLoading(true);
       const postData = { ...data, userId, authorId: user?.id };
-      await axios.post(`/api/reviews/`, postData);
-      router.push(`/${userId}`)
+      const { data: review } = await axios.post(`/api/reviews/`, postData);
       toast.success("Review posted!")
+      return review;
     } catch (error) {
       handleError(error);
     } finally {

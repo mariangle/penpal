@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import prisma from '@/lib/prismaClient';
+import prisma from '@/lib/prismadb';
 import { parseISO } from 'date-fns';
 import getCurrentUser from '@/actions/getCurrentUser';
 

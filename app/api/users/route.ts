@@ -4,7 +4,7 @@ import { getAge } from '@/lib/utils';
 import bcrypt from "bcrypt"
 
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prismaClient';
+import prisma from '@/lib/prismadb';
 
 export const GET = async () => {
   try {

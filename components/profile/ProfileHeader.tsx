@@ -1,6 +1,6 @@
 import Icon from '@/components/common/Icon';
-import ProfileOptions from "@/app/[userId]/components/ProfileOptions";
-import ProfilePicture from "@/components/ProfilePicture";
+import ProfileOptions from "@/components/profile/ProfileOptions";
+import { ProfilePicture } from "@/components/profile-picture";
 
 import { HiLocationMarker, HiCheckCircle, HiUser, HiMail } from 'react-icons/hi';
 
@@ -8,7 +8,7 @@ import { getAge } from '@/lib/utils';
 import { getTimeElapsed } from '@/lib/format';
 import { User } from "@prisma/client"
 
-const ProfileHeader: React.FC<{ user: User }> = ({ user }) => {
+export const ProfileHeader: React.FC<{ user: User }> = ({ user }) => {
   const userInfo = [
     { icon: HiUser, value: getAge(user.dob) },
     { icon: HiMail, value: user.email },
@@ -19,11 +19,9 @@ const ProfileHeader: React.FC<{ user: User }> = ({ user }) => {
     <div className="rounded-b-lg md:min-h-[30vh] relative p-6 w-full text-white bg-black bg-opacity-50 md:flex md:justify-between md:items-end gap-4">
       <div className="child absolute h-full w-full top-0 left-0 rounded-b-lg" style={{ backgroundImage: user.coverPhoto ? `url(${user.coverPhoto})` : undefined }}></div>
       <div className="md:flex gap-4">
-        <div className="flex-center">
-          <div className="w-36 h-36 md:h-32 md:w-32 text-black">
-            <ProfilePicture user={user} />
-          </div>
-        </div>
+        <div className="flex-center w-24 h-24">
+          <ProfilePicture user={user}/>
+        </div>  
         <div className="flex flex-col justify-end">
           <div className="flex-gap w-full">
             <h1 className="font-bold text-xl text-center md:text-start">
@@ -63,5 +61,3 @@ const UserInfoItem = ({
     <div>{value}</div>
   </div>
 );
-
-export default ProfileHeader;

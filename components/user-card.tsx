@@ -1,4 +1,4 @@
-import ProfilePicture from './ProfilePicture';
+import { ProfilePicture } from "@/components/profile-picture"
 import Icon from './common/Icon';
 import Link from 'next/link';
 
@@ -6,7 +6,7 @@ import { HiLocationMarker, HiCheckCircle } from "react-icons/hi"
 import { getAge } from "@/lib/utils";
 import { IUser } from "@/common.types";
 
-const UserCard = ({ user } : { user: IUser}) => {
+export const UserCard = ({ user } : { user: IUser}) => {
   return (
     <Link className='profile_card relative' href={`/${user.id}`}>
         {user.coverPhoto && (<div
@@ -15,17 +15,17 @@ const UserCard = ({ user } : { user: IUser}) => {
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url(${user.coverPhoto})`,
           }}
         /> )}
-        <div className='flex gap-2 p-4 pr-8'>
-          <div className='w-12 h-12'>
+        <div className='flex-gap p-4 pr-8'>
+          <div className="w-12 h-12">
             <ProfilePicture user={user}/>
           </div>
-          <div className={`flex flex-col ${user.coverPhoto ? "text-white" : "text-black"}`}>
-            <div className='flex gap-2   items-center'>
+          <div className={`flex flex-col ${user.coverPhoto ? "text-white" : "text-black dark:text-white"}`}>
+            <div className='flex-gap'>
               <h3 className='font-bold'>{user.name}, {getAge(user.dob)}</h3>
-              <div>{user.isVerified && (<Icon icon={HiCheckCircle} color="#1174c5"/>)}</div>
+              <div>{user.isVerified && (<Icon icon={HiCheckCircle} size={15} color="#1174c5"/>)}</div>
             </div>
-            <div className='flex items-center gap-1'> 
-              <Icon icon={HiLocationMarker} color={`${user.coverPhoto ? "white" : "black"}`}/>
+            <div className='flex-gap'> 
+              <Icon icon={HiLocationMarker}/>
               <div>{user.country}</div>
             </div>
           </div>
@@ -33,6 +33,4 @@ const UserCard = ({ user } : { user: IUser}) => {
     </Link>
   );
 }
-
-export default UserCard;
 

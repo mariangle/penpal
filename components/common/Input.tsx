@@ -4,6 +4,7 @@ import { HiInformationCircle, HiQuestionMarkCircle } from "react-icons/hi"
 import { ChangeEventHandler } from "react";
 import { ComponentProps } from "react";
 import { Input as StyledInput } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 type InputProps = {
   label?: string;
@@ -41,11 +42,11 @@ const Input: React.FC<InputProps> = ({
   };
 
   return (
-    <div className="w-full">
-      <div className="flex gap-2">
-        <label htmlFor={id} className="block text-sm font-medium text-gray-900">
+    <div className="w-full mb-2">
+      <div className="grid w-full max-w-sm items-center gap-1.5">
+        <Label htmlFor={id}>
           {label}
-        </label>
+        </Label>
         <div className="relative">
           {getIcon()}
           {showInfo && (

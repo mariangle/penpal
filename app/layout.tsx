@@ -1,4 +1,4 @@
-import './globals.css'
+import '@/styles/index.css'
 import { Inter } from 'next/font/google'
 
 import AuthContextProvider from '../context/AuthContext'
@@ -6,7 +6,7 @@ import ToastContextProvider from '../context/ToasterContext'
 import UserContextProvider from '../context/UserContext'
 import ReviewsContextProvider from '../context/ReviewsContext'
 
-import Navbar from '../components/Navbar'
+import Navbar from '../components/navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,22 +16,24 @@ export const metadata = {
 }
 
 export default function RootLayout({ 
-  children, authModal
+  children,
+  reviewModal
 }: { 
   children: React.ReactNode,
-  authModal: React.ReactNode
+  reviewModal: React.ReactNode
  }) {
   return (
     <AuthContextProvider>
       <UserContextProvider>
         <ReviewsContextProvider>
           <html lang="en" className="h-full">
-            <body className={`${inter.className} flex flex-col min-h-screen relative`}>
+            <body className={`${inter.className} h-full`}>
               <div className="main">
                   <div className="gradient"/>
               </div>
-              {authModal}
+              {reviewModal}
               <main className='app'>
+                {/* @ts-expect-error Server Component */}
                 <Navbar />
                 <ToastContextProvider />
                 {children}

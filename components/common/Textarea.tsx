@@ -1,5 +1,7 @@
 import { UseFormRegister, FieldValues } from "react-hook-form";
 import { ChangeEventHandler } from "react";
+import { Textarea as StyledTextarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label"
 
 type TextareaProps = {
     label?: string;
@@ -27,12 +29,12 @@ const Textarea :React.FC<TextareaProps>  = ({
     onChange
 }) => {
   return (
-    <div>
-      <label htmlFor={id} className="block text-sm font-medium loading-6 text-gray-900">
+    <div className="mb-2">
+      <Label htmlFor={id}>
         {label}
-      </label>
+      </Label>
       <div className="mt-1">
-        <textarea
+        <StyledTextarea
           id={id}
           value={value}
           rows={rows}
@@ -44,7 +46,8 @@ const Textarea :React.FC<TextareaProps>  = ({
           onChange={onChange}
         />
       </div>
-    </div>  )
+    </div>  
+    )
 }
 
 export default Textarea

@@ -2,7 +2,7 @@ interface IBiographyProps {
     bio?: string;
   }
   
-  const Biography = ({ bio }: IBiographyProps) => {
+export const Biography = ({ bio }: IBiographyProps) => {
     return (
         <div className='border p-4 profile_card rounded-md '>
             <div className='text-sm font-semibold'>
@@ -16,5 +16,3 @@ interface IBiographyProps {
         </div>
     )
 }
-
-export default Biography;

@@ -12,6 +12,12 @@ body {
   overflow-x: hidden;
 }
 
+html,
+body,
+:root {
+  height: 100%;
+}
+
 /* <--- https://dub.sh --> */
 
 .main {
@@ -83,7 +89,7 @@ body {
 }
 
 .app {
-  @apply relative flex justify-center items-center flex-col max-w-7xl mx-auto w-full;
+  @apply w-full h-full max-w-screen-xl mx-auto;
 }
 
 .outline_btn {
@@ -103,15 +109,7 @@ body {
 }
 
 .glassmorphism {
-  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
-}
-
-.dropdown {
-  @apply absolute right-0 top-full mt-3 w-full min-w-[210px] rounded-lg bg-white flex flex-col justify-end items-start z-10 shadow-lg;
-}
-
-.dropdown_link {
-  @apply text-sm  text-gray-700 hover:text-gray-500 font-medium flex gap-2;
+  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] dark:border-slate-800 dark:bg-slate-800/20 dark:shadow-[inset_10px_-50px_94px_0_rgb(0,0,0,0.2)] backdrop-blur p-5;
 }
 
 .feed {
@@ -122,7 +120,8 @@ body {
 }
 
 .profile_card {
-  @apply break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding backdrop-blur-lg backdrop-filter whitespace-pre-wrap;
+  @apply break-inside-avoid rounded-lg border border-gray-300 dark:border-slate-800 dark:text-white dark:bg-black/20 bg-white/20 bg-clip-padding backdrop-blur-lg backdrop-filter whitespace-pre-wrap;
+
   @media (max-width: 500px) {
     width: 100%;
   }

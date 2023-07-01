@@ -7,11 +7,7 @@ const NewLetterPage = async () => {
 
   if (!session) redirect("/login")
 
-  return (
-    <div>
-      <LetterForm />
-    </div>
-  )
+  return <LetterForm />
 }
 
 export default NewLetterPage

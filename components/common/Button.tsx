@@ -1,4 +1,5 @@
 import { Button as StyledButton } from "@/components/ui/button"
+import { Loader2 } from "lucide-react";
 
 type ButtonProps = {
     type? : "submit" | "button"
@@ -22,6 +23,7 @@ const Button: React.FC<ButtonProps> = ({
         className={`transition-all text-center text-sm ${className} 
         ${fullWidth ? "w-full" : ""}`}
         >      
+        {disabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         {children}
     </StyledButton>
   )
