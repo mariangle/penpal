@@ -42,7 +42,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
       if (initialData?.about) {
         setBioLength(initialData.about.length);
       }
-  }, [setValue]);
+  },[initialData?.about, initialData?.coverPhoto, initialData?.dob, initialData?.image, initialData?.name, setValue]);
 
   const onUpdate: SubmitHandler<FieldValues> = async (data: FieldValues) => {
     setLoading(true) 

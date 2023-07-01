@@ -22,13 +22,13 @@ const LettersList = () => {
     if (user) {
       fetchLetters();
     }
-  }, [user]);
+  }, [user, getLetters]);
 
   useEffect(() => {
     if (pathname.includes("inbox")) setLetters(receivedLetters);
     else if (pathname.includes("sent")) setLetters(sentLetters);
     else if (pathname.includes("pending")) setLetters(pendingLetters);
-  }, [pathname, receivedLetters, sentLetters, pendingLetters, getLetters]);
+  }, [pathname, receivedLetters, sentLetters, pendingLetters]);
 
   if (loading) return null;
 
