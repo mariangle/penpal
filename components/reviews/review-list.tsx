@@ -8,7 +8,7 @@ import axios from "axios";
 import { useParams } from "next/navigation";
 import { useReview } from "@/hooks/useReview";
 import { IReview } from "@/common.types";
-import { ProfilePicture } from "@/components/profile-picture";
+import { ProfilePicture } from "@/components/ProfilePicture";
 
 import { BsTrashFill } from "react-icons/bs";
 import { getTimeElapsed } from "@/lib/format";
