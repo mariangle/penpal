@@ -10,7 +10,7 @@ import { useUser } from "@/hooks/useUser";
 import { toast } from "react-hot-toast";
 import { useEffect } from "react";
 
-const LetterForm = ({ email } : { email: string }) => {
+const LetterForm = ({ email } : { email?: string }) => {
   const { sendLetter, loading } = useLetter();
   const { user } = useUser();
   const { register, handleSubmit, setValue } = useForm<FieldValues>();
