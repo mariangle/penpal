@@ -12,7 +12,7 @@ const Feed = async () => {
   const users = await prisma.user.findMany()
 
   return (
-    <div className="feed">
+    <div className="flex flex-wrap gap-2 max-w-screen-lg justify-center px-2">
       {users?.map((user: IUser) => <UserCard key={user.id} user={user} />)}
     </div>
   )
@@ -20,7 +20,7 @@ const Feed = async () => {
 
 const UserCard = ({ user } : { user: IUser}) => {
   return (
-    <Link className='profile_card relative' href={`/${user.id}`}>
+    <Link className='glass_card relative card-w' href={`/${user.id}`}>
         {user.coverPhoto && (<div
           className="cover_image absolute w-full h-full z-[-1]"
           style={{

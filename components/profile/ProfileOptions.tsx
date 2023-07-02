@@ -14,7 +14,7 @@ const ProfileOptions = () => {
   const { isCurrentUser } = useUser();
 
   return (
-    <div className='flex-gap mt-2'>
+    <div className='flex-gap mt-2 justify-end'>
       {isCurrentUser(userId) ? (
         <Link href={"/account/edit-profile"} className={cn(buttonVariants({variant: "default"}), "rounded-full")}>
           Edit Profile

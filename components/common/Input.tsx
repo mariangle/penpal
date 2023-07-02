@@ -43,14 +43,14 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <div className="w-full mb-2">
-      <div className="grid w-full max-w-sm items-center gap-1.5">
+      <div className="flex-between w-full max-w-sm items-center gap-1.5">
         <Label htmlFor={id}>
           {label}
         </Label>
         <div className="relative">
           {getIcon()}
           {showInfo && (
-            <div className="absolute top-4 left-0 bg-white p-2 text-sm border">
+            <div className="absolute bottom-4 right-0 bg-white p-2 text-sm border z-50">
               {help || info}
             </div>
           )}

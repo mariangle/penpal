@@ -23,7 +23,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
             <ProfileRating reviews={user.receivedReviews}/>
           </div>
           <div className="w-full rounded-md">
-            <div className="p-4 profile_card">
+            <div className="p-4 glass_card">
               <h2 className="text-sm font-semibold">
                 Reviews
               </h2>

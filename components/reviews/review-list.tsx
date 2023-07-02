@@ -29,7 +29,7 @@ export const ReviewList = () => {
         {reviews && reviews.length > 0 ? (
           reviews.reverse().map((review) => <ReviewCard review={review} setReviews={setReviews} reviews={reviews} key={review.id} />)
         ) : (
-          <div className="profile_card p-4">No reviews yet.</div>
+          <div className="glass_card p-4">No reviews yet.</div>
         )}
     </>
   );
@@ -54,7 +54,7 @@ const ReviewCard: React.FC<ReviewProps> = ({ review, reviews, setReviews }) => {
   };
 
     return (
-      <div className="profile_card p-4">
+      <div className="glass_card p-4">
         <div className="flex-between flex-gap">
             <Link className="h-12 w-12" href={`/${review.author.id}`}>
               <ProfilePicture user={review.author}/>              

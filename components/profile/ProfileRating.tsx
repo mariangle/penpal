@@ -8,20 +8,18 @@ const ProfileRating = ({ reviews }: { reviews: Review[] }) => {
   const roundedAverageRating = Math.ceil(averageRating);
 
   return (
-        <div className='border p-4 profile_card rounded-md mt-2 md:mt-4'>
+        <div className='border p-4 glass_card rounded-md mt-2 md:mt-4'>
             <div className='text-sm font-semibold'>
                 Reviews &#40;{reviews.length}&#41;
             </div>
             <div className="rounded-md mt-2 p-4 flex flex-col items-center">
                 <div className="text-xl font-semibold">
-                    {reviews.length === 0 ? "No reviews yet." : averageRating.toFixed(1)}
+                    {reviews.length === 0 ? "0" : averageRating.toFixed(1)}
                 </div>
                 <div className="flex-gap my-2">
                   <ReviewRating rating={roundedAverageRating}/>
                 </div>
-                 { reviews.length > 0 && (
-                  <div>{reviews.length} rating{reviews.length > 0 ? "s" : ""}</div>
-                 )}
+                <div>{reviews.length} rating{reviews.length === 1 ? "" : "s"}</div>
             </div>
         </div>
   );

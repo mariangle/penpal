@@ -91,41 +91,24 @@ body,
   @apply w-full h-full max-w-screen-xl mx-auto px-2;
 }
 
-.outline_btn {
-  @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm flex items-center justify-center;
-}
-
 .orange_gradient {
-  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
-}
-
-.purple_gradient {
-  @apply bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent;
-}
-
-.green_gradient {
-  @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent dark:from-purple-600 dark:to-pink-600;
 }
 
 .blue_gradient {
-  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent dark:from-green-400  dark:to-green-500;
 }
 
 .glassmorphism {
   @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] dark:border-slate-800 dark:bg-slate-800/20 dark:shadow-[inset_10px_-50px_94px_0_rgb(0,0,0,0.2)] backdrop-blur p-5;
 }
 
-.feed {
-  @apply flex flex-wrap gap-2 max-w-screen-lg;
-  @media (min-width: 500px) {
-    justify-content: center;
-  }
+.glass_card {
+  @apply break-inside-avoid rounded-lg border border-gray-300 dark:border-slate-800 dark:text-white dark:bg-black/20 bg-white/20 bg-clip-padding backdrop-blur-lg backdrop-filter whitespace-pre-wrap;
 }
 
-.profile_card {
-  @apply break-inside-avoid rounded-lg border border-gray-300 dark:border-slate-800 dark:text-white dark:bg-black/20 bg-white/20 bg-clip-padding backdrop-blur-lg backdrop-filter whitespace-pre-wrap;
-
-  @media (max-width: 500px) {
+.card-w {
+  @media (max-width: 450px) {
     width: 100%;
   }
 }
@@ -138,7 +121,7 @@ body,
   @apply rounded-md;
 }
 
-.child {
+.profile_cover {
   width: 100%;
   z-index: -10;
   background-position: center;

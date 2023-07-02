@@ -27,7 +27,7 @@ const LettersList: React.FC<{ letters: ExtendedLetter[] }>= ({ letters }) => {
     <div className="w-full min-h-[100px] lg:max-w-[300px] border border-gray-200 rounded-lg dark:border-slate-800 dark:bg-black bg-white bg-opacity-80 dark:bg-opacity-20">
       <div className="m-4 border border-gray-200 rounded-lg dark:border-slate-800 dark:bg-black bg-white bg-opacity-80 dark:bg-opacity-20">
         {items.length === 0 ? (
-          <div className="border-b p-4">No letters yet.</div>
+          <div className="border-b p-4 w-full text-sm">No letters yet...</div>
         ) : (
           items.map((letter) => (
             <Link
@@ -37,7 +37,7 @@ const LettersList: React.FC<{ letters: ExtendedLetter[] }>= ({ letters }) => {
                 letter.id === letterId ? "bg-gray-50 dark:bg-slate-900" : "")}
               href={`/letters/${category}/${letter.id}`}
             >
-              <div className="flex-between text-semibold truncate">
+              <div className="flex-between text-semibold truncate text-sm">
                 <div>
                   From: {letter.sender.name}
                 </div>
