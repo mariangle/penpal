@@ -1,6 +1,7 @@
 import { ProfileHeader } from "@/components/profile/ProfileHeader";
 import { Biography } from "@/components/profile/Biography";
 import { ReviewList } from "@/components/reviews/review-list";
+import ProfileRating from "@/components/profile/ProfileRating";
 
 import getUser from '@/actions/getUser';
 
@@ -16,9 +17,10 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
   return (
     <div className="w-full">
         <ProfileHeader user={user}/>
-        <div className="mt-2 md:mt-4 flex flex-col md:flex-row gap-4 md:gap-4 px-2 xl:px-0">
-          <div className="w-full  md:max-w-xs">
+        <div className="mt-2 md:mt-4 flex flex-col md:flex-row gap-4 md:gap-4">
+          <div className="w-full md:max-w-xs">
             <Biography bio={user.about} />
+            <ProfileRating reviews={user.receivedReviews}/>
           </div>
           <div className="w-full rounded-md">
             <div className="p-4 profile_card">

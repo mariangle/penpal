@@ -1,6 +1,6 @@
 const layout = ({children} : { children: React.ReactNode}) => {
     return (
-    <div className="w-full">
+    <div className="layout">
       {children}
       </div>
     )

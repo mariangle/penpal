@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import "./util.css";
 
 @tailwind base;
 @tailwind components;
@@ -88,8 +87,8 @@ body,
   }
 }
 
-.app {
-  @apply w-full h-full max-w-screen-xl mx-auto;
+.layout {
+  @apply w-full h-full max-w-screen-xl mx-auto px-2;
 }
 
 .outline_btn {
@@ -98,6 +97,10 @@ body,
 
 .orange_gradient {
   @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+}
+
+.purple_gradient {
+  @apply bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent;
 }
 
 .green_gradient {
@@ -141,6 +144,14 @@ body,
   background-position: center;
   background-size: center;
   background-repeat: repeat;
+}
+
+.ql-editor {
+  @apply min-h-[150px];
+}
+
+.transparent_btn {
+  @apply rounded-full bg-black bg-opacity-70 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black hover:border-none text-center text-sm  flex items-center justify-center border-none;
 }
 
 @layer base {
@@ -216,4 +227,20 @@ body,
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.flex-start {
+  @apply flex justify-start items-start;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
+}
+
+.flex-gap {
+  @apply flex items-center gap-2;
 }

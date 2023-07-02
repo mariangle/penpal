@@ -6,7 +6,19 @@ import { HiLocationMarker, HiCheckCircle } from "react-icons/hi"
 import { getAge } from "@/lib/utils";
 import { IUser } from "@/common.types";
 
-export const UserCard = ({ user } : { user: IUser}) => {
+import prisma from "@/lib/prismadb"
+
+const Feed = async () => {
+  const users = await prisma.user.findMany()
+
+  return (
+    <div className="feed">
+      {users?.map((user: IUser) => <UserCard key={user.id} user={user} />)}
+    </div>
+  )
+}
+
+const UserCard = ({ user } : { user: IUser}) => {
   return (
     <Link className='profile_card relative' href={`/${user.id}`}>
         {user.coverPhoto && (<div
@@ -22,7 +34,7 @@ export const UserCard = ({ user } : { user: IUser}) => {
           <div className={`flex flex-col ${user.coverPhoto ? "text-white" : "text-black dark:text-white"}`}>
             <div className='flex-gap'>
               <h3 className='font-bold'>{user.name}, {getAge(user.dob)}</h3>
-              <div>{user.isVerified && (<Icon icon={HiCheckCircle} size={15} color="#1174c5"/>)}</div>
+              <div>{user.isVerified && (<Icon icon={HiCheckCircle} size={15} color="#3590db"/>)}</div>
             </div>
             <div className='flex-gap'> 
               <Icon icon={HiLocationMarker}/>
@@ -34,3 +46,4 @@ export const UserCard = ({ user } : { user: IUser}) => {
   );
 }
 
+export default Feed;

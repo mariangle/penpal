@@ -19,8 +19,10 @@ export const ProfileHeader: React.FC<{ user: User }> = ({ user }) => {
     <div className="rounded-b-lg md:min-h-[30vh] relative p-6 w-full text-white bg-black bg-opacity-50 md:flex md:justify-between md:items-end gap-4">
       <div className="child absolute h-full w-full top-0 left-0 rounded-b-lg" style={{ backgroundImage: user.coverPhoto ? `url(${user.coverPhoto})` : undefined }}></div>
       <div className="md:flex gap-4">
-        <div className="flex-center w-24 h-24">
-          <ProfilePicture user={user}/>
+        <div className="flex-center">
+          <div className='w-32 h-32'>
+            <ProfilePicture user={user}/>
+          </div>
         </div>  
         <div className="flex flex-col justify-end">
           <div className="flex-gap w-full">
@@ -37,7 +39,7 @@ export const ProfileHeader: React.FC<{ user: User }> = ({ user }) => {
         </div>
       </div>
       <div>
-        <div className="flex-gap">
+        <div>
           {user.lastLoggedIn && (
             <div className="mt-2 text-xs">
               Last online: {getTimeElapsed(user.lastLoggedIn)}

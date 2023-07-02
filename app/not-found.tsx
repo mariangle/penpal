@@ -13,7 +13,7 @@ export default function NotFound() {
           </p>
           <div>
             <Link href={"/"} className="mx-auto block flex-center">
-              <Button className="black_btn max-w-[200px]" fullWidth>
+              <Button className="max-w-[200px]" fullWidth>
                 Go back to home page
               </Button>
             </Link>

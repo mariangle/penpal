@@ -1,24 +1,11 @@
+"use client"
+
 import { Review } from "@prisma/client";
-import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import ReviewRating from "@/components/reviews/review-rating";
 
 const ProfileRating = ({ reviews }: { reviews: Review[] }) => {
   const averageRating = reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length;
-
-  const renderStars = () => {
-    const stars = [];
-
-    for (let i = 1; i <= 5; i++) {
-      if (i <= averageRating) {
-        stars.push(<BsStarFill key={i} color="gold"/>);
-      } else if (i - 0.5 === averageRating) {
-        stars.push(<BsStarHalf key="half" color="gold" />);
-      } else {
-        stars.push(<BsStar key={`empty-${i}`} color="gold"/>);
-      }
-    }
-
-    return stars;
-  };
+  const roundedAverageRating = Math.ceil(averageRating);
 
   return (
         <div className='border p-4 profile_card rounded-md mt-2 md:mt-4'>
@@ -29,7 +16,9 @@ const ProfileRating = ({ reviews }: { reviews: Review[] }) => {
                 <div className="text-xl font-semibold">
                     {reviews.length === 0 ? "No reviews yet." : averageRating.toFixed(1)}
                 </div>
-                <div className="flex-gap my-2">{renderStars()}</div>
+                <div className="flex-gap my-2">
+                  <ReviewRating rating={roundedAverageRating}/>
+                </div>
                  { reviews.length > 0 && (
                   <div>{reviews.length} rating{reviews.length > 0 ? "s" : ""}</div>
                  )}

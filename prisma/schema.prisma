@@ -23,51 +23,49 @@ model User {
   dob            DateTime
   isVerified     Boolean   @default(false)
   createdAt      DateTime  @default(now())
-  updatedAt      DateTime? 
+  updatedAt      DateTime?
   lastLoggedIn   DateTime?
 
   sentLetters     Letter[] @relation("SentLetter")
   receivedLetters Letter[] @relation("ReceivedLetter")
   receivedReviews Review[] @relation("UserReviews")
-  writtenReviews   Review[] @relation("WrittenReviews")
-  replies   Reply[] @relation("UserReplies")
+  writtenReviews  Review[] @relation("WrittenReviews")
+  replies         Reply[]  @relation("UserReplies")
 }
 
 model Letter {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  image      String?
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
   content    String
-  createdAt  DateTime @default(now())
-  senderId   String   @db.ObjectId
-  receiverId String   @db.ObjectId
+  createdAt  DateTime  @default(now())
+  senderId   String    @db.ObjectId
+  receiverId String    @db.ObjectId
   arrivalAt  DateTime?
 
   sender   User @relation("SentLetter", fields: [senderId], references: [id])
   receiver User @relation("ReceivedLetter", fields: [receiverId], references: [id])
 }
 
-model Review { 
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  rating     Int
-  content    String
-  createdAt  DateTime @default(now())
-  userId     String   @db.ObjectId
-  authorId   String   @db.ObjectId
-  updatedAt  DateTime? @updatedAt
+model Review {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  rating    Int
+  content   String
+  createdAt DateTime  @default(now())
+  userId    String    @db.ObjectId
+  authorId  String    @db.ObjectId
+  updatedAt DateTime? @updatedAt
 
-  user     User @relation("UserReviews", fields: [userId], references: [id])
-  author   User @relation("WrittenReviews", fields: [authorId], references: [id])
-  replies  Reply[] @relation("ReviewReplies")
+  user    User    @relation("UserReviews", fields: [userId], references: [id])
+  author  User    @relation("WrittenReviews", fields: [authorId], references: [id])
+  replies Reply[] @relation("ReviewReplies")
 }
 
-
 model Reply {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  content  String
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  content   String
   createdAt DateTime @default(now())
-  reviewId String   @db.ObjectId
-  authorId   String   @db.ObjectId
+  reviewId  String   @db.ObjectId
+  authorId  String   @db.ObjectId
 
-  author   User @relation("UserReplies", fields: [authorId], references: [id])
-  review   Review @relation("ReviewReplies", fields: [reviewId], references: [id])
+  author User   @relation("UserReplies", fields: [authorId], references: [id])
+  review Review @relation("ReviewReplies", fields: [reviewId], references: [id])
 }

@@ -22,6 +22,7 @@ import { IUser } from "@/common.types"
 import { signOut } from "next-auth/react"
 import Link from "next/link"
 import { ProfilePicture } from "@/components/ProfilePicture"
+import { IconType } from "react-icons"
 
 const UserNav = ({ user } : { user: IUser}) => {
   
@@ -35,7 +36,7 @@ const UserNav = ({ user } : { user: IUser}) => {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <div className="w-12 h-12">
+          <div className="w-10 h-10">
             <ProfilePicture user={user} />
           </div>
         </DropdownMenuTrigger>
@@ -62,7 +63,7 @@ const UserNav = ({ user } : { user: IUser}) => {
     link: {
       to: string;
       label: string;
-      icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+      icon: IconType;
       onClick?: () => Promise<void>;
     };
   }
@@ -73,8 +74,7 @@ const UserNav = ({ user } : { user: IUser}) => {
     return (
       <Link href={to} onClick={onClick}>
         <DropdownMenuItem>
-          <Icon className="mr-2 h-4 w-4" />
-          <span>{label}</span>
+          <Icon className="mr-2 h-4 w-4" /> {label}
         </DropdownMenuItem>
       </Link>
     );

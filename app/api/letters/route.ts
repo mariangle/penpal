@@ -1,27 +1,42 @@
 import prisma from '@/lib/prismadb';
 import { NextResponse } from "next/server"
 import getCurrentUser from '@/actions/getCurrentUser';
+import { calculateLetterArrival } from '@/actions/getArrival';
 
 export const POST = async ( 
     req: Request
 ) => {
-    const { image, content, senderId, receiverId, arrivalAt } = await req.json();
+    const user = await getCurrentUser();
+    const { content, email } = await req.json();
 
-    if (!content || !senderId || !receiverId || !arrivalAt){
+    if (!user){
+        return new NextResponse("Unauthorized", { status: 401 })
+    }
+
+    if (!content || !email ){
         return new NextResponse("Missing Fields", { status: 400 })
     }
 
-    const letter = await prisma.letter.create({
-        data: {
-            image, 
-            content,
-            senderId,
-            receiverId,
-            arrivalAt
-        }
+    const receiver = await prisma.user.findFirst({
+        where: { email: email }
     })
 
-    return NextResponse.json(letter, { status: 200 })
+    if (!receiver){
+        return new NextResponse("Not Found", { status: 404 })
+    }
+
+    const arrival = await calculateLetterArrival(user.country, receiver.country);
+
+    const letter = await prisma.letter.create({
+        data: {
+            content,
+            senderId: user.id,
+            receiverId: receiver.id,
+            arrivalAt: arrival.arrivalDate
+        }
+    })
+    
+    return NextResponse.json({ letter, deliveryDays: arrival.deliveryDays}, { status: 200 });
 }
 
 export const GET = async (

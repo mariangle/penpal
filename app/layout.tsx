@@ -4,7 +4,6 @@ import { Inter } from 'next/font/google'
 import AuthContextProvider from '../context/AuthContext'
 import ToastContextProvider from '../context/ToasterContext'
 import UserContextProvider from '../context/UserContext'
-import ReviewsContextProvider from '../context/ReviewsContext'
 
 import Navbar from '@/components/Navbar'
 
@@ -17,29 +16,24 @@ export const metadata = {
 
 export default function RootLayout({ 
   children,
-  reviewModal
 }: { 
   children: React.ReactNode,
-  reviewModal: React.ReactNode
  }) {
   return (
     <AuthContextProvider>
       <UserContextProvider>
-        <ReviewsContextProvider>
-          <html lang="en" className="h-full">
-            <body className={`${inter.className} h-full`}>
-              <div className="main">
-                  <div className="gradient"/>
-              </div>
-              {reviewModal}
-              <main className='app'>
-                <Navbar />
-                <ToastContextProvider />
-                {children}
-              </main>
-            </body>
-          </html>
-        </ReviewsContextProvider>
+        <html lang="en" className="h-full">
+          <body className={`${inter.className} h-full`}>
+            <div className="main">
+                <div className="gradient"/>
+            </div>
+            <Navbar />
+            <main>
+              <ToastContextProvider />
+              {children}
+            </main>
+          </body>
+        </html>
       </UserContextProvider>
     </AuthContextProvider>
   );

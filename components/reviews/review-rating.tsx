@@ -6,7 +6,7 @@ interface StarRatingProps {
   onChange?: (rating: number) => void;
 }
 
-export const ReviewRating: React.FC<StarRatingProps> = ({
+const ReviewRating: React.FC<StarRatingProps> = ({
   rating,
   interactive = false,
   onChange,
@@ -33,6 +33,7 @@ export const ReviewRating: React.FC<StarRatingProps> = ({
   return <div className="flex items-center gap-1">{stars}</div>;
 };
 
+export default ReviewRating;
 
 
 

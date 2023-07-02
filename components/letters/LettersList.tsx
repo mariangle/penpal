@@ -1,51 +1,56 @@
-import useUser from "@/hooks/useUser";
-import useLetter from "@/hooks/useLetter";
+
+"use client"
 
 import Link from "next/link";
 
-import { usePathname, useParams } from "next/navigation"
-import { ILetter } from "@/common.types";
-import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
+import { Letter, User } from "@prisma/client";
+import { useParams, usePathname } from "next/navigation";
 import { formatDate } from "@/lib/format";
+import { useEffect, useState } from "react";
 
-const LettersList = () => {
-  const { user } = useUser();
-  const { receivedLetters, pendingLetters, sentLetters, loading, getLetters } = useLetter();
-  const [ letters, setLetters ] = useState<ILetter[]>([])
+interface ExtendedLetter extends Letter {
+  sender: User;
+}
+
+const LettersList: React.FC<{ letters: ExtendedLetter[] }>= ({ letters }) => {
+  const [ items, setItems] = useState<ExtendedLetter[]>([]); // prevent hydration error
+  const { letterId } = useParams();
   const pathname = usePathname();
+  const category = pathname.split('/')[2];
 
   useEffect(() => {
-    const fetchLetters = async () => {
-      await getLetters();
-    };
-
-    if (user) {
-      fetchLetters();
-    }
-  }, [user, getLetters]);
-
-  useEffect(() => {
-    if (pathname.includes("inbox")) setLetters(receivedLetters);
-    else if (pathname.includes("sent")) setLetters(sentLetters);
-    else if (pathname.includes("pending")) setLetters(pendingLetters);
-  }, [pathname, receivedLetters, sentLetters, pendingLetters]);
-
-  if (loading) return null;
+    setItems(letters)
+  }, [])
 
   return (
-    <div className="flex flex-col items-start border p-2 md:max-w-[12rem] w-full rounded-md min-h-[20vh]">
-      {letters?.map((letter) => (
-        <Link key={letter.id} className="max-h-48 inline-block w-full" href={`${pathname}/${letter.id}`}>
-          <div className="p-2 rounded-md">
-            <h5 className="font-bold text-blue-600 whitespace-nowrap text-xs">
-              {formatDate(letter.createdAt)}
-            </h5>
-            <h4 className="font-bold text-xs">{letter.sender.email}</h4>
-          </div>
-        </Link>
-      ))}
+    <div className="w-full min-h-[100px] lg:max-w-[300px] border border-gray-200 rounded-lg dark:border-slate-800 dark:bg-black bg-white bg-opacity-80 dark:bg-opacity-20">
+      <div className="m-4 border border-gray-200 rounded-lg dark:border-slate-800 dark:bg-black bg-white bg-opacity-80 dark:bg-opacity-20">
+        {items.length === 0 ? (
+          <div className="border-b p-4">No letters yet.</div>
+        ) : (
+          items.map((letter) => (
+            <Link
+              key={letter.id}
+              className={cn(
+                "block border-b p-4", 
+                letter.id === letterId ? "bg-gray-50 dark:bg-slate-900" : "")}
+              href={`/letters/${category}/${letter.id}`}
+            >
+              <div className="flex-between text-semibold truncate">
+                <div>
+                  From: {letter.sender.name}
+                </div>
+                <div className="text-xs">
+                  {formatDate(letter.createdAt)}
+                </div>
+              </div>
+            </Link>
+          ))
+        )}
+      </div>
     </div>
-  );
-};
+  )
+}
 
 export default LettersList;
