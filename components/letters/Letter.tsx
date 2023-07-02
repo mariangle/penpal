@@ -1,4 +1,4 @@
-"use client"
+  "use client"
 import { formatDate } from "@/lib/format";
 
 import { ILetter } from "@/common.types";
@@ -12,16 +12,13 @@ const Letter = () => {
   const { letterId } = useParams();
 
   useEffect(() => {
-    getLetter(letterId)
-      .then((letter) => {
-        setLetter(letter)
-      })
+    getLetter(letterId).then((letter) => setLetter(letter))
   }, [letterId]);
 
   if (!letter) return null;
 
   return (
-    <div className="w-full bg-white p-4 shadow-xl md:ml-4">
+    <div className="w-full bg-white p-4 shadow-xl min-h-[80vh] text-black">
        {/* SENDER INFORMATION */}
       <div className="flex flex-col items-end mb-4">
         <div>
@@ -31,7 +28,7 @@ const Letter = () => {
           <div>{formatDate(letter.createdAt)}</div>
         </div>
       </div>
-      {letter.content}
+      <div dangerouslySetInnerHTML={{__html: letter.content}} />
     </div>
   )
 }
