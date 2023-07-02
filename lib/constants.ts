@@ -6,4 +6,4 @@ export const SIDEBAR_LINKS = [
   { to: "pending", label: "Pending", icon: FaHourglassHalf}
 ]
 // messages
-export const COUNTRY_INFO_MESSAGE = "We retrieve your country information based on your IP address to provide a personalized experience."
+export const COUNTRY_INFO_MESSAGE = "We use your country information based on your IP address to provide a personalized experience."

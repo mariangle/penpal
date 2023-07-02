@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/server'
+import { BsGlobeAmericas } from "react-icons/bs"
 
 // https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons#generate-icons-using-code-js-ts-tsx
 
@@ -27,10 +28,10 @@ export default function Icon() {
           alignItems: 'center',
           justifyContent: 'center',
           color: 'white',
-          borderRadius: '5px'
+          borderRadius: '100%'
         }}
       >
-        P
+        <BsGlobeAmericas />
       </div>
     ),
     // ImageResponse options

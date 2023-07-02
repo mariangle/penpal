@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { BsStarFill } from "react-icons/bs";
 
 interface StarRatingProps {
@@ -23,7 +24,10 @@ const ReviewRating: React.FC<StarRatingProps> = ({
     stars.push(
       <BsStarFill
         key={i}
-        className={i <= rating ? "text-yellow-500" : "text-gray-400"}
+        className={cn(  
+          i <= rating ? "text-yellow-500" : "text-gray-400",
+          interactive ? "cursor-pointer" : ""
+          )}
         size={15}
         onClick={() => handleRatingChange(i)}
       />

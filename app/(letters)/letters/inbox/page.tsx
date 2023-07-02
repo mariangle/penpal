@@ -4,7 +4,7 @@ import LettersList from "@/components/letters/LettersList";
 import prismadb from "@/lib/prismadb"
 import { redirect } from "next/navigation";
 
-const InboxPage = async () => {
+const Page = async () => {
   const user = await getCurrentUser();
 
   if (!user) redirect("/login")
@@ -30,4 +30,4 @@ const InboxPage = async () => {
     )
 }
 
-export default InboxPage;
+export default Page;

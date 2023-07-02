@@ -10,7 +10,7 @@ export const ProfilePicture: React.FC<{user: IUser}> = ({ user }) => {
           className="object-cover"
         />
       ) : (
-        <AvatarFallback className="text-black">{user.name[0]}</AvatarFallback>
+        <AvatarFallback className="text-black dark:text-white">{user.name[0]}</AvatarFallback>
       )}
     </Avatar>
   );

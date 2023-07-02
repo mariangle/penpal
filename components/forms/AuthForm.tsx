@@ -29,7 +29,7 @@ const AuthForm = ({
           <div className="p-4 border-b border-gray-200 pt-8 pb-6 flex flex-col gap-1 items-center">
             <BsGlobeAmericas size={35} />
             <h1 className="text-md font-semibold mt-2">{variant === "Login" ? "Sign in to PenPal" : "Create your PenPal account"}</h1>
-            <p className="text-sm text-muted-foreground">{variant === "Login" ? "Start connecting with PenPals." : "Get started Today"}</p>
+            <p className="text-sm text-muted-foreground">{variant === "Login" ? "Start connecting with PenPals." : "Get started today."}</p>
           </div>
           <div className="bg-gray-50 p-4">
           <form onSubmit={handleSubmit(onSubmit)} className="max-w-[20rem] mx-auto">

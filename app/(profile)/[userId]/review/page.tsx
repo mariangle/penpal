@@ -27,7 +27,7 @@ const ReviewPage = async ({
             <Card className="w-full max-w-sm mx-auto">
                 <CardHeader className="w-full">
                     <CardTitle>Review {user.name}</CardTitle>
-                    <CardDescription>Contribute to a better community by reviewing users. </CardDescription>
+                    <CardDescription>Review your experience with {user.name}. </CardDescription>
                     <CardContent className="p-0">
                         <ReviewForm user={user} currentUser={currentUser}/>
                     </CardContent>
