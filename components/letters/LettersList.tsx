@@ -21,7 +21,7 @@ const LettersList: React.FC<{ letters: ExtendedLetter[] }>= ({ letters }) => {
 
   useEffect(() => {
     setItems(letters)
-  }, [])
+  }, [letters])
 
   return (
     <div className="w-full min-h-[100px] lg:max-w-[300px] border border-gray-200 rounded-lg dark:border-slate-800 dark:bg-black bg-white bg-opacity-80 dark:bg-opacity-20">
