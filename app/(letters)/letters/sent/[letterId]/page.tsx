@@ -4,8 +4,13 @@ import Letter from "@/components/letters/Letter";
 
 import prismadb from "@/lib/prismadb"
 import { redirect } from "next/navigation";
+import NotFound from "@/app/not-found";
 
-const SentLettersPage = async () => {
+interface IParams {
+  letterId: string;
+}
+
+const SentLettersPage = async ({ params }: { params: IParams }) => {
   const user = await getCurrentUser();
 
   if (!user) redirect("/login")
@@ -23,12 +28,27 @@ const SentLettersPage = async () => {
     }  
   });
 
-    return (
-        <>
-          <LettersList letters={sentLetters}/>
-          <Letter />
-        </>
-    )
+  const letterId = params.letterId;
+
+  if (!/^[0-9a-fA-F]{24}$/.test(letterId)) {
+    return NotFound();
+  }
+  
+  const letter = await prismadb.letter.findUnique({
+    where: {
+      id: params.letterId
+    },
+    include: {
+      sender: true
+    }
+  })
+
+  return (
+      <>
+        <LettersList letters={sentLetters}/>
+        <Letter letter={letter}/>
+      </>
+  )
 }
 
 export default SentLettersPage;

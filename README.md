@@ -1,126 +1,103 @@
-# PenPal
+<p align="center">
+  <a href="https://penpal-next-ts.vercel.app">
+    <img alt="typing test screenshot" src="https://github.com/mariangle/penpal-next-ts/assets/124585244/4ec5d0d4-6354-46a6-8e32-299698caf29d">
+    <h1 align="center">PenPal</h1>
+  </a>
+</p>
 
+<p align="center">
+  A full stack application that allows users.
+</p>
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#previews">Previews</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details
+<p align="center">
+  <a href="#introduction"><strong>Introduction</strong></a> ·
+  <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
+  <a href="#installation"><strong>Installation</strong></a> ·
+    <a href="#license"><strong>License</strong></a>
+</p>
+<p align="center">
+  <a href="https://www.linkedin.com/in/maria-nguyen-le">
+    <img src="https://img.shields.io/badge/-MariaLe-blue?style=plastic-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/maria-nguyen-le/" alt="License" />
+  </a>
+</p>
+<br/>
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
-  ![image](https://github.com/mariangle/penpal-next-ts/assets/124585244/4ec5d0d4-6354-46a6-8e32-299698caf29d)
 
-Penpal is a full stack application that replicates the experience of writing physical letters by introducing delays in delivery time according to the distance between users. To familiarize myself with TypeScript, I began by coding in JavaScript and resolved any errors along the way. Throughout the development process, my primary focus was on crafting a reliable API, ensuring a smooth user experience, and implementing efficient error handling mechanisms for future deployment.
+## Introduction
 
+Penpal is a full stack application that replicates the experience of writing physical letters by introducing delays in delivery time according to the distance between users.
 
+Here are some of the key features:
 
+- Text Editor
+- Mimics physical letters with delayed delivery based on user distances
+- Reviewing system
 
-### Built With
+### Dropdown
 
-* [Next.js](https://nextjs.org/) - framework
-* [TypeScript](https://www.typescriptlang.org/) - language
-* [Tailwind](https://tailwindcss.comm) - CSS
-* [MongoDB](https://mongodb.com) - database
-* [NextAuth.js](https://next-auth.js.org/) - auth
+### Mailbox
+
+###
+
+## Tech stack
+
+- [Next.js](https://nextjs.org/) - framework
+- [TypeScript](https://www.typescriptlang.org/) - language
+- [Tailwind](https://tailwindcss.comm) - CSS
+- [MongoDB](https://mongodb.com) - database
+- [NextAuth.js](https://next-auth.js.org/) - auth
 
 <!-- GETTING STARTED -->
-## Getting Started
+
+## Installation
 
 To get a local copy up and running, follow these steps.
 
-### Installation
+1. Clone the repository:
 
-1. Clone the repo
    ```sh
    git clone https://github.com/mariangle/penpal-next-ts.git
    ```
 
-2. Configure your DATEBASE_URL and SECRET in a `.env` file
+2. Configure your environment variables in a .env file. Include the following variables:
 
-3. Install required npm packages   
+   ```sh
+   DATABASE_URL=
+   SECRET=
+   ```
 
-     ```sh
-     npm install
-     ```
-     
-4. Start the development server   
+3. Install the required npm packages:
 
-     ```sh
-     npm run dev
-     ```
+   ```sh
+   npm install
+   ```
 
-     
-## Previews
+4. Set up the database:
 
-**Temporary screenshots**
+   ```sh
+   npx prisma db push
+   ```
 
-![img1](https://github.com/mariangle/penpal-next-ts/assets/124585244/978694ce-a364-4fce-ba92-bdc737940025)
-![image (1)](https://github.com/mariangle/penpal-next-ts/assets/124585244/58dfc153-032c-4681-9170-6fffc0f86164)
-![image (2)](https://github.com/mariangle/penpal-next-ts/assets/124585244/9a559b63-794f-4e28-b448-da230378a03a)
-![image (3)](https://github.com/mariangle/penpal-next-ts/assets/124585244/c34f59da-7eb0-4228-b682-fe555b81ff17)
-![image (4)](https://github.com/mariangle/penpal-next-ts/assets/124585244/bb6aaaa5-543a-4e87-b094-0a588b1ce7e9)
-![image (5)](https://github.com/mariangle/penpal-next-ts/assets/124585244/7076ad0a-deb4-40f2-a428-633123bf9da0)
+5. Start the development server:
 
-  
+   ```sh
+   npm run dev
+   ```
 
-<!-- ROADMAP -->
-## Roadmap
-- [ ] Improve letter system
-  - [x] Categorize sent and received letters
-  - [ ] Implement text formatter for more letter customization
-  - [x] Make letters arrive depend on distance between users
-- [x] Implement reviewing system
-
-
-<!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+<details>
+  <summary><b>MIT License</b></summary>
 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-<!-- CONTACT -->
-## Contact
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-Maria - marianguyenle17@gmail.com
-  
-  
-  
-  
-[![Linkedin Badge](https://img.shields.io/badge/-MariaLe-blue?style=plastic-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/maria-nguyen-le/)](https://www.linkedin.com/in/maria-nguyen-le/)
+## Acknowledgements
 
-
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-* [nextAuth](https://authjs.dev/)
-* [react-icons](https://react-icons.github.io/react-icons/)
-* [react-hot-toast](https://react-hot-toast.com/)
-* [date-fns](https://date-fns.org/)
-* [dub.sh](https://dub.sh/)
-
-<p align="right">(<a href="#penpal">back to top</a>)</p>
-  
----
-
+- dub.sh
+- shadcn
+- date-fns

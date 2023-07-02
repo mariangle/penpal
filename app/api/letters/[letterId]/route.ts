@@ -1,16 +1,17 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prismadb';
 
-export const GET = async (req: Request) => {
-  const { searchParams } = new URL(req.url as string);
-  const letterId = searchParams.get("letterId")
+export const GET = async (    
+  req: Request,
+  { params }: { params: { letterId: string }}
+) => {
 
-  if (!letterId) {
+  if (!params.letterId) {
     return new NextResponse('Letter ID not found', { status: 404 });
   }
 
   const letter = await prisma.letter.findUnique({
-    where: { id: letterId },
+    where: { id: params.letterId },
     include: { sender: true },
     });
 

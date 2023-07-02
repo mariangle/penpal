@@ -4,8 +4,13 @@ import Letter from "@/components/letters/Letter";
 
 import prismadb from "@/lib/prismadb"
 import { redirect } from "next/navigation";
+import NotFound from "@/app/not-found";
 
-const InboxPage = async () => {
+interface IParams {
+  letterId: string;
+}
+
+const InboxPage = async ({ params }: { params: IParams }) => {
   const user = await getCurrentUser();
 
   if (!user) redirect("/login")
@@ -23,11 +28,26 @@ const InboxPage = async () => {
     }
   });
 
+    const letterId = params.letterId;
+
+    if (!/^[0-9a-fA-F]{24}$/.test(letterId)) {
+      return NotFound();
+    }
+
+  const letter = await prismadb.letter.findUnique({
+    where: {
+      id: params.letterId
+    },
+    include: {
+      sender: true
+    }
+  })
+
 
     return (
         <>
           <LettersList letters={receivedLetters}/>
-          <Letter />
+          <Letter letter={letter}/>
         </>
     )
 }
