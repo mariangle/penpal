@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  A full stack application that allows users.
+  A full stack application built with Next.js and TypeScript.
 </p>
 
 <p align="center">
@@ -27,15 +27,15 @@
 
 ## Introduction
 
-Penpal is a full stack application that replicates the experience of writing physical letters by introducing delays in delivery time according to the distance between users.
+Penpal is a full stack application designed to simulate the traditional experience of writing physical letters. It achieves this by incorporating delays in delivery time based on the geographical distance between users. The purpose of Penpal is to serve as a foundation for building a larger full stack application using the new Next.js app router. This expansion aims to enhance the application's API routes and responses, providing a more advanced user experience.
 
 Here are some key features:
 
-- [Text editing and Delayed delivery](#text-editing-and-delayed-delivery)
+- [Text editing](#text-editing)
 - [Mailbox](#mailbox)
 - [Reviewing System](#reviewing-system)
 
-### Text Editing and Delayed Delivery
+### Text Editing
 
 You can easily use the text editor that enables easy text formatting, image uploading and editing capabilities. Once your letter is sent, you will receive an estimated delivery time.
 
@@ -70,8 +70,9 @@ You can edit your profile and use the dark theme in the user navigation menu.
 - [Tailwind](https://tailwindcss.comm) - CSS
 - [MongoDB](https://mongodb.com) - database
 - [NextAuth.js](https://next-auth.js.org/) - auth
+- [Vercel]([https://vercel.](https://vercel.com/) - hosting
 
-<!-- GETTING STARTED -->
+<!-- GETTING STARTED )-->
 
 ## Installation
 
