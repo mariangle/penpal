@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://penpal-next-ts.vercel.app">
-    <img alt="typing test screenshot" src="https://github.com/mariangle/penpal-next-ts/assets/124585244/4ec5d0d4-6354-46a6-8e32-299698caf29d">
+    <img alt="typing test screenshot" src="https://github.com/mariangle/penpal-next-ts/assets/124585244/7df7723c-1587-497a-b888-4290dc07f53e">
     <h1 align="center">PenPal</h1>
   </a>
 </p>
@@ -13,7 +13,8 @@
   <a href="#introduction"><strong>Introduction</strong></a> ·
   <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
   <a href="#installation"><strong>Installation</strong></a> ·
-    <a href="#license"><strong>License</strong></a>
+  <a href="#license"><strong>License</strong></a> ·
+  <a href="#acknowledgements"><strong>Acknowledgements</strong></a>
 </p>
 <p align="center">
   <a href="https://www.linkedin.com/in/maria-nguyen-le">
@@ -28,17 +29,39 @@
 
 Penpal is a full stack application that replicates the experience of writing physical letters by introducing delays in delivery time according to the distance between users.
 
-Here are some of the key features:
+Here are some key features:
 
-- Text Editor
-- Mimics physical letters with delayed delivery based on user distances
-- Reviewing system
+- [Text editing and Delayed delivery](#text-editing-and-delayed-delivery)
+- [Mailbox](#mailbox)
+- [Reviewing System](#reviewing-system)
 
-### Dropdown
+### Text Editing and Delayed Delivery
+
+You can easily use the text editor that enables easy text formatting, image uploading and editing capabilities. Once your letter is sent, you will receive an estimated delivery time.
+
+![Text Ediotr](https://github.com/mariangle/penpal-next-ts/assets/124585244/72b5bd2c-82d0-41bc-84db-7d507314fcb7)
 
 ### Mailbox
 
-###
+Your letters are organized into different categories: Inbox, Sent Letters, and Pending Letters. The categorization depends on the status of each letter.
+
+![Mailbox](https://github.com/mariangle/penpal-next-ts/assets/124585244/5076cb03-dd8d-4b0b-8e90-21ecf36f9c47)
+
+### Reviewing System
+
+Reviews will appear on a user's profile.
+
+![Reviews](https://github.com/mariangle/penpal-next-ts/assets/124585244/506c9b5a-786b-439f-9dbb-1cbf2b4de69b)
+
+### Other features
+
+When registering you are automatically assigned your country.
+
+![Login](https://github.com/mariangle/penpal-next-ts/assets/124585244/2efb56e8-aa8e-48a2-b7e6-73905e93d1d3)
+
+You can edit your profile and use the dark theme in the user navigation menu.
+
+![Personalized profiles](https://github.com/mariangle/penpal-next-ts/assets/124585244/e7bd830d-f0bb-4ef0-86d7-c0f04a045283)
 
 ## Tech stack
 
@@ -95,6 +118,8 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+</details>
 
 ## Acknowledgements
 

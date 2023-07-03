@@ -41,14 +41,14 @@ const AuthForm = ({
             {variant === "Register" && (
               <div className="flex gap-2">
                 <Input type="date" id="dob" label="Date of Birth" register={data} />
-                <Input type="text" id="country" label="Country" register={data} info={COUNTRY_INFO_MESSAGE}
+                <Input type="text" id="country" label="Country" register={data} info={COUNTRY_INFO_MESSAGE} disabled
                 />
               </div>
             )}
             <div>
               <Button
                 type="submit"
-                disabled={loading}
+                disabled={loading || variant === "Register"}
                 fullWidth
                 className="bg-black"
                 >

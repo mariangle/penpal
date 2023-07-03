@@ -23,7 +23,7 @@ const Editor: React.FC<EditorProps> = ({ value, onChange, recipient }) => {
             theme="snow" value={value} 
             onChange={onChange}  
             modules={modules} 
-            placeholder={recipient ? `Dear ${recipient.name}` : "Write your letter here..."}
+            placeholder={"Write your letter here..."}
         />  
     )
 }
