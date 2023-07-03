@@ -70,7 +70,7 @@ You can edit your profile and use the dark theme in the user navigation menu.
 - [Tailwind](https://tailwindcss.comm) - CSS
 - [MongoDB](https://mongodb.com) - database
 - [NextAuth.js](https://next-auth.js.org/) - auth
-- [Vercel]([https://vercel.](https://vercel.com/) - hosting
+- [Vercel](https://vercel.com/) - hosting
 
 <!-- GETTING STARTED )-->
 
