@@ -12,7 +12,7 @@
 <p align="center">
   <a href="#introduction"><strong>Introduction</strong></a> ·
   <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
-  <a href="#installation"><strong>Installation</strong></a> ·
+  <a href="#usage"><strong>Usage</strong></a> ·
   <a href="#license"><strong>License</strong></a> ·
   <a href="#acknowledgements"><strong>Acknowledgements</strong></a>
 </p>
@@ -37,9 +37,9 @@ Here are some key features:
 
 ### Text Editing
 
-You can easily use the text editor that enables easy text formatting, image uploading and editing capabilities. Once your letter is sent, you will receive an estimated delivery time.
+You can easily use the text editor that enables easy text formatting, image uploading and editing capabilities. Once your letter is sent, you will receive an estimated delivery time which will be based on the distance between you and the recipient.
 
-![Text Ediotr](https://github.com/mariangle/penpal-next-ts/assets/124585244/72b5bd2c-82d0-41bc-84db-7d507314fcb7)
+![Text Editor](https://github.com/mariangle/penpal-next-ts/assets/124585244/7d640bcc-38e9-4b47-93d3-b7cf11c7371b)
 
 ### Mailbox
 
@@ -72,42 +72,15 @@ You can edit your profile and use the dark theme in the user navigation menu.
 - [NextAuth.js](https://next-auth.js.org/) - auth
 - [Vercel](https://vercel.com/) - hosting
 
-<!-- GETTING STARTED )-->
+## Usage
 
-## Installation
+To access the app, you can log in using the provided test account. Please note that some actions may be restricted, but you'll still be able to send and receive letters.
 
-To get a local copy up and running, follow these steps.
+**Test Account Credentials:**
 
-1. Clone the repository:
+Email: test@email.com
 
-   ```sh
-   git clone https://github.com/mariangle/penpal-next-ts.git
-   ```
-
-2. Configure your environment variables in a .env file. Include the following variables:
-
-   ```sh
-   DATABASE_URL=
-   SECRET=
-   ```
-
-3. Install the required npm packages:
-
-   ```sh
-   npm install
-   ```
-
-4. Set up the database:
-
-   ```sh
-   npx prisma db push
-   ```
-
-5. Start the development server:
-
-   ```sh
-   npm run dev
-   ```
+Password: test
 
 ## License
 
