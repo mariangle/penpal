@@ -15,13 +15,13 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 interface ProfileFormProps {
-  initialData: IUser;
+  user: IUser;
 };
 
 export const ProfileForm: React.FC<ProfileFormProps> = ({
-  initialData
+  user
 }) => {
-  const [ loading, setLoading ] = useState<boolean>(false);
+  const [ isLoading, setIsLoading ] = useState<boolean>(false);
   const router = useRouter();
 
   const { register, handleSubmit, setValue } = useForm<FieldValues>();
@@ -33,27 +33,30 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
   };
 
   useEffect(() => {
-      setValue("name", initialData?.name);
-      setValue("image", initialData?.image);
-      setValue("about", initialData?.about);
-      setValue("coverPhoto", initialData?.coverPhoto);
-      setValue("dob", initialData?.dob);
+      setValue("name", user?.name);
+      setValue("image", user?.image);
+      setValue("about", user?.about);
+      setValue("coverPhoto", user?.coverPhoto);
+      setValue("dob", user?.dob);
 
-      if (initialData?.about) {
-        setBioLength(initialData.about.length);
+      if (user?.about) {
+        setBioLength(user.about.length);
       }
-  },[initialData?.about, initialData?.coverPhoto, initialData?.dob, initialData?.image, initialData?.name, setValue]);
+  },[user?.about, user?.coverPhoto, user?.dob, user?.image, user?.name, setValue]);
 
   const onUpdate: SubmitHandler<FieldValues> = async (data: FieldValues) => {
-    setLoading(true) 
+    setIsLoading(true) 
     try {
+      if (user.email === 'test@email.com') {
+        throw new Error('You do not have permission to edit this profile.');
+    }     
       await axios.put(`/api/users/{userId}`, data);
       toast.success("Your profile has been updated.");
       router.refresh();
     } catch (err) {
       handleError(err)
     } finally { 
-      setLoading(false) 
+      setIsLoading(false) 
     }
   };
 
@@ -77,11 +80,11 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
       <div className="mt-4 flex-between">
           <div className="text-muted-foreground text-sm">
               Last Updated:{" "}
-              {initialData?.updatedAt && (
-                formatFullDate(new Date(initialData.updatedAt))
+              {user?.updatedAt && (
+                formatFullDate(new Date(user.updatedAt))
               )}
           </div>
-          <Button type="submit" disabled={loading}>{loading ? "Saving..." : "Save"}</Button>
+          <Button type="submit" disabled={isLoading}>{isLoading ? "Saving..." : "Save"}</Button>
       </div>
     </form>
   );

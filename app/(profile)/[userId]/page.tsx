@@ -28,7 +28,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
                 Reviews
               </h2>
               <div className="flex flex-col gap-4 mt-2">
-                <ReviewList />
+                <ReviewList reviews={user.receivedReviews}/>
               </div>
             </div>
           </div>

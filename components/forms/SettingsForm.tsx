@@ -16,6 +16,9 @@ const SettingsForm = ({ user } : { user: IUser}) => {
 
     const onDelete = async () => {
         try {
+            if (user.email === 'test@email.com') {
+                throw new Error('You do not have permission to delete this account.');
+            }            
             const response = await axios.delete(`/api/users/${user.id}`)
             toast.success(response.data)
             signOut();

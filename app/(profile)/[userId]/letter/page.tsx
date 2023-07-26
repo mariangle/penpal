@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/card"
 
 import LetterForm from "@/components/forms/LetterForm";
-import { redirect } from "next/navigation";
 
 import getCurrentUser from "@/actions/getCurrentUser";
 import prismadb  from "@/lib/prismadb"

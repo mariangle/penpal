@@ -15,6 +15,8 @@ const getUser = async (userId: string) => {
         receivedReviews: {
           include: {
             author: true,
+            replies: true,
+            user: true,
           },
         },
       },

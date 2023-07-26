@@ -60,6 +60,7 @@ const AuthForm = ({
                   }
                 </span>
               </Button>
+              {variant === "Register" && <span className="text-gray-500 text-xs mt-2">Registering is disabled.</span>}
             </div>
           </form>
             <div className="flex gap-2 justify-center text-xs mt-3 text-gray-500">

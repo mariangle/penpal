@@ -4,30 +4,33 @@ import Button from "@/components/common/Button";
 import Link from "next/link";
 import ReviewRating from "@/components/reviews/review-rating";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "next/navigation";
-import { useReview } from "@/hooks/useReview";
+import useUser from "@/hooks/useUser";
 import { IReview } from "@/common.types";
 import { ProfilePicture } from "@/components/ProfilePicture";
 import { BsTrashFill } from "react-icons/bs";
 import { getTimeElapsed } from "@/lib/format";
 import axios from "axios";
+import { toast } from "react-hot-toast";
+import { Review, User, Reply } from "@prisma/client";
 
+interface ReviewWithDetails extends Review {
+  author: User;
+  replies: Reply[];
+  user: User;
+}
 
-export const ReviewList = () => {
-  const [ reviews, setReviews ] = useState<IReview[]>([]);
-  const { userId } = useParams();
+interface ReviewListProps {
+  reviews: ReviewWithDetails[]; 
+}
 
-  useEffect(() => {
-    axios
-    .get("/api/reviews", { params: { userId: userId } })
-    .then(({ data }) => setReviews(data))
-  }, [userId])
+export const ReviewList: React.FC<ReviewListProps>= ({ reviews }) => {
 
   return (
     <>
-        {reviews && reviews.length > 0 ? (
-          reviews.reverse().map((review) => <ReviewCard review={review} setReviews={setReviews} reviews={reviews} key={review.id} />)
+        {reviews.length > 0 ? (
+          reviews.reverse().map((review) => <ReviewCard review={review} reviews={reviews} key={review.id} />)
         ) : (
           <div className="glass_card p-4">No reviews yet.</div>
         )}
@@ -36,20 +39,30 @@ export const ReviewList = () => {
 };
 
 interface ReviewProps {
-  review: IReview;
-  reviews: IReview[];
-  setReviews: React.Dispatch<React.SetStateAction<IReview[]>>;
+  review: ReviewWithDetails;
+  reviews: ReviewWithDetails[];
 }
 
-const ReviewCard: React.FC<ReviewProps> = ({ review, reviews, setReviews }) => {
-  const { deleteReview, canDeleteReview, loading } = useReview();
+const ReviewCard: React.FC<ReviewProps> = ({ review, reviews }) => {
+  const [ isLoading, setIsLoading ] = useState<boolean>(false);
+  const { user } = useUser();
+  const { userId } = useParams();
+
+  const canDeleteReview = (authorId: string): boolean => {
+    return user?.id === authorId || userId === user?.id;
+  };
 
   const onDelete = async (reviewId: string) => {
     try {
-      await deleteReview(reviewId);
-      setReviews(reviews.filter((review) => review.id !== reviewId));
+      setIsLoading(true);
+      await axios.delete("/api/reviews", {
+        params: { reviewId: reviewId },
+      });
+      toast.success("Review deleted!")
     } catch (error) {
       return null;
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -65,7 +78,7 @@ const ReviewCard: React.FC<ReviewProps> = ({ review, reviews, setReviews }) => {
                     <div className="flex-gap">
                       <time className="text-xs text-gray-600">{getTimeElapsed(review.createdAt)}</time>
                       {canDeleteReview(review.author.id) && (
-                        <Button onClick={async () => onDelete(review.id)} disabled={loading} variant={"link"} className="p-0">
+                        <Button onClick={async () => onDelete(review.id)} disabled={isLoading} variant={"link"} className="p-0">
                           <BsTrashFill color="gray"/>
                         </Button>
                       )}

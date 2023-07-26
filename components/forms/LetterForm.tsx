@@ -7,10 +7,13 @@ import Editor from "@/components/Editor";
 
 import { buttonVariants } from "../ui/button";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-import { useLetter } from "@/hooks/useLetter";
 import { toast } from "react-hot-toast";
 import { IUser } from "@/common.types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation"
+import { handleError } from "@/lib/error";
+
+import axios from "axios";
 
 interface LetterFormProps {
   recipient: IUser;
@@ -18,14 +21,26 @@ interface LetterFormProps {
 }
 
 const LetterForm: React.FC<LetterFormProps> = ({ recipient, user }) => {
-  const { sendLetter, loading } = useLetter();
-const { register, handleSubmit, setValue, getValues } = useForm<FieldValues>();
+  const router = useRouter();
+  const [ isLoading, setIsLoading ] = useState<boolean>(false);
+  const { register, handleSubmit, setValue, getValues } = useForm<FieldValues>();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (!user) return toast.error("Please log in to send a letter.");
     if (!data.email  || !data.content) return toast.error("Please make sure to fill in all required fields.");
   
-    sendLetter(data);
+    setIsLoading(true);
+    try {
+      const { content, email } = data;
+      const response = await axios.post('/api/letters', { content, email });
+      const { letter, deliveryDays } = response.data;
+      router.push(`/letters/pending/${letter.id}`);
+      toast.success(`Letter sent! It will arrive in ${deliveryDays} days.`);
+      setIsLoading(false);
+    } catch (error) {
+      handleError(error);
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -39,8 +54,8 @@ const { register, handleSubmit, setValue, getValues } = useForm<FieldValues>();
         <Editor value={getValues("content")} onChange={(content) => setValue("content", content)} recipient={recipient}/>
         <div className="flex-gap mt-4">
           <Link href={`/${recipient?.id}`} className={buttonVariants({ variant: "secondary" })}>Cancel</Link>
-          <Button type="submit" disabled={loading} className="w-full">
-            {loading ? "Sending..." : "Send"}
+          <Button type="submit" disabled={isLoading} className="w-full">
+            {isLoading ? "Sending..." : "Send"}
           </Button>
         </div>
       </form>

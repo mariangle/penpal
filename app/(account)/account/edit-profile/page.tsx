@@ -16,7 +16,7 @@ const EditProfilePage = async () => {
         </h1>
       </div>
       <div className="py-4">
-        <ProfileForm  initialData={user}/>
+        <ProfileForm  user={user}/>
       </div>
     </div>
   )
