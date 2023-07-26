@@ -5,7 +5,6 @@ import Textarea from "@/components/common/Textarea"
 import Button from "@/components/common/Button";
 import ReviewRating from "@/components/reviews/review-rating";
 
-import { useReview } from "@/hooks/useReview";
 import { buttonVariants } from "../ui/button";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
