@@ -1,6 +1,6 @@
 import prisma from "@/lib/prismadb";
 
-const getUser = async (userId: string) => {
+const  getUser = async (userId: string) => {
   try {
 
     if (!userId || userId === "favicon.ico") {
@@ -24,7 +24,6 @@ const getUser = async (userId: string) => {
 
     return user;
   } catch (error) {
-    console.log("Error fetching user:", error);
     return null;
   }
 };

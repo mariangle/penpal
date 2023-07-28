@@ -13,7 +13,7 @@ const Navbar = () => {
     const { user } = useUser();
 
     return (
-      <nav className='px-4 border-b w-full'>
+      <nav className='sticky top-0 px-4 border-b w-full'>
         <div className='max-w-screen-xl mx-auto flex-gap justify-between py-2 px-2'>
           <div className='flex gap-4'>
             <Logo />

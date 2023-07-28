@@ -27,7 +27,7 @@ const LettersList: React.FC<{ letters: ExtendedLetter[] }>= ({ letters }) => {
     <div className="w-full min-h-[100px] lg:max-w-[300px] border border-gray-200 rounded-lg dark:border-slate-800 dark:bg-black bg-white bg-opacity-80 dark:bg-opacity-20">
       <div className="m-4 border border-gray-200 rounded-lg dark:border-slate-800 dark:bg-black bg-white bg-opacity-80 dark:bg-opacity-20">
         {items.length === 0 ? (
-          <div className="border-b p-4 w-full text-sm">No letters yet...</div>
+          <div className="border-b p-4 w-full text-sm">No letters found.</div>
         ) : (
           items.map((letter) => (
             <Link

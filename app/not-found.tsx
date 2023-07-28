@@ -3,7 +3,7 @@ import Button from "@/components/common/Button"
 
 export default function NotFound() {
   return (
-      <div className="h-full flex-center px-4">
+      <div className="min-h-screen flex-center px-4">
         <div className="grid content-center my-6">
           <h1 className="text-5xl font-bold text-center">
             <span className="orange_gradient text-center">Page Not Found</span>

@@ -7,7 +7,6 @@ import ReviewRating from "@/components/reviews/review-rating";
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import useUser from "@/hooks/useUser";
-import { IReview } from "@/common.types";
 import { ProfilePicture } from "@/components/ProfilePicture";
 import { BsTrashFill } from "react-icons/bs";
 import { getTimeElapsed } from "@/lib/format";
@@ -43,7 +42,7 @@ interface ReviewProps {
   reviews: ReviewWithDetails[];
 }
 
-const ReviewCard: React.FC<ReviewProps> = ({ review, reviews }) => {
+const ReviewCard: React.FC<ReviewProps> = ({ review }) => {
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
   const { user } = useUser();
   const { userId } = useParams();

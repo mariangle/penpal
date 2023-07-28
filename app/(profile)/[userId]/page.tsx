@@ -4,6 +4,7 @@ import { ReviewList } from "@/components/reviews/review-list";
 import ProfileRating from "@/components/profile/ProfileRating";
 
 import getUser from '@/actions/getUser';
+import NotFound from "@/app/not-found";
 
 interface IParams {
   userId: string;
@@ -12,7 +13,7 @@ interface IParams {
 const ProfilePage = async ({ params }: { params: IParams }) => {
   const user = await getUser(params.userId);
 
-  if (!user) return null;
+  if (!user) return NotFound();
 
   return (
     <div className="w-full">

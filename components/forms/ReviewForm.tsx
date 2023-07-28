@@ -5,14 +5,23 @@ import Textarea from "@/components/common/Textarea"
 import Button from "@/components/common/Button";
 import ReviewRating from "@/components/reviews/review-rating";
 
-import { buttonVariants } from "../ui/button";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import * as z from "zod"
+import axios from "axios";
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { buttonVariants } from "@/components/ui/button";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { User } from "@prisma/client";
 import { handleError } from "@/lib/error";
-import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
+
+const formSchema = z.object({
+    content: z.string().min(1),
+});
+
+type ReviewFormValues = z.infer<typeof formSchema>
 
 interface ReviewFormProps {
     user: User;
@@ -20,15 +29,18 @@ interface ReviewFormProps {
 }
 
 const ReviewForm: React.FC<ReviewFormProps> = ({ user, currentUser }) => {
-    const { register, handleSubmit } = useForm<FieldValues>({})
+    const form = useForm<ReviewFormValues>({
+        resolver: zodResolver(formSchema),
+      });
+
     const [ rating, setRating ] = useState(0);
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
     const { userId } = useParams();
     const router = useRouter();
 
-    const onSubmit: SubmitHandler<FieldValues> = async (reviewData) => {
+    const onSubmit: SubmitHandler<ReviewFormValues> = async (reviewData) => {
         if (!currentUser) return toast.error("Please log in to submit a review.");
-        if (!rating || !reviewData.content) return toast.error("Please fill out all required fields!");
+        if (!reviewData.content) return toast.error("Please fill out all required fields!");
 
         setIsLoading(true);
         try {
@@ -42,8 +54,8 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ user, currentUser }) => {
       };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <Textarea id="content" register={register} maxLength={150} placeholder="Write a review..."/>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+            <Textarea id="content" register={form.register} maxLength={150} placeholder="Write a review..." validation={form.formState.errors.content}/>
             <div className="mt-2 space-x-4 rounded-md border p-4">
                 <div className="flex-1 space-y-1">
                     <ReviewRating onChange={setRating} rating={rating} interactive={true} />
